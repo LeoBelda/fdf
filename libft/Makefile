@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/16 16:24:36 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/16 22:24:16 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,8 @@ SRC=ft_memset.c \
 	ft_lstcount.c \
 	ft_lstradd.c \
 	ft_strsplit_lst.c \
+	\
+	get_next_line.c
 	
 OBJ=$(SRC:%.c=%.o)
 NAME=libft.a

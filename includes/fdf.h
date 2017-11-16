@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/16 19:38:43 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/16 23:45:16 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,16 @@ typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
+	t_list	*map;
 }				t_env;
+
+typedef struct	s_vec3d
+{
+	double	x;
+	double	y;
+	double	z;
+	double	w;
+}				t_vec3d;
 
 enum
 {
@@ -40,9 +49,14 @@ enum
 	K_UP
 }				keycodes;
 
-void			fdf(void);
+void			fdf(char *map);
 
+t_list			*parse_map(char *map);
+
+int				loop_hook(void *param);
 int				key_hook(int keycode, void *param);
+int				mouse_hook(int button, int x, int y, void *param);
+int				expose_hook(void *param);
 
 void			usage_exit();
 void			error_exit();

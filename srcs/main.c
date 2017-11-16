@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 15:59:50 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/16 18:30:49 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/16 22:02:28 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ void	error_exit()
 
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-
-	fdf();
+	if (argc != 2)
+		usage_exit();
+	fdf(argv[1]);
 	return (0);
 }

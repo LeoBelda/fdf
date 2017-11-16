@@ -6,13 +6,14 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/16 18:52:04 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/16 21:58:40 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=srcs/main.c \
 	srcs/fdf.c \
-	srcs/hooks.c
+	srcs/hooks.c \
+	srcs/parse_map.c
 
 OBJ=$(SRC:%.c=%.o)
 INCLUDES=includes/

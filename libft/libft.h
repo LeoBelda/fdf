@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/13 11:10:57 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/16 23:52:23 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+
+# define BUFF_SIZE 64
+
+typedef struct	s_stock
+{
+	char	stock[BUFF_SIZE + 1];
+	int		fd;
+}				t_stock;
 
 typedef struct	s_list
 {
@@ -100,6 +110,7 @@ void			ft_putmemendl_fd(void const *s, size_t len, int fd);
 size_t			ft_lstcount(t_list *lst);
 void			ft_lstradd(t_list **alst, t_list *new);
 t_list			*ft_strsplit_lst(char const *s, char c);
-t_list			*ft_strsplitstr_lst(char const *s, char const *c);
+
+int				get_next_line(const int fd, char **line);
 
 #endif
