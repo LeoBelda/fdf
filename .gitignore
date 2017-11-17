@@ -1,4 +1,6 @@
 *.o
-*.swp
+*.sw[a-p]
 *.h.ghc
 libft.a
+libftmath.a
+fdf

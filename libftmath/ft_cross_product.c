@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   ft_cross_product.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 18:36:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/17 16:14:41 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/17 20:06:20 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/17 20:29:00 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libftmath.h"
 
-int	loop_hook(void *param)
+t_vec4	ft_cross_product(t_vec4 a, t_vec4 b)
 {
-	(void)param;
-	return (0);
-}
+	t_vec4	c;
 
-int	key_hook(int keycode, void *param)
-{
-	(void)param;
-	if (keycode == K_ESC)
-		exit(0);
-	return (0);
-}
-
-int	mouse_hook(int button, int x, int y, void *param)
-{
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)param;
-	return (0);
-}
-
-int	expose_hook(void *param)
-{
-	(void)param;
-	return (0);
+	c.x = a.y * b.z - a.z * b.y;
+	c.y = a.z * b.x - a.x * b.z;
+	c.z = a.x * b.y - a.y * b.x;
+	return (c);
 }

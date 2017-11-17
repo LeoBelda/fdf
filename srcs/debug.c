@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 18:36:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/17 16:14:41 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/17 14:52:15 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/17 16:12:40 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	loop_hook(void *param)
+void	print_parsed_map(t_map *map)
 {
-	(void)param;
-	return (0);
-}
-
-int	key_hook(int keycode, void *param)
-{
-	(void)param;
-	if (keycode == K_ESC)
-		exit(0);
-	return (0);
-}
-
-int	mouse_hook(int button, int x, int y, void *param)
-{
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)param;
-	return (0);
-}
-
-int	expose_hook(void *param)
-{
-	(void)param;
-	return (0);
+	while (map->vertices)
+	{
+		printf("x: %f  y: %f  z: %f  w: %f\n",
+				((t_vec3d*)(map->vertices->content))->x,
+				((t_vec3d*)(map->vertices->content))->y,
+				((t_vec3d*)(map->vertices->content))->z,
+				((t_vec3d*)(map->vertices->content))->w);
+		map->vertices = map->vertices->next;
+	}
 }

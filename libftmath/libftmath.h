@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 18:36:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/17 16:14:41 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/17 20:13:21 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef LIBFTMATH_H
+# define LIBFTMATH_H
 
-int	loop_hook(void *param)
-{
-	(void)param;
-	return (0);
-}
+# include <math.h>
 
-int	key_hook(int keycode, void *param)
+typedef struct	s_vec4
 {
-	(void)param;
-	if (keycode == K_ESC)
-		exit(0);
-	return (0);
-}
+	double	x;
+	double	y;
+	double	z;
+	double	w;
+}				t_vec4;
 
-int	mouse_hook(int button, int x, int y, void *param)
-{
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)param;
-	return (0);
-}
+t_vec4	ft_cross_product(t_vec4 a, t_vec4 b);
 
-int	expose_hook(void *param)
-{
-	(void)param;
-	return (0);
-}
+#endif

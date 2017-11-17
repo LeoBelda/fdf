@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/16 23:45:16 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/17 20:08:37 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "mlx.h"
 # include "libft.h"
+# include "libftmath.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -25,21 +26,27 @@
 # define XWIN 1920
 # define YWIN 1080
 
+typedef struct	s_cam
+{
+	t_vec4	eye;
+	t_vec4	target;
+	t_vec4	up;
+}				t_cam;
+
+typedef struct	s_map
+{
+	t_list	*vertices;
+	size_t	nb_col;
+	size_t	nb_line;
+}				t_map;
+
 typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
-	t_list	*map;
+	t_map	*map;
+	t_cam	*cam;
 }				t_env;
-
-typedef struct	s_vec3d
-{
-	double	x;
-	double	y;
-	double	z;
-	double	w;
-}				t_vec3d;
-
 enum
 {
 	K_ESC = 53,
@@ -51,7 +58,9 @@ enum
 
 void			fdf(char *map);
 
-t_list			*parse_map(char *map);
+void			parse_map(t_map **parsed_map, char *map);
+
+void			position_camera(t_cam **cam);
 
 int				loop_hook(void *param);
 int				key_hook(int keycode, void *param);
@@ -59,6 +68,8 @@ int				mouse_hook(int button, int x, int y, void *param);
 int				expose_hook(void *param);
 
 void			usage_exit();
-void			error_exit();
+void			error_exit(char *msg);
+
+void			print_parsed_map(t_map *map);
 
 #endif

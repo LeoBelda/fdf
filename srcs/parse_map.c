@@ -6,30 +6,71 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/17 00:03:04 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/17 20:42:03 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_list	*parse_map(char *map)
+static t_list	*line_to_vertices(char *line, size_t y_pos, size_t *count_col)
 {
-	t_list	*map_str;
-	t_list	*parsed_map;
-	char	*line;
-	int		ret;
-	int		fd;
+	int		j;
+	char	**splitted_line;
+	t_list	*vertices_line;
+	t_list	*elem;
+	t_vec4	new;
 
-	map_str = NULL;
-	if ((fd = open(map, O_RDONLY)) == -1)
-		error_exit();
+	j = -1;
+	vertices_line = NULL;
+	if (!(splitted_line = ft_strsplit(line, ' ')))
+		error_exit("");
+	while (splitted_line[++j])
+	{
+		new.x = (double)j * 10.0;
+		new.y = (double)y_pos * 10.0;
+		new.z = (double)ft_atoi(splitted_line[j]);
+		new.w = 0.0;
+		if (!(elem = ft_lstnew(&new, sizeof(t_vec4))))
+			error_exit("");
+		ft_lstradd(&vertices_line, elem);
+	}
+	if (!*count_col)
+		*count_col = j;
+	if (j < 2 || (size_t)j != *count_col)
+		error_exit("Invalid map - irregular lines");
+	return (vertices_line);
+}
+
+static void		map_to_list(int fd, t_map *parsed_map)
+{
+	int		ret;
+	size_t	i;
+	char	*line;
+	t_list	*new_line;
+
+	i = 0;
 	while ((ret = get_next_line(fd, &line)))
 	{
-		ft_lstradd(&map_str, ft_lstnew(line, ft_strlen(line)));
+		if (ret == -1
+			|| !(new_line = line_to_vertices(line, i, &(parsed_map->nb_col))))
+			error_exit("");
+		ft_lstradd(&(parsed_map->vertices), new_line);
 		free(line);
+		i++;
 	}
+	if ((parsed_map->nb_line = i) < 2)
+		error_exit("Invalid map - not enough lines");
+}
+
+void	parse_map(t_map **parsed_map, char *map)
+{
+	int		fd;
+
+	if (!(*parsed_map = ft_memalloc(sizeof(t_env))))
+		error_exit("");
+	if ((fd = open(map, O_RDONLY)) == -1)
+		error_exit("");
+	map_to_list(fd, *parsed_map);
 	if (close(fd) == -1)
-		error_exit();
-	parsed_map = 0;
-	return (parsed_map);
+		error_exit("");
 }

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 15:59:50 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/16 22:02:28 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/17 13:35:30 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@ void	usage_exit()
 	exit(-1);
 }
 
-void	error_exit()
+void	error_exit(char *msg)
 {
-	perror("Error");
+	if (!*msg)
+		perror("Error");
+	else
+	{
+		ft_putstr("Error: ");
+		ft_putendl(msg);
+	}
 	exit(-1);
 }
 
