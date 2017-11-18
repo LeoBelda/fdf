@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/17 18:51:53 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/18 17:16:44 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ void		fdf(char *map)
 
 	if (!(e = ft_memalloc(sizeof(t_env))))
 		error_exit("");
-	init_mlx(e);
 	parse_map(&(e->map), map);
 	position_camera(&(e->cam));
-	print_parsed_map(e->map);
+	init_mlx(e);
 	mlx_loop(e->mlx);
 }

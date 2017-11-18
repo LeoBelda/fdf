@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   vec4xvec4.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 16:07:20 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/18 16:41:58 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/18 13:29:54 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/18 13:48:43 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftmath.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+double	vec4xvec4(t_vec4 a, t_vec4 b)
 {
-	t_list	*new;
-
-	new = NULL;
-	while (lst)
-	{
-		ft_lstradd(&new, f(lst));
-		lst = lst->next;
-	}
-	return (new);
+	return (a.x * b.x + a.y * b.y);
 }

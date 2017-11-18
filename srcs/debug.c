@@ -6,21 +6,21 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 14:52:15 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/17 16:12:40 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/18 17:32:38 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	print_parsed_map(t_map *map)
+void	print_parsed_map(t_list *vertices)
 {
-	while (map->vertices)
+	while (vertices)
 	{
 		printf("x: %f  y: %f  z: %f  w: %f\n",
-				((t_vec3d*)(map->vertices->content))->x,
-				((t_vec3d*)(map->vertices->content))->y,
-				((t_vec3d*)(map->vertices->content))->z,
-				((t_vec3d*)(map->vertices->content))->w);
-		map->vertices = map->vertices->next;
+				((t_vec4*)(vertices->content))->x,
+				((t_vec4*)(vertices->content))->y,
+				((t_vec4*)(vertices->content))->z,
+				((t_vec4*)(vertices->content))->w);
+		vertices = vertices->next;
 	}
 }

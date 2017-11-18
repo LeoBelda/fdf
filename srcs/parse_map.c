@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/17 20:42:03 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/18 14:44:05 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void		map_to_list(int fd, t_map *parsed_map)
 		error_exit("Invalid map - not enough lines");
 }
 
-void	parse_map(t_map **parsed_map, char *map)
+void			parse_map(t_map **parsed_map, char *map)
 {
 	int		fd;
 

@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_cross_product.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 16:07:20 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/18 16:41:58 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/17 20:06:20 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/18 13:18:43 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftmath.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_vec4	cross_product(t_vec4 a, t_vec4 b)
 {
-	t_list	*new;
+	t_vec4	c;
 
-	new = NULL;
-	while (lst)
-	{
-		ft_lstradd(&new, f(lst));
-		lst = lst->next;
-	}
-	return (new);
+	c.x = a.y * b.z - a.z * b.y;
+	c.y = a.z * b.x - a.x * b.z;
+	c.z = a.x * b.y - a.y * b.x;
+	return (c);
 }

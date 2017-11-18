@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/16 22:24:16 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/18 16:45:11 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRC=ft_memset.c \
 	ft_lstadd.c \
 	ft_lstiter.c \
 	ft_lstmap.c \
+	ft_lstmap_param.c \
 	\
 	ft_memrcpy.c \
 	ft_strspn.c \

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/16 23:52:23 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/18 16:45:29 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ void			ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_list			*ft_lstmap_param(t_list *lst, void *param, 
+				t_list *(*f)(t_list *elem, void *param));
 
 void			*ft_memrcpy(void *dst, const void *src, size_t n);
 size_t			ft_strspn(const char *s, const char *charset);

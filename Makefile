@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/17 20:43:55 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/18 17:17:11 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC=srcs/main.c \
 	srcs/hooks.c \
 	srcs/parse_map.c \
 	srcs/camera.c \
+	srcs/draw.c \
 	srcs/debug.c
 
 OBJ=$(SRC:%.c=%.o)

@@ -6,11 +6,16 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/17 19:55:55 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/18 14:22:23 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC=ft_cross_product.c
+SRC=vec4new.c \
+	mat4new.c \
+	cross_product.c \
+	vec4xvec4.c \
+	mat4xvec4.c \
+	mat4xmat4.c
 	
 OBJ=$(SRC:%.c=%.o)
 NAME=libftmath.a

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/17 20:08:37 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/18 17:32:11 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define XWIN 1920
 # define YWIN 1080
 
+# define C_CYAN 0x28c1da
+
 typedef struct	s_cam
 {
 	t_vec4	eye;
@@ -36,6 +38,7 @@ typedef struct	s_cam
 typedef struct	s_map
 {
 	t_list	*vertices;
+	t_list	*to_draw;
 	size_t	nb_col;
 	size_t	nb_line;
 }				t_map;
@@ -44,6 +47,10 @@ typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
+	int		bpp;
+	int		size_line;
+	int		endian;
 	t_map	*map;
 	t_cam	*cam;
 }				t_env;
@@ -60,7 +67,10 @@ void			fdf(char *map);
 
 void			parse_map(t_map **parsed_map, char *map);
 
+t_mat4			calculate_view_mat(t_cam *cam);
 void			position_camera(t_cam **cam);
+
+void			draw(t_env *e);
 
 int				loop_hook(void *param);
 int				key_hook(int keycode, void *param);
@@ -70,6 +80,6 @@ int				expose_hook(void *param);
 void			usage_exit();
 void			error_exit(char *msg);
 
-void			print_parsed_map(t_map *map);
+void			print_parsed_map(t_list *map);
 
 #endif
