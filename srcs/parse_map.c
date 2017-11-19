@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/18 14:44:05 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/19 18:44:29 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_list	*line_to_vertices(char *line, size_t y_pos, size_t *count_col)
 		new.x = (double)j * 10.0;
 		new.y = (double)y_pos * 10.0;
 		new.z = (double)ft_atoi(splitted_line[j]);
-		new.w = 0.0;
+		new.w = 1.0;
 		if (!(elem = ft_lstnew(&new, sizeof(t_vec4))))
 			error_exit("");
 		ft_lstradd(&vertices_line, elem);

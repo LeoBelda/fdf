@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4new.c                                          :+:      :+:    :+:   */
+/*   sclmat4new.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/18 10:43:20 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/19 17:09:13 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/19 19:58:32 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/19 20:03:42 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftmath.h"
 
-t_mat4	mat4new(t_vec4 x, t_vec4 y, t_vec4 z, t_vec4 w)
+t_mat4	sclmat4new(double x, double y, double z)
 {
-	t_mat4	mat;
+	t_mat4	sclmat;
 
-	/*
-	mat.x.x = x.x;
-	mat.x.y = y.x;
-	mat.x.z = z.x;
-	mat.x.w = w.x;
-	mat.y.x = x.y;
-	mat.y.y = y.y;
-	mat.y.z = z.y;
-	mat.y.w = w.y;
-	mat.z.x = x.z;
-	mat.z.y = y.z;
-	mat.z.z = z.z;
-	mat.z.w = w.z;
-	mat.w.x = w.x;
-	mat.w.y = w.x;
-	mat.w.z = w.x;
-	mat.w.w = w.x;
-	*/
-	mat.x = x;
-	mat.y = y;
-	mat.z = z;
-	mat.w = w;
-	return (mat);
+	sclmat.x = vec4new(x, 0.0, 0.0, 0.0);
+	sclmat.y = vec4new(0.0, y, 0.0, 0.0);
+	sclmat.z = vec4new(0.0, 0.0, z, 0.0);
+	sclmat.w = vec4new(0.0, 0.0, 0.0, 1.0);
+	return (sclmat);
 }

@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4new.c                                          :+:      :+:    :+:   */
+/*   print_vec4_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/18 10:43:20 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/19 17:09:13 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/19 16:10:22 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/19 16:18:25 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftmath.h"
 
-t_mat4	mat4new(t_vec4 x, t_vec4 y, t_vec4 z, t_vec4 w)
+void	print_vec4_fd(t_vec4 vec, int fd)
 {
-	t_mat4	mat;
-
-	/*
-	mat.x.x = x.x;
-	mat.x.y = y.x;
-	mat.x.z = z.x;
-	mat.x.w = w.x;
-	mat.y.x = x.y;
-	mat.y.y = y.y;
-	mat.y.z = z.y;
-	mat.y.w = w.y;
-	mat.z.x = x.z;
-	mat.z.y = y.z;
-	mat.z.z = z.z;
-	mat.z.w = w.z;
-	mat.w.x = w.x;
-	mat.w.y = w.x;
-	mat.w.z = w.x;
-	mat.w.w = w.x;
-	*/
-	mat.x = x;
-	mat.y = y;
-	mat.z = z;
-	mat.w = w;
-	return (mat);
+	write(fd, "x: ", 3);
+	print_double_fd(vec.x, fd);
+	write(fd, "  ", 2);
+	write(fd, "y: ", 3);
+	print_double_fd(vec.y, fd);
+	write(fd, "  ", 2);
+	write(fd, "z: ", 3);
+	print_double_fd(vec.z, fd);
+	write(fd, "  ", 2);
+	write(fd, "w: ", 3);
+	print_double_fd(vec.w, fd);
 }

@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/18 16:45:11 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/19 20:43:34 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,8 @@ SRC=ft_memset.c \
 	ft_lstdelone.c \
 	ft_lstdel.c \
 	ft_lstadd.c \
+	ft_lstradd.c \
+	ft_lstat.c \
 	ft_lstiter.c \
 	ft_lstmap.c \
 	ft_lstmap_param.c \
@@ -84,7 +86,6 @@ SRC=ft_memset.c \
 	ft_putmem_fd.c \
 	ft_putmemendl_fd.c \
 	ft_lstcount.c \
-	ft_lstradd.c \
 	ft_strsplit_lst.c \
 	\
 	get_next_line.c

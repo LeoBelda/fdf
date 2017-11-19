@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/18 17:32:11 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/19 21:44:40 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,24 @@ typedef struct	s_map
 	size_t	nb_line;
 }				t_map;
 
+typedef struct	s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}				t_img;
+
 typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
-	int		bpp;
-	int		size_line;
-	int		endian;
+	t_img	*img;
 	t_map	*map;
 	t_cam	*cam;
 }				t_env;
+
 enum
 {
 	K_ESC = 53,

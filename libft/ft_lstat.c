@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   ft_lstat.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/17 14:52:15 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/19 17:31:08 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/19 20:38:21 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/19 20:43:48 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	print_parsed_map(t_list *vertices)
+t_list	*ft_lstat(t_list *lst, size_t n)
 {
-	while (vertices)
-	{
-		print_vec4(*((t_vec4*)(vertices->content)));
-		ft_putendl("");
-		vertices = vertices->next;
-	}
+	while (lst && n-- != 0)
+		lst = lst->next;
+	return (lst);
 }

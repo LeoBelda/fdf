@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/18 16:45:29 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/19 20:43:44 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);
+void			ft_lstradd(t_list **alst, t_list *new);
+t_list			*ft_lstat(t_list *lst, size_t n);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list			*ft_lstmap_param(t_list *lst, void *param, 
@@ -110,7 +112,6 @@ void			ft_putmemendl(void const *s, size_t len);
 void			ft_putmem_fd(void const *s, size_t len, int fd);
 void			ft_putmemendl_fd(void const *s, size_t len, int fd);
 size_t			ft_lstcount(t_list *lst);
-void			ft_lstradd(t_list **alst, t_list *new);
 t_list			*ft_strsplit_lst(char const *s, char c);
 
 int				get_next_line(const int fd, char **line);
