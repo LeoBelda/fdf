@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/19 20:04:38 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/20 13:44:00 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include <math.h>
 # include <unistd.h>
+
+typedef struct	s_vec2r
+{
+	int	x;
+	int	y;
+}				t_vec2r;
 
 typedef struct	s_vec4
 {
@@ -32,6 +38,8 @@ typedef struct	s_mat4
 	t_vec4	w;
 }				t_mat4;
 
+t_vec2r			vec2rnewd(double x, double y);
+t_vec2r			vec2rnewi(int x, int y);
 t_vec4			vec4new(double x, double y, double z, double w);
 t_mat4			mat4new(t_vec4 x, t_vec4 y, t_vec4 z, t_vec4 w);
 t_mat4			idmat4new(void);

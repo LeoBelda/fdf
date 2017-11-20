@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/19 21:44:40 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/20 15:28:16 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ t_mat4			calculate_view_mat(t_cam *cam);
 void			position_camera(t_cam **cam);
 
 void			draw(t_env *e);
+
+void			bresenham1(t_vec2r a, t_vec2r b, int incx, int incy, t_img imginf);
+void			bresenham2(t_vec2r a, t_vec2r b, int incx, int incy, t_img imginf);
 
 int				loop_hook(void *param);
 int				key_hook(int keycode, void *param);

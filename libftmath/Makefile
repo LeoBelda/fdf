@@ -6,11 +6,13 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/19 20:04:55 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/20 13:44:16 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC=vec4new.c \
+SRC=vec2rnewd.c \
+	vec2rnewi.c \
+	vec4new.c \
 	mat4new.c \
 	idmat4new.c \
 	sclmat4new.c \
