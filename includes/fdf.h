@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/20 15:28:16 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/20 19:16:02 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@
 # define YWIN 1080
 
 # define C_CYAN 0x28c1da
+
+typedef struct	s_modmat
+{
+	double	rx;
+	double	ry;
+	double	rz;
+	double	tx;
+	double	ty;
+	double	tz;
+	double	s;
+}				t_modmat;
 
 typedef struct	s_cam
 {
@@ -54,11 +65,12 @@ typedef struct	s_img
 
 typedef struct	s_env
 {
-	void	*mlx;
-	void	*win;
-	t_img	*img;
-	t_map	*map;
-	t_cam	*cam;
+	void		*mlx;
+	void		*win;
+	t_img		*img;
+	t_map		*map;
+	t_modmat	*modmat;
+	t_cam		*cam;
 }				t_env;
 
 enum
@@ -72,15 +84,17 @@ enum
 
 void			fdf(char *map);
 
-void			parse_map(t_map **parsed_map, char *map);
+void			parse_map(t_map *parsed_map, char *map);
 
-t_mat4			calculate_view_mat(t_cam *cam);
-void			position_camera(t_cam **cam);
+t_mat4			get_view_mat4(t_cam *cam);
+t_mat4			get_model_mat4(t_modmat *modmat);
 
 void			draw(t_env *e);
 
-void			bresenham1(t_vec2r a, t_vec2r b, int incx, int incy, t_img imginf);
-void			bresenham2(t_vec2r a, t_vec2r b, int incx, int incy, t_img imginf);
+void			bresenham1(t_vec2r a, t_vec2r b, t_img imginf);
+void			bresenham2(t_vec2r a, t_vec2r b, t_img imginf);
+void			bresenham3(t_vec2r a, t_vec2r b, t_img imginf);
+void			bresenham4(t_vec2r a, t_vec2r b, t_img imginf);
 
 int				loop_hook(void *param);
 int				key_hook(int keycode, void *param);

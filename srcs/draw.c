@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/20 15:29:54 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/20 20:34:11 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static t_list	*map_to_view(t_list *elem, void *view_mat)
 	t_list	*new;
 	t_vec4	view;
 
-	view = mat4xvec4(sclmat4new(5.0, 5.0, 5.0), *((t_vec4*)(elem->content)));
-	view = mat4xvec4(*((t_mat4*)view_mat), view);
+	view = mat4xvec4(*((t_mat4*)view_mat), *((t_vec4*)(elem->content)));
 	if (!(new = ft_lstnew(&view, sizeof(t_vec4))))
 		return (NULL);
 	return (new);
@@ -29,27 +28,25 @@ static void	line_to_screen(t_vec4 a, t_vec4 b, t_img imginf)
 	t_vec2r	ar;
 	t_vec2r	br;
 
-	if (fabs(b.x - a.x) < fabs(b.y - a.y))
+	ar = vec2rnewd(a.x, a.y);
+	br = vec2rnewd(b.x, b.y);
+	if (fabs(b.x - a.x) > fabs(b.y - a.y))
 	{
-		ar = vec2rnewd(a.y, a.x);
-		br = vec2rnewd(b.y, b.x);
 		if (br.x > ar.x)
-			br.y > ar.y ? bresenham2(ar, br, 1, 1, imginf)
-						: bresenham2(ar, br, 1, -1, imginf);
+			//oct 1 - 8
+			br.y > ar.y ? bresenham1(ar, br, imginf) : bresenham2(ar, br, imginf);
 		else
-			br.y > ar.y ? bresenham2(br, ar, 1, 1, imginf)
-						: bresenham2(br, ar, 1, -1, imginf);
+			//oct 5 - 4
+			br.y > ar.y ? bresenham2(br, ar, imginf) : bresenham1(br, ar, imginf);
 	}
 	else
 	{
-		ar = vec2rnewd(a.x, a.y);
-		br = vec2rnewd(b.x, b.y);
 		if (br.x > ar.x)
-			br.y > ar.y ? bresenham1(ar, br, 1, 1, imginf)
-						: bresenham1(ar, br, 1, -1, imginf);
+			//oct 2 - 7
+			br.y > ar.y ? bresenham3(ar, br, imginf) : bresenham4(ar, br, imginf);
 		else
-			br.y > ar.y ? bresenham1(br, ar, 1, 1, imginf)
-						: bresenham1(br, ar, 1, -1, imginf);
+			//oct 6 - 3
+			br.y > ar.y ? bresenham4(br, ar, imginf) : bresenham3(br, ar, imginf);
 	}
 }
 
@@ -80,15 +77,6 @@ static void	coords_to_img(t_map *map, t_img *imginf)
 	}
 }
 
-
-		/*
-		x = lround(((t_vec4*)(to_draw->content))->x);
-		y = lround(((t_vec4*)(to_draw->content))->y);
-		intaddr = (int*)&(addr[x * (bpp / 8) + y * size_line]);
-		*intaddr = C_CYAN;
-		to_draw = to_draw->next;
-		*/
-
 void		draw(t_env *e)
 {
 	t_mat4	view_mat;
@@ -97,7 +85,7 @@ void		draw(t_env *e)
 		error_exit("mlx_new_image failed to deliver");
 	e->img->addr = mlx_get_data_addr(e->img->img, &(e->img->bpp),
 						&(e->img->size_line), &(e->img->endian));
-	view_mat = calculate_view_mat(e->cam);
+	view_mat = mat4xmat4(get_model_mat4(e->modmat), get_view_mat4(e->cam));
 	e->map->to_draw = ft_lstmap_param(e->map->vertices, (void*)(&view_mat),
 						map_to_view);
 	coords_to_img(e->map, e->img);

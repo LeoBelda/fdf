@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/20 14:12:05 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/20 20:45:06 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,41 @@ static void	init_mlx(t_env *e)
 	mlx_loop_hook(e->mlx, loop_hook, (void*)e);
 }
 
+static void	malloc_env(t_env *e)
+{
+	if (!(e->map = ft_memalloc(sizeof(t_map))))
+		error_exit("");
+	if (!(e->img = ft_memalloc(sizeof(t_img))))
+		error_exit("");
+	if (!(e->cam = ft_memalloc(sizeof(t_cam))))
+		error_exit("");
+	if (!(e->modmat = ft_memalloc(sizeof(t_modmat))))
+		error_exit("");
+}
+
+static void	set_init_state(t_cam *cam, t_modmat *modmat)
+{
+	modmat->rx = 33.0;
+	modmat->ry = -33.0;
+	modmat->rz = 10.0;
+	modmat->tx = 800.0;
+	modmat->ty = 400.0;
+	modmat->tz = 0.0;
+	modmat->s = 5.0;
+	cam->eye = vec4new(0.0, 0.0, 50.0, 0.0);
+	cam->target = vec4new(0.0, 0.0, 0.0, 0.0);
+	cam->up = vec4new(0.0, 1.0, 0.0, 0.0);
+}
+
 void		fdf(char *map)
 {
 	t_env	*e;
 
 	if (!(e = ft_memalloc(sizeof(t_env))))
 		error_exit("");
-	if (!(e->img = ft_memalloc(sizeof(t_img))))
-		error_exit("");
-	parse_map(&(e->map), map);
-	position_camera(&(e->cam));
+	malloc_env(e);
+	parse_map(e->map, map);
+	set_init_state(e->cam, e->modmat);
 	init_mlx(e);
 	mlx_loop(e->mlx);
 }

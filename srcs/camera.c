@@ -6,13 +6,13 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/20 15:18:31 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/20 20:44:33 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_mat4	calculate_view_mat(t_cam *cam)
+t_mat4	get_view_mat4(t_cam *cam)
 {
 	t_mat4	view_mat;
 	t_vec4	x_vec;
@@ -29,11 +29,23 @@ t_mat4	calculate_view_mat(t_cam *cam)
 	return (view_mat);
 }
 
-void	position_camera(t_cam **cam)
+t_mat4	get_model_mat4(t_modmat *modmat)
 {
-	if (!(*cam = ft_memalloc(sizeof(t_cam))))
-		error_exit("");
-	(*cam)->eye = vec4new(130.0, 50.0, 50.0, 0.0);
-	(*cam)->target = vec4new(90.0, 50.0, 0.0, 0.0);
-	(*cam)->up = vec4new(-0.5, 1.0, 0.0, 0.0);
+	return (
+			mat4xmat4(trsmat4new(modmat->tx, modmat->ty, modmat->tz),
+			mat4xmat4(rotzmat4new(deg_rad(modmat->rx)),
+			mat4xmat4(rotymat4new(deg_rad(modmat->ry)),
+			mat4xmat4(rotxmat4new(deg_rad(modmat->rx)),
+			sclmat4new(modmat->s, modmat->s, modmat->s)
+			)))));
 }
+/*
+	return (
+			mat4xmat4(sclmat4new(modmat->s, modmat->s, modmat->s),
+			mat4xmat4(trsmat4new(modmat->tx, modmat->ty, modmat->tz),
+			mat4xmat4(rotzmat4new(deg_rad(modmat->rz)),
+			mat4xmat4(rotymat4new(deg_rad(modmat->ry)),
+			rotxmat4new(deg_rad(modmat->rx))
+			)))));
+}
+*/

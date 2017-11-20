@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/20 13:44:16 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/20 17:57:12 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,18 @@ SRC=vec2rnewd.c \
 	mat4new.c \
 	idmat4new.c \
 	sclmat4new.c \
+	trsmat4new.c \
+	rotxmat4new.c \
+	rotymat4new.c \
+	rotzmat4new.c \
 	\
 	cross_product.c \
 	norm_vec4.c \
 	vec4xvec4.c \
 	mat4xvec4.c \
 	mat4xmat4.c \
+	\
+	deg_rad.c \
 	\
 	print_double_fd.c \
 	print_double.c \
