@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4new.c                                          :+:      :+:    :+:   */
+/*   print_vec2r_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/18 10:43:20 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/21 21:14:41 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/21 22:51:29 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/21 22:53:33 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftmath.h"
 
-t_mat4	mat4new(t_vec4 x, t_vec4 y, t_vec4 z, t_vec4 w)
+static void	ft_putnbr_fd(int n, int fd)
 {
-	t_mat4	mat;
+	long int	nb;
+	char		to_write;
 
-	mat.x = x;
-	mat.y = y;
-	mat.z = z;
-	mat.w = w;
-	return (mat);
+	nb = (long int)n;
+	if (nb < 0)
+	{
+		write(fd, "-", 1);
+		nb = -nb;
+	}
+	if (nb / 10 != 0)
+		ft_putnbr_fd(nb / 10, fd);
+	to_write = nb % 10 + 48;
+	write(fd, &(to_write), 1);
+}
+
+void	print_vec2r_fd(t_vec2r vec, int fd)
+{
+	write(fd, "x: ", 3);
+	ft_putnbr_fd(vec.x, fd);
+	write(fd, "  ", 2);
+	write(fd, "y: ", 3);
+	ft_putnbr_fd(vec.y, fd);
 }

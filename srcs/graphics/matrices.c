@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/21 20:16:23 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/21 23:17:43 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static t_mat4	get_model_mat(t_modmat *initst)
 
 void			set_matrices(t_matrices *matrices)
 {
-	matrices->f_mat = mat4xmat4(get_view_mat(matrices->cam),
-						get_model_mat(matrices->initst));
+	matrices->f_mat = mat4xmat4(matrices->ortho_proj,
+						mat4xmat4(get_view_mat(matrices->cam),
+									get_model_mat(matrices->initst)));
 }

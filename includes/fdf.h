@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/21 19:56:46 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/21 22:58:13 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ typedef struct	s_cam
 typedef struct	s_map
 {
 	t_list	*vertices;
-	t_list	*to_draw;
+	t_list	*proj;
+	t_list	*draw;
 	size_t	nb_col;
 	size_t	nb_line;
 }				t_map;
@@ -67,6 +68,7 @@ typedef struct	s_matrices
 {
 	t_modmat	*initst;
 	t_cam		*cam;
+	t_mat4		ortho_proj;
 	t_mat4		f_mat;
 }				t_matrices;
 
@@ -94,7 +96,7 @@ void			parse_map(t_map *parsed_map, char *map);
 
 void			set_matrices(t_matrices *matrices);
 
-void			draw_line(t_vec4 a, t_vec4 b, t_img imginf);
+void			draw_line(t_vec2r a, t_vec2r b, t_img imginf);
 
 void			draw(t_env *e);
 
@@ -107,5 +109,6 @@ void			usage_exit();
 void			error_exit(char *msg);
 
 void			print_parsed_map(t_list *map);
+void			print_draw_coords(t_list *draw);
 
 #endif

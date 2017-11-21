@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4new.c                                          :+:      :+:    :+:   */
+/*   frustrumnew.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/18 10:43:20 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/21 21:14:41 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/21 21:44:52 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/21 21:47:50 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftmath.h"
 
-t_mat4	mat4new(t_vec4 x, t_vec4 y, t_vec4 z, t_vec4 w)
+t_frustrum	frustrumnew(t_vec4 rlt, t_vec4 bfn)
 {
-	t_mat4	mat;
+	t_frustrum	fr;
 
-	mat.x = x;
-	mat.y = y;
-	mat.z = z;
-	mat.w = w;
-	return (mat);
+	fr.r = rlt.x;
+	fr.l = rlt.y;
+	fr.t = rlt.z;
+	fr.b = bfn.x;
+	fr.f = bfn.y;
+	fr.n = bfn.z;
+	return (fr);
 }

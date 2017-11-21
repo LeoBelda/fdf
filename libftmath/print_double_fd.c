@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 15:33:33 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/19 16:25:00 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/21 22:05:03 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	ft_putnbr_fd(int n, int fd)
 	to_write = nb % 10 + 48;
 	write(fd, &(to_write), 1);
 }
+
 void		print_double_fd(double nb, int fd)
 {
 	double intpart;
