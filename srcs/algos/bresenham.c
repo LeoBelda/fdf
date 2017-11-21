@@ -6,13 +6,13 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 10:05:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/20 16:44:24 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/21 18:44:58 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	bresenham1(t_vec2r a, t_vec2r b, t_img imginf)
+static void	bresenham1(t_vec2r a, t_vec2r b, t_img imginf)
 {
 	int		*intaddr;
 	int		dx;
@@ -39,7 +39,7 @@ void	bresenham1(t_vec2r a, t_vec2r b, t_img imginf)
 	}
 }
 
-void	bresenham2(t_vec2r a, t_vec2r b, t_img imginf)
+static void	bresenham2(t_vec2r a, t_vec2r b, t_img imginf)
 {
 	int		*intaddr;
 	int		dx;
@@ -65,7 +65,7 @@ void	bresenham2(t_vec2r a, t_vec2r b, t_img imginf)
 	}
 }
 
-void	bresenham3(t_vec2r a, t_vec2r b, t_img imginf)
+static void	bresenham3(t_vec2r a, t_vec2r b, t_img imginf)
 {
 	int		*intaddr;
 	int		dx;
@@ -92,7 +92,7 @@ void	bresenham3(t_vec2r a, t_vec2r b, t_img imginf)
 	}
 }
 
-void	bresenham4(t_vec2r a, t_vec2r b, t_img imginf)
+static void	bresenham4(t_vec2r a, t_vec2r b, t_img imginf)
 {
 	int		*intaddr;
 	int		dx;
@@ -118,3 +118,32 @@ void	bresenham4(t_vec2r a, t_vec2r b, t_img imginf)
 		a.y--;
 	}
 }
+
+void	draw_line(t_vec4 a, t_vec4 b, t_img imginf)
+{
+	t_vec2r	ar;
+	t_vec2r	br;
+
+	ar = vec2rnewd(a.x, a.y);
+	br = vec2rnewd(b.x, b.y);
+	if (fabs(b.x - a.x) > fabs(b.y - a.y))
+	{
+		if (br.x > ar.x)
+			//oct 1 - 8
+			br.y > ar.y ? bresenham1(ar, br, imginf) : bresenham2(ar, br, imginf);
+		else
+			//oct 5 - 4
+			br.y > ar.y ? bresenham2(br, ar, imginf) : bresenham1(br, ar, imginf);
+	}
+	else
+	{
+		if (br.x > ar.x)
+			//oct 2 - 7
+			br.y > ar.y ? bresenham3(ar, br, imginf) : bresenham4(ar, br, imginf);
+		else
+			//oct 6 - 3
+			br.y > ar.y ? bresenham4(br, ar, imginf) : bresenham3(br, ar, imginf);
+	}
+}
+
+

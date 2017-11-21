@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/20 22:10:55 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/21 19:56:46 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,20 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
+typedef struct	s_matrices
+{
+	t_modmat	*initst;
+	t_cam		*cam;
+	t_mat4		f_mat;
+}				t_matrices;
+
 typedef struct	s_env
 {
 	void		*mlx;
 	void		*win;
 	t_img		*img;
 	t_map		*map;
-	t_modmat	*modmat;
-	t_cam		*cam;
+	t_matrices	*matrices;
 }				t_env;
 
 enum
@@ -86,15 +92,11 @@ void			fdf(char *map);
 
 void			parse_map(t_map *parsed_map, char *map);
 
-t_mat4			get_view_mat4(t_cam *cam);
-t_mat4			get_model_mat4(t_modmat *modmat);
+void			set_matrices(t_matrices *matrices);
+
+void			draw_line(t_vec4 a, t_vec4 b, t_img imginf);
 
 void			draw(t_env *e);
-
-void			bresenham1(t_vec2r a, t_vec2r b, t_img imginf);
-void			bresenham2(t_vec2r a, t_vec2r b, t_img imginf);
-void			bresenham3(t_vec2r a, t_vec2r b, t_img imginf);
-void			bresenham4(t_vec2r a, t_vec2r b, t_img imginf);
 
 int				loop_hook(void *param);
 int				key_hook(int keycode, void *param);

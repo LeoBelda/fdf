@@ -6,18 +6,18 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/21 13:31:18 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/21 18:34:17 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=srcs/main.c \
 	srcs/fdf.c \
-	srcs/parse_map.c \
-	srcs/matrices.c \
-	srcs/draw.c \
+	srcs/parse/parse_map.c \
+	srcs/graphics/matrices.c \
+	srcs/graphics/draw.c \
 	srcs/algos/bresenham.c \
 	srcs/controls/callbacks.c \
-	srcs/print_db.c
+	srcs/utils/print_db.c
 
 OBJ=$(SRC:%.c=%.o)
 INCLUDES=includes/

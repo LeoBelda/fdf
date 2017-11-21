@@ -6,13 +6,13 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/20 21:35:31 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/21 20:16:23 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_mat4	get_view_mat4(t_cam *cam)
+static t_mat4	get_view_mat(t_cam *cam)
 {
 	t_mat4	view_mat;
 	t_vec4	x_vec;
@@ -29,13 +29,19 @@ t_mat4	get_view_mat4(t_cam *cam)
 	return (view_mat);
 }
 
-t_mat4	get_model_mat4(t_modmat *modmat)
+static t_mat4	get_model_mat(t_modmat *initst)
 {
 	return (
-			mat4xmat4(trsmat4new(modmat->tx, modmat->ty, modmat->tz),
-			mat4xmat4(rotzmat4new(deg_rad(modmat->rx)),
-			mat4xmat4(rotymat4new(deg_rad(modmat->ry)),
-			mat4xmat4(rotxmat4new(deg_rad(modmat->rx)),
-			sclmat4new(modmat->s, modmat->s, modmat->s)
+			mat4xmat4(trsmat4new(initst->tx, initst->ty, initst->tz),
+			mat4xmat4(rotzmat4new(deg_rad(initst->rz)),
+			mat4xmat4(rotymat4new(deg_rad(initst->ry)),
+			mat4xmat4(rotxmat4new(deg_rad(initst->rx)),
+			sclmat4new(initst->s, initst->s, initst->s)
 			)))));
+}
+
+void			set_matrices(t_matrices *matrices)
+{
+	matrices->f_mat = mat4xmat4(get_view_mat(matrices->cam),
+						get_model_mat(matrices->initst));
 }
