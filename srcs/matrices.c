@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/20 20:44:33 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/20 21:35:31 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,3 @@ t_mat4	get_model_mat4(t_modmat *modmat)
 			sclmat4new(modmat->s, modmat->s, modmat->s)
 			)))));
 }
-/*
-	return (
-			mat4xmat4(sclmat4new(modmat->s, modmat->s, modmat->s),
-			mat4xmat4(trsmat4new(modmat->tx, modmat->ty, modmat->tz),
-			mat4xmat4(rotzmat4new(deg_rad(modmat->rz)),
-			mat4xmat4(rotymat4new(deg_rad(modmat->ry)),
-			rotxmat4new(deg_rad(modmat->rx))
-			)))));
-}
-*/

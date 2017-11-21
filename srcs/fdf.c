@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/20 20:45:06 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/20 22:18:59 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	set_init_state(t_cam *cam, t_modmat *modmat)
 	modmat->ry = -33.0;
 	modmat->rz = 10.0;
 	modmat->tx = 800.0;
-	modmat->ty = 400.0;
+	modmat->ty = 300.0;
 	modmat->tz = 0.0;
 	modmat->s = 5.0;
 	cam->eye = vec4new(0.0, 0.0, 50.0, 0.0);
