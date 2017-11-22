@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/22 13:13:20 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/22 15:43:29 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void		draw(t_env *e)
 	coords_to_img(e->map, e->img);
 	if (mlx_put_image_to_window(e->mlx, e->win, e->img->img, 0, 0) == -1)
 		error_exit("Failed to display image");
+	mlx_string_put(e->mlx, e->win, 10, 10, C_WHIT, " : ");
 	if (mlx_destroy_image(e->mlx, e->img->img) == -1)
 		error_exit("Failed to destroy image");
 }

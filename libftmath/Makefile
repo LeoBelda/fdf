@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/21 22:55:38 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/22 18:10:44 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC=vec2rnewd.c \
 	rotymat4new.c \
 	rotzmat4new.c \
 	orthomat4new.c \
+	persmat4new.c \
 	frustrumnew.c \
 	\
 	cross_product.c \

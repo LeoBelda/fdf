@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/22 13:14:24 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/22 20:05:15 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
+# include <time.h>
 
 # define XWIN 1920
 # define YWIN 1080
@@ -29,6 +30,34 @@
 # define Y_WIN 1080.0
 
 # define C_CYAN 0x28c1da
+# define C_WHIT 0xffffff
+
+enum
+{
+	K_A = 0,
+	K_S,
+	K_D,
+	K_W = 13,
+	K_P = 35,
+	K_ESC = 53,
+	K_LEFT = 123,
+	K_RIGHT,
+	K_DOWN,
+	K_UP
+}				keycodes;
+
+typedef struct	s_kfuncs
+{
+	void	(*f)();
+	int		keycode;
+}				t_kfuncs;
+
+typedef struct	s_controls
+{
+	int			mode;
+	t_kfuncs	*modelmode;
+	t_kfuncs	*cammode;
+}				t_controls;
 
 typedef struct	s_modmat
 {
@@ -68,9 +97,12 @@ typedef struct	s_img
 
 typedef struct	s_matrices
 {
-	t_modmat	*initst;
+	t_modmat	initst;
+	t_modmat	camst;
 	t_cam		*cam;
 	t_mat4		ortho_proj;
+	t_mat4		pers_proj;
+	t_mat4		eye_mat;
 	t_mat4		f_mat;
 }				t_matrices;
 
@@ -81,31 +113,38 @@ typedef struct	s_env
 	t_img		*img;
 	t_map		*map;
 	t_matrices	*matrices;
+	t_controls	*controls;
 }				t_env;
-
-enum
-{
-	K_ESC = 53,
-	K_LEFT = 123,
-	K_RIGHT,
-	K_DOWN,
-	K_UP
-}				keycodes;
 
 void			fdf(char *map);
 
 void			parse_map(t_map *parsed_map, char *map);
 
 void			set_matrices(t_matrices *matrices);
+void			set_controls(t_controls *controls);
 
 void			draw_line(t_vec2r a, t_vec2r b, t_img imginf);
 
 void			draw(t_env *e);
 
 int				loop_hook(void *param);
+int				expose_hook(void *param);
+
 int				key_hook(int keycode, void *param);
 int				mouse_hook(int button, int x, int y, void *param);
-int				expose_hook(void *param);
+
+void			k_exit(t_env *e);
+void			k_chmode(t_env *e);
+void			k_trsleft(t_env *e);
+void			k_trsright(t_env *e);
+void			k_trsup(t_env *e);
+void			k_trsdown(t_env *e);
+void			k_rotx(t_env *e);
+void			k_rotrx(t_env *e);
+void			k_roty(t_env *e);
+void			k_rotry(t_env *e);
+void			k_rotcamz(t_env *e);
+void			k_rotcamrz(t_env *e);
 
 void			usage_exit();
 void			error_exit(char *msg);
