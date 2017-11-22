@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/21 23:38:25 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/22 13:22:05 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ static void	alloc_env(t_env *e)
 
 static void	set_init_state(t_matrices *matrices)
 {
-	matrices->initst->rx = 0.0;
-	matrices->initst->ry = 0.0;
-	matrices->initst->rz = 00.0;
-	matrices->initst->tx = 100.0;
-	matrices->initst->ty = 50.0;
+	matrices->initst->rx = 33.0;
+	matrices->initst->ry = -33.0;
+	matrices->initst->rz = 25.0;
+	matrices->initst->tx = -150.0;
+	matrices->initst->ty = -100.0;
 	matrices->initst->tz = 0.0;
-	matrices->initst->s = 5.0;
-	matrices->cam->eye = vec4new(0.0, 0.0, -50.0, 0.0);
+	matrices->initst->s = 2.0;
+	matrices->cam->eye = vec4new(0.0, 0.0, 500.0, 0.0);
 	matrices->cam->target = vec4new(0.0, 0.0, 0.0, 0.0);
 	matrices->cam->up = vec4new(0.0, 1.0, 0.0, 0.0);
 	matrices->ortho_proj = orthomat4new(frustrumnew(
-							vec4new(400.0, -400.0, 225.0, 0.0),	
-							vec4new(-225.0, 200.0, 5.0, 0.0)));
+							vec4new(600.0, -600.0, 337.5, 0.0),	
+							vec4new(-337.5, 200.0, 5.0, 0.0)));
 }
 
 void		fdf(char *map)

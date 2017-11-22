@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/21 22:57:57 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/22 13:13:20 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static t_list	*proj_to_draw(t_list *elem)
 	t_list	*new;
 	t_vec2r	coords;
 
-	coords = vec2rnewd((((t_vec2r*)(elem->content))->x + 1.0) * 1920.0 / 2.0,
-						(((t_vec2r*)(elem->content))->y + 1.0) * 1080.0 / 2.0);
+	coords = vec2rnewd((((t_vec4*)(elem->content))->x + 1.0) * X_WIN / 2.0,
+						(((t_vec4*)(elem->content))->y + 1.0) * Y_WIN / 2.0);
 	if (!(new = ft_lstnew(&coords, sizeof(t_vec2r))))
 		return (NULL);
 	return (new);
@@ -71,10 +71,8 @@ void		draw(t_env *e)
 	set_matrices(e->matrices);
 	e->map->proj = ft_lstmap_param(e->map->vertices,
 								(void*)&e->matrices->f_mat, vertex_to_proj);
-	e->map->draw = ft_lstmap(e->map->vertices, proj_to_draw);
+	e->map->draw = ft_lstmap(e->map->proj, proj_to_draw);
 	coords_to_img(e->map, e->img);
-	print_draw_coords(e->map->draw);
-	sleep(10);
 	if (mlx_put_image_to_window(e->mlx, e->win, e->img->img, 0, 0) == -1)
 		error_exit("Failed to display image");
 	if (mlx_destroy_image(e->mlx, e->img->img) == -1)
