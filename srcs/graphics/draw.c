@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 05:38:46 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/23 20:18:35 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ static void	coords_to_img(t_map *map, t_img *imginf)
 		x = 0;
 		while (x < map->nb_col)
 		{
-			if (detect_clip(ft_lstat(map->proj, x + y * map->nb_line)))
+			if (detect_clip(ft_lstat(map->proj, x + y * map->nb_col)))
 			{
-				if (x + 1 < map->nb_col)
+				if (x + 1 < map->nb_col && detect_clip(ft_lstat(map->proj, x + 1 + y * map->nb_col)))
 					draw_line(*(t_vec2r*)(tmp->content),
 						*(t_vec2r*)(tmp->next->content), *imginf);
-				if (y + 1 < map->nb_line)
+				if (y + 1 < map->nb_line && detect_clip(ft_lstat(map->proj, x + (y + 1) * map->nb_col)))
 					draw_line(*(t_vec2r*)(tmp->content),
 						*(t_vec2r*)((ft_lstat(tmp, map->nb_col))->content),
 						*imginf);

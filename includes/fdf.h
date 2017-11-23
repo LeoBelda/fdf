@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 03:16:01 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/23 20:29:49 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void			parse_map(t_map *parsed_map, char *map);
 
 void			set_matrices(t_matrices *matrices);
 void			set_controls(t_controls *controls);
+t_mat4			get_view_mat(t_cam *cam, t_modmat camst);
 
 void			draw_line(t_vec2r a, t_vec2r b, t_img imginf);
 

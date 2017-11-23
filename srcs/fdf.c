@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 05:45:48 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/23 21:31:24 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,22 @@ static void	set_init_matrices(t_matrices *matrices)
 	matrices->initst.tx = 0.0;
 	matrices->initst.ty = 0.0;
 	matrices->initst.tz = 0.0;
-	matrices->initst.s = 1.0;
+	matrices->initst.s = 2.0;
 	matrices->camst.rx = 0.0;
 	matrices->camst.ry = 0.0;
 	matrices->camst.rz = 0.0;
 	matrices->camst.tx = 0.0;
 	matrices->camst.ty = 0.0;
-	matrices->camst.tz = 200.0;
+	matrices->camst.tz = 500.0;
 	matrices->cam->target = mat4xvec4(trsmat4new(0.0, 0.0, 0.0),
 									vec4new(0.0, 0.0, 0.0, 1.0));
 	matrices->cam->up = vec4new(0.0, 1.0, 0.0, 0.0);
 	matrices->ortho_proj = orthomat4new(frustrumnew(
 							vec4new(600.0, -600.0, 337.5, 0.0),	
-							vec4new(-337.5, 400.0, 5.0, 0.0)));
+							vec4new(-337.5, 2000.0, 0.0, 0.0)));
 	matrices->pers_proj = persmat4new(frustrumnew(
 							vec4new(600.0, -600.0, 337.5, 0.0),	
-							vec4new(-337.5, -400.0, -5.0, 0.0)));
+							vec4new(-337.5, 20000.0, 0.0, 0.0)));
 }
 
 void		fdf(char *map)
