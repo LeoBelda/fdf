@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 18:36:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 05:17:59 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/23 22:44:11 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ static void	set_kfuncs_camera(t_controls *controls)
 	(controls->cammode)[4] = (t_kfuncs) { k_rotcamrx, K_DOWN };
 	(controls->cammode)[5] = (t_kfuncs) { k_trscamx, K_A };
 	(controls->cammode)[6] = (t_kfuncs) { k_trscamrx, K_D };
-	(controls->cammode)[7] = (t_kfuncs) { k_trscamy, K_W };
-	(controls->cammode)[8] = (t_kfuncs) { k_trscamry, K_S };
+	(controls->cammode)[7] = (t_kfuncs) { k_trscamz, K_W };
+	(controls->cammode)[8] = (t_kfuncs) { k_trscamrz, K_S };
 	(controls->cammode)[9] = (t_kfuncs) { k_chmode, K_P };
 	(controls->cammode)[10] = (t_kfuncs) { NULL, 0 };
 }

@@ -6,23 +6,29 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/23 00:59:51 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/23 23:23:03 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=srcs/main.c \
 	srcs/fdf.c \
+	\
 	srcs/parse/parse_map.c \
-	srcs/graphics/callbacks.c \
-	srcs/graphics/matrices.c \
+	\
 	srcs/graphics/draw.c \
+	srcs/graphics/matrices.c \
+	srcs/graphics/callbacks.c \
+	srcs/graphics/text_overlay.c \
+	\
 	srcs/algos/bresenham.c \
+	\
 	srcs/controls/callbacks.c \
 	srcs/controls/keyboard_trs.c \
 	srcs/controls/keyboard_rot.c \
 	srcs/controls/keyboard_camrot.c \
 	srcs/controls/keyboard_camtrs.c \
 	srcs/controls/keyboard_misc.c \
+	\
 	srcs/utils/print_db.c
 
 OBJ=$(SRC:%.c=%.o)

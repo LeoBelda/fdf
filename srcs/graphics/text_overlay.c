@@ -1,43 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_camtrs.c                                  :+:      :+:    :+:   */
+/*   text_overlay.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 00:56:50 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 22:42:04 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/23 23:14:18 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/23 23:40:07 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	k_trscamx(t_env *e)
+static char	*get_fps_count(void)
 {
-	e->matrices->camst.tx -= 10.0;
+	static double	times[10];
+	char			*fps;
+
+	(void)times;
+	fps = ft_strnew(15);
+	ft_strcat(fps, "FPS : ");
+	return (fps);
 }
 
-void	k_trscamrx(t_env *e)
+void		manage_text_overlay(t_env *e)
 {
-	e->matrices->camst.tx += 10.0;
-}
+	char	*fps_count;
 
-void	k_trscamy(t_env *e)
-{
-	e->matrices->camst.ty -= 10.0;
-}
-
-void	k_trscamry(t_env *e)
-{
-	e->matrices->camst.ty += 10.0;
-}
-
-void	k_trscamz(t_env *e)
-{
-	e->matrices->camst.tz -= 20.0;
-}
-
-void	k_trscamrz(t_env *e)
-{
-	e->matrices->camst.tz += 20.0;
+	fps_count = get_fps_count();
+	mlx_string_put(e->mlx, e->win, 10, 10, C_WHIT, fps_count);
+	ft_strdel(&fps_count);
 }

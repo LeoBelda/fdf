@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 20:29:49 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/23 23:34:49 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,13 +120,12 @@ void			fdf(char *map);
 
 void			parse_map(t_map *parsed_map, char *map);
 
+void			draw(t_env *e);
 void			set_matrices(t_matrices *matrices);
 void			set_controls(t_controls *controls);
-t_mat4			get_view_mat(t_cam *cam, t_modmat camst);
+void			manage_text_overlay(t_env *e);
 
 void			draw_line(t_vec2r a, t_vec2r b, t_img imginf);
-
-void			draw(t_env *e);
 
 int				loop_hook(void *param);
 int				expose_hook(void *param);
@@ -148,6 +147,8 @@ void			k_trscamx(t_env *e);
 void			k_trscamrx(t_env *e);
 void			k_trscamy(t_env *e);
 void			k_trscamry(t_env *e);
+void			k_trscamz(t_env *e);
+void			k_trscamrz(t_env *e);
 void			k_rotcamy(t_env *e);
 void			k_rotcamry(t_env *e);
 void			k_rotcamx(t_env *e);
