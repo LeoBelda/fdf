@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_camrot.c                                  :+:      :+:    :+:   */
+/*   keyboard_camtrs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 19:01:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 02:38:18 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/23 00:56:50 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/23 05:19:57 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	k_rotcamy(t_env *e)
+void	k_trscamx(t_env *e)
 {
-	e->matrices->camst.ry -= 10.0;
+	e->matrices->camst.tx += 10.0;
 }
 
-void	k_rotcamry(t_env *e)
+void	k_trscamrx(t_env *e)
 {
-	e->matrices->camst.ry += 10.0;
+	e->matrices->camst.tx -= 10.0;
 }
 
-void	k_rotcamx(t_env *e)
+void	k_trscamy(t_env *e)
 {
-	e->matrices->camst.rx -= 10.0;
+	e->matrices->camst.ty += 10.0;
 }
 
-void	k_rotcamrx(t_env *e)
+void	k_trscamry(t_env *e)
 {
-	e->matrices->camst.rx += 10.0;
+	e->matrices->camst.ty -= 10.0;
 }

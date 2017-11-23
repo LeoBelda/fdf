@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 15:33:33 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/21 22:05:03 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/23 01:19:59 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ void		print_double_fd(double nb, int fd)
 	decpart = modf(nb, &intpart);
 	ft_putnbr_fd((int)lround(intpart), fd);
 	write(fd, ".", 1);
-	ft_putnbr_fd((int)lround(decpart), fd);
+	ft_putnbr_fd((int)lround(decpart * 100000.0), fd);
 }

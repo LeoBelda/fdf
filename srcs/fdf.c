@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/22 20:25:27 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/23 05:45:48 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,25 @@ static void	set_init_matrices(t_matrices *matrices)
 	matrices->initst.rx = 0.0;
 	matrices->initst.ry = 0.0;
 	matrices->initst.rz = 0.0;
-	matrices->initst.tx = -150.0;
-	matrices->initst.ty = -100.0;
+	matrices->initst.tx = 0.0;
+	matrices->initst.ty = 0.0;
 	matrices->initst.tz = 0.0;
 	matrices->initst.s = 1.0;
 	matrices->camst.rx = 0.0;
 	matrices->camst.ry = 0.0;
 	matrices->camst.rz = 0.0;
 	matrices->camst.tx = 0.0;
-	matrices->camst.ty = -100.0;
-	matrices->camst.tz = 100.0;
-	matrices->cam->target = mat4xvec4(trsmat4new(-150.0, -100.0, 0.0),
+	matrices->camst.ty = 0.0;
+	matrices->camst.tz = 200.0;
+	matrices->cam->target = mat4xvec4(trsmat4new(0.0, 0.0, 0.0),
 									vec4new(0.0, 0.0, 0.0, 1.0));
 	matrices->cam->up = vec4new(0.0, 1.0, 0.0, 0.0);
 	matrices->ortho_proj = orthomat4new(frustrumnew(
 							vec4new(600.0, -600.0, 337.5, 0.0),	
-							vec4new(-337.5, 200.0, 5.0, 0.0)));
+							vec4new(-337.5, 400.0, 5.0, 0.0)));
 	matrices->pers_proj = persmat4new(frustrumnew(
 							vec4new(600.0, -600.0, 337.5, 0.0),	
-							vec4new(-337.5, 200.0, 5.0, 0.0)));
+							vec4new(-337.5, -400.0, -5.0, 0.0)));
 }
 
 void		fdf(char *map)

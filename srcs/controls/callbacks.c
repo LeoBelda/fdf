@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 18:36:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/22 19:04:49 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/23 05:17:59 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,19 @@ static void	set_kfuncs_model(t_controls *controls)
 
 static void	set_kfuncs_camera(t_controls *controls)
 {
-	if (!(controls->cammode = ft_memalloc(sizeof(t_kfuncs) * 5)))
+	if (!(controls->cammode = ft_memalloc(sizeof(t_kfuncs) * 11)))
 		error_exit("");
 	(controls->cammode)[0] = (t_kfuncs) { k_exit, K_ESC };
-	(controls->cammode)[1] = (t_kfuncs) { k_rotcamz, K_RIGHT };
-	(controls->cammode)[2] = (t_kfuncs) { k_rotcamrz, K_LEFT };
-	(controls->cammode)[3] = (t_kfuncs) { k_chmode, K_P };
-	(controls->cammode)[4] = (t_kfuncs) { NULL, 0 };
+	(controls->cammode)[1] = (t_kfuncs) { k_rotcamy, K_RIGHT };
+	(controls->cammode)[2] = (t_kfuncs) { k_rotcamry, K_LEFT };
+	(controls->cammode)[3] = (t_kfuncs) { k_rotcamx, K_UP };
+	(controls->cammode)[4] = (t_kfuncs) { k_rotcamrx, K_DOWN };
+	(controls->cammode)[5] = (t_kfuncs) { k_trscamx, K_A };
+	(controls->cammode)[6] = (t_kfuncs) { k_trscamrx, K_D };
+	(controls->cammode)[7] = (t_kfuncs) { k_trscamy, K_W };
+	(controls->cammode)[8] = (t_kfuncs) { k_trscamry, K_S };
+	(controls->cammode)[9] = (t_kfuncs) { k_chmode, K_P };
+	(controls->cammode)[10] = (t_kfuncs) { NULL, 0 };
 }
 
 void	set_controls(t_controls *controls)

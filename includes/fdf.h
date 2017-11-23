@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/22 20:05:15 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/23 03:16:01 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,14 @@ void			k_rotx(t_env *e);
 void			k_rotrx(t_env *e);
 void			k_roty(t_env *e);
 void			k_rotry(t_env *e);
-void			k_rotcamz(t_env *e);
-void			k_rotcamrz(t_env *e);
+void			k_trscamx(t_env *e);
+void			k_trscamrx(t_env *e);
+void			k_trscamy(t_env *e);
+void			k_trscamry(t_env *e);
+void			k_rotcamy(t_env *e);
+void			k_rotcamry(t_env *e);
+void			k_rotcamx(t_env *e);
+void			k_rotcamrx(t_env *e);
 
 void			usage_exit();
 void			error_exit(char *msg);
