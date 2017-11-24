@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 13:34:14 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/24 22:36:19 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,17 @@
 # define YWIN 1080
 # define X_WIN 1920.0
 # define Y_WIN 1080.0
-
-# define C_CYAN 0x28c1da
-# define C_WHIT 0xffffff
+/*
+# define C_BLA 0x000000
+# define C_BLU 0x0000CC
+# define C_RED 0xCC0000
+# define C_WHI 0xffffff
+*/
+# define C_CYA 0x28c1da
+# define C_BLA (t_rgb) {0, 0, 0, 0}
+# define C_BLU (t_rgb) {0, 0, 0, 200}
+# define C_RED (t_rgb) {0, 200, 0, 0}
+# define C_WHI (t_rgb) {0, 255, 255, 255}
 
 enum
 {
@@ -60,6 +68,21 @@ typedef struct	s_controls
 	t_kfuncs	*cammode;
 }				t_controls;
 
+typedef struct	s_vec2c
+{
+	int		x;
+	int		y;
+	t_rgb	color;
+}				t_vec2c;
+
+typedef struct	s_colors
+{
+	t_rgb	background;
+	t_rgb	text;
+	t_rgb	bottom;
+	t_rgb	top;
+}				t_colors;
+
 typedef struct	s_modmat
 {
 	double	rx;
@@ -81,10 +104,16 @@ typedef struct	s_cam
 typedef struct	s_map
 {
 	t_list	*vertices;
+	t_vec4	*vertices_array;
 	t_list	*proj;
+	t_vec4	*proj_array;
 	t_list	*draw;
+	t_vec2c	*draw_array;
 	size_t	nb_col;
 	size_t	nb_line;
+	size_t	nb_vertices;
+	double	min_z;
+	double	max_z;
 }				t_map;
 
 typedef struct	s_img
@@ -114,19 +143,20 @@ typedef struct	s_env
 	t_img		*img;
 	t_map		*map;
 	t_matrices	*matrices;
+	t_colors	*colors;
 	t_controls	*controls;
 }				t_env;
 
-void			fdf(char *map);
+void			fdf(char *file);
 
-void			parse_map(t_map *parsed_map, char *map);
+void			parse_map(t_map *map, char *file);
 
 void			draw(t_env *e);
 void			set_matrices(t_matrices *matrices);
 void			set_controls(t_controls *controls);
 void			manage_text_overlay(t_env *e);
 
-void			draw_line(t_vec2r a, t_vec2r b, t_img imginf);
+void			draw_line(t_vec2c a, t_vec2c b, t_img imginf);
 
 int				loop_hook(void *param);
 int				expose_hook(void *param);
@@ -159,6 +189,7 @@ void			usage_exit();
 void			error_exit(char *msg);
 
 void			print_parsed_map(t_list *map);
+void			print_array_map(t_vec4 *array, size_t size);
 void			print_draw_coords(t_list *draw);
 
 #endif

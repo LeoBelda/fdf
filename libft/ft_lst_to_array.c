@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2rnewi.c                                        :+:      :+:    :+:   */
+/*   ft_lst_to_array.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 13:44:44 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 19:01:55 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/24 15:29:02 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/24 15:58:42 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftmath.h"
+#include "libft.h"
 
-t_vec2r	vec2rnewi(int x, int y)
+void	*ft_lst_to_array(t_list *lst)
 {
-	t_vec2r	vec;
+	size_t			size_elem;
+	size_t			nb_elem;
+	size_t			i;
+	unsigned char	*array;
 
-	vec.x = x;
-	vec.y = y;
-	return (vec);
+	i = 0;
+	size_elem = lst->content_size;
+	nb_elem = ft_lstcount(lst);
+	if (!(array = ft_memalloc(nb_elem * size_elem)))
+		return (NULL);
+	while (i < nb_elem)
+	{
+		ft_memcpy(&(array[i *size_elem]), lst->content, size_elem);
+		lst = lst->next;
+		i++;
+	}
+	return (array);
 }

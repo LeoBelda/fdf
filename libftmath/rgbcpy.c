@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2rnewi.c                                        :+:      :+:    :+:   */
+/*   rgbcpy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 13:44:44 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 19:01:55 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/24 21:42:41 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/24 23:18:55 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftmath.h"
 
-t_vec2r	vec2rnewi(int x, int y)
+void	rgbcpy(void *dst, t_rgb src)
 {
-	t_vec2r	vec;
-
-	vec.x = x;
-	vec.y = y;
-	return (vec);
+	((unsigned char*)dst)[3] = src.a;
+	((unsigned char*)dst)[2] = src.r;
+	((unsigned char*)dst)[1] = src.g;
+	((unsigned char*)dst)[0] = src.b;
 }

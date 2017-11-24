@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 14:52:15 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/21 22:58:39 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/24 16:42:59 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@ void	print_parsed_map(t_list *vertices)
 		print_vec4(*((t_vec4*)(vertices->content)));
 		ft_putendl("");
 		vertices = vertices->next;
+	}
+}
+
+void	print_array_map(t_vec4 *array, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		print_vec4(array[i]);
+		ft_putendl("");
+		i++;
 	}
 }
 

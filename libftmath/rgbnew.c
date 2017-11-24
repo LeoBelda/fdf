@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2rnewi.c                                        :+:      :+:    :+:   */
+/*   rgbnew.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 13:44:44 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 19:01:55 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/24 21:10:31 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/24 21:14:56 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftmath.h"
 
-t_vec2r	vec2rnewi(int x, int y)
+t_rgb	rgbnew(unsigned char a, unsigned char r,
+				unsigned char g, unsigned char b)
 {
-	t_vec2r	vec;
+	t_rgb	new;
 
-	vec.x = x;
-	vec.y = y;
-	return (vec);
+	new = (t_rgb) {a, r, g, b};
+	return (new);
 }

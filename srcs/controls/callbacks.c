@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 18:36:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 22:44:11 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/24 13:41:45 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int		key_hook(int keycode, void *param)
 			kfuncs[i].f((t_env*)param);
 		i++;
 	}
-	ft_putnbr(keycode);
-	ft_putendl("");
 	return (0);
 }
 

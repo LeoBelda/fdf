@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/20 18:40:15 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/24 19:04:59 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_list	*line_to_vertices(char *line, size_t y_pos, size_t *count_col)
 	return (vertices_line);
 }
 
-static void		map_to_list(int fd, t_map *parsed_map)
+static void		map_to_list(int fd, t_map *map)
 {
 	int		ret;
 	size_t	i;
@@ -52,23 +52,48 @@ static void		map_to_list(int fd, t_map *parsed_map)
 	while ((ret = get_next_line(fd, &line)))
 	{
 		if (ret == -1
-			|| !(new_line = line_to_vertices(line, i, &(parsed_map->nb_col))))
+			|| !(new_line = line_to_vertices(line, i, &(map->nb_col))))
 			error_exit("");
-		ft_lstradd(&(parsed_map->vertices), new_line);
+		ft_lstradd(&(map->vertices), new_line);
 		free(line);
 		i++;
 	}
-	if ((parsed_map->nb_line = i) < 2)
+	if ((map->nb_line = i) < 2)
 		error_exit("Invalid map - not enough lines");
+	map->nb_vertices = map->nb_line * map->nb_col;
 }
 
-void			parse_map(t_map *parsed_map, char *map)
+static void		define_z_range(t_map *map)
+{
+	size_t	i;
+
+	i = 0;
+	map->min_z = (map->vertices_array)[0].z;
+	map->max_z = (map->vertices_array)[0].z;
+	while (i < map->nb_vertices)
+	{
+		if ((map->vertices_array)[i].z > map->max_z)
+			map->max_z = (map->vertices_array)[i].z;
+		if ((map->vertices_array)[i].z < map->min_z)
+			map->min_z = (map->vertices_array)[i].z;
+		i++;
+	}
+}
+
+void			parse_map(t_map *map, char *file)
 {
 	int		fd;
 
-	if ((fd = open(map, O_RDONLY)) == -1)
+	if ((fd = open(file, O_RDONLY)) == -1)
 		error_exit("");
-	map_to_list(fd, parsed_map);
+	map_to_list(fd, map);
+	if (!(map->proj_array = ft_memalloc(sizeof(t_vec4) * map->nb_vertices)))
+		error_exit("");
+	if (!(map->draw_array = ft_memalloc(sizeof(t_vec2c) * map->nb_vertices)))
+		error_exit("");
+	map->vertices_array = ft_lst_to_array(map->vertices);
+	//ft_lstdel(tmp_lst,,);
+	define_z_range(map);
 	if (close(fd) == -1)
 		error_exit("");
 }

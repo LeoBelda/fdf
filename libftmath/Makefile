@@ -6,11 +6,15 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/22 18:10:44 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/24 23:17:25 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC=vec2rnewd.c \
+SRC=rgbnew.c \
+	rgbcpy.c \
+	rgb_to_int.c \
+	rgb_interi.c \
+	vec2rnewd.c \
 	vec2rnewi.c \
 	vec4new.c \
 	mat4new.c \
@@ -32,6 +36,8 @@ SRC=vec2rnewd.c \
 	\
 	deg_rad.c \
 	\
+	print_rgb_fd.c \
+	print_rgb.c \
 	print_double_fd.c \
 	print_double.c \
 	print_vec4_fd.c \

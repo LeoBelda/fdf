@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/24 13:17:14 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/24 18:26:53 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,23 +55,21 @@ MAKE=make
 
 all: $(NAME)
 
-$(NAME): $(OBJ) dep
+$(NAME): $(OBJ) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LMLXDIR)$(LIBMLX)
 	-@$(CC) -O3 -o $(NAME) -I$(LFTDIR) -I$(LFTMTDIR) -I$(LMLXDIR) -I$(INCLUDES) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(LMLXDIR) -l$(MLXLK) $(FRAMEWORKS) $(OBJ)
 	-@echo "FdF ready."
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -I$(LFTDIR) -I$(LFTMTDIR) -I$(LMLXDIR) -I$(INCLUDES) -c $^
 
-dep:
-	$(MAKE) -C $(LFTDIR)
-	$(MAKE) -C $(LFTMTDIR)
-	$(MAKE) -C $(LMLXDIR)
-
 $(LFTDIR)$(LIBFT):
+	$(MAKE) -C $(LFTDIR)
 
 $(LFTMTDIR)$(LIBFTMT):
+	$(MAKE) -C $(LFTMTDIR)
 
 $(LMLXDIR)$(LIBMLX):
+	$(MAKE) -C $(LMLXDIR)
 
 clean:
 	$(MAKE) -C $(LFTDIR) clean
@@ -87,4 +85,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re dep
+.PHONY: all clean fclean re

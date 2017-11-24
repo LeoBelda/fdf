@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 23:04:30 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/24 23:18:38 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include <math.h>
 # include <unistd.h>
+
+typedef struct	s_rgb
+{
+	unsigned char	a;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+}				t_rgb;
 
 typedef struct	s_vec2r
 {
@@ -48,6 +56,12 @@ typedef struct	s_frustrum
 	double	n;
 }				t_frustrum;
 
+t_rgb			rgbnew(unsigned char a, unsigned char r,
+				unsigned char g, unsigned char b);
+void			rgbcpy(void *dst, t_rgb src);
+int				rgb_to_int(t_rgb rgb);
+t_rgb			rgb_interi(t_rgb c1, t_rgb c2, int distance, int progress);
+
 t_vec2r			vec2rnewd(double x, double y);
 t_vec2r			vec2rnewi(int x, int y);
 t_vec4			vec4new(double x, double y, double z, double w);
@@ -70,6 +84,8 @@ t_mat4			mat4xmat4(t_mat4 a, t_mat4 b);
 
 double			deg_rad(double deg);
 
+void			print_rgb_fd(t_rgb rgb, int fd);
+void			print_rgb(t_rgb rgb);
 void			print_double_fd(double nb, int fd);
 void			print_double(double nb);
 void			print_vec4_fd(t_vec4 vec, int fd);
