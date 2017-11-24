@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 23:21:25 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/24 13:34:40 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		draw(t_env *e)
 {
 	if (!(e->img->img = mlx_new_image(e->mlx, XWIN, YWIN)))
 		error_exit("mlx_new_image failed to deliver");
-	e->img->addr = mlx_get_data_addr(e->img->img, &(e->img->bpp),
+	e->img->addr = (int*)mlx_get_data_addr(e->img->img, &(e->img->bpp),
 						&(e->img->size_line), &(e->img->endian));
 	set_matrices(e->matrices);
 	e->map->proj = ft_lstmap_param(e->map->vertices,

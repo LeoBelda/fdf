@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 23:14:18 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 23:40:07 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/24 13:32:06 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,27 @@
 
 static char	*get_fps_count(void)
 {
-	static double	times[10];
-	char			*fps;
+	static struct timespec	now;
+	static int				i;
+	struct timespec			tmp_time;
+	char					*fps_str;
+	static long int			fps_nb;
 
-	(void)times;
-	fps = ft_strnew(15);
-	ft_strcat(fps, "FPS : ");
-	return (fps);
+	if (i == 3)
+	{
+		tmp_time = now;
+		clock_gettime(CLOCK_MONOTONIC, &now);
+		fps_nb = lround(1.0 / 
+				((((double)now.tv_sec + 1.0e-9 * now.tv_nsec) -
+				((double)tmp_time.tv_sec + 1.0e-9 * tmp_time.tv_nsec)) / 3.0));
+		i = 0;
+	}
+	if (!(fps_str = ft_strnew(20)))
+		error_exit("");
+	ft_strcat(fps_str, "FPS : ");
+	ft_strcat(fps_str, ft_itoa(fps_nb));
+	i++;
+	return (fps_str);
 }
 
 void		manage_text_overlay(t_env *e)

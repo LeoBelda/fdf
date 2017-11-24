@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/23 23:34:49 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/24 13:34:14 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
+# include <math.h>
 # include <time.h>
 
 # define XWIN 1920
@@ -89,7 +90,7 @@ typedef struct	s_map
 typedef struct	s_img
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
 	int		bpp;
 	int		size_line;
 	int		endian;

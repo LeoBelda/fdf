@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 10:05:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/21 22:48:00 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/24 13:36:42 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	bresenham1(t_vec2r a, t_vec2r b, t_img imginf)
 {
-	int		*intaddr;
 	int		dx;
 	int		dy;
 	double	m;
@@ -26,9 +25,7 @@ static void	bresenham1(t_vec2r a, t_vec2r b, t_img imginf)
 	e = -0.5;
 	while (a.x <= b.x)
 	{
-		intaddr = (int*)&(imginf.addr
-						[a.x * (imginf.bpp / 8) + a.y * imginf.size_line]);
-		*intaddr = C_CYAN;
+		imginf.addr[a.x + a.y * XWIN] = C_CYAN;
 		e += m;
 		if (e >= 0.0)
 		{
@@ -41,7 +38,6 @@ static void	bresenham1(t_vec2r a, t_vec2r b, t_img imginf)
 
 static void	bresenham2(t_vec2r a, t_vec2r b, t_img imginf)
 {
-	int		*intaddr;
 	int		dx;
 	int		dy;
 	double	m;
@@ -53,8 +49,7 @@ static void	bresenham2(t_vec2r a, t_vec2r b, t_img imginf)
 	e = -0.5;
 	while (a.x <= b.x)
 	{
-			intaddr = (int*)&(imginf.addr[a.x * (imginf.bpp / 8) + a.y * imginf.size_line]);
-			*intaddr = C_CYAN;
+		imginf.addr[a.x + a.y * XWIN] = C_CYAN;
 		e += m;
 		if (e >= 0.0)
 		{
@@ -67,7 +62,6 @@ static void	bresenham2(t_vec2r a, t_vec2r b, t_img imginf)
 
 static void	bresenham3(t_vec2r a, t_vec2r b, t_img imginf)
 {
-	int		*intaddr;
 	int		dx;
 	int		dy;
 	double	m;
@@ -79,9 +73,7 @@ static void	bresenham3(t_vec2r a, t_vec2r b, t_img imginf)
 	e = -0.5;
 	while (a.y <= b.y)
 	{
-		intaddr = (int*)&(imginf.addr
-						[a.x * (imginf.bpp / 8) + a.y * imginf.size_line]);
-		*intaddr = C_CYAN;
+		imginf.addr[a.x + a.y * XWIN] = C_CYAN;
 		e += m;
 		if (e >= 0.0)
 		{
@@ -94,7 +86,6 @@ static void	bresenham3(t_vec2r a, t_vec2r b, t_img imginf)
 
 static void	bresenham4(t_vec2r a, t_vec2r b, t_img imginf)
 {
-	int		*intaddr;
 	int		dx;
 	int		dy;
 	double	m;
@@ -106,9 +97,7 @@ static void	bresenham4(t_vec2r a, t_vec2r b, t_img imginf)
 	e = -0.5;
 	while (a.y >= b.y)
 	{
-		intaddr = (int*)&(imginf.addr
-						[a.x * (imginf.bpp / 8) + a.y * imginf.size_line]);
-		*intaddr = C_CYAN;
+		imginf.addr[a.x + a.y * XWIN] = C_CYAN;
 		e += m;
 		if (e >= 0.0)
 		{
