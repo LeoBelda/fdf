@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/25 15:19:30 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/25 19:51:20 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,10 +166,12 @@ int				mouse_hook(int button, int x, int y, void *param);
 
 void			k_exit(t_env *e);
 void			k_chmode(t_env *e);
-void			k_trsleft(t_env *e);
-void			k_trsright(t_env *e);
-void			k_trsup(t_env *e);
-void			k_trsdown(t_env *e);
+void			k_trsx(t_env *e);
+void			k_trsrx(t_env *e);
+void			k_trsy(t_env *e);
+void			k_trsry(t_env *e);
+void			k_trsz(t_env *e);
+void			k_trsrz(t_env *e);
 void			k_rotx(t_env *e);
 void			k_rotrx(t_env *e);
 void			k_roty(t_env *e);

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/25 16:47:05 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/25 23:01:14 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	set_init_matrices(t_matrices *matrices)
 	matrices->initst.rx = 0.0;
 	matrices->initst.ry = 0.0;
 	matrices->initst.rz = 0.0;
-	matrices->initst.tx = 0.0;
-	matrices->initst.ty = 0.0;
+	matrices->initst.tx = -400.0;
+	matrices->initst.ty = -300.0;
 	matrices->initst.tz = 0.0;
 	matrices->initst.s = 1.0;
 	matrices->camst.rx = 0.0;
@@ -58,7 +58,7 @@ static void	set_init_matrices(t_matrices *matrices)
 	matrices->camst.rz = 0.0;
 	matrices->camst.tx = 0.0;
 	matrices->camst.ty = 0.0;
-	matrices->camst.tz = 300.0;
+	matrices->camst.tz = 400.0;
 	matrices->ortho_proj = orthomat4new(frustrumnew(1000.0, 562.5, 2000.0, -2000.0));
 	matrices->pers_proj = persmat4new(90.0, 1000.0, 1.0);
 }
