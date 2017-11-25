@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 19:04:59 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/25 13:25:12 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ static void		define_z_range(t_map *map)
 			map->min_z = (map->vertices_array)[i].z;
 		i++;
 	}
+	print_double(map->max_z);
+	ft_putendl("");
+	print_double(map->min_z);
+	ft_putendl("");
 }
 
 void			parse_map(t_map *map, char *file)

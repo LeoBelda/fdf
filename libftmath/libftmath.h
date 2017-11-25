@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 23:18:38 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/25 15:14:32 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ typedef struct	s_vec2r
 	int	x;
 	int	y;
 }				t_vec2r;
+
+typedef struct	s_vec3
+{
+	double	x;
+	double	y;
+	double	z;
+}				t_vec3;
 
 typedef struct	s_vec4
 {
@@ -83,6 +90,7 @@ t_vec4			mat4xvec4(t_mat4 mat, t_vec4 vec);
 t_mat4			mat4xmat4(t_mat4 a, t_mat4 b);
 
 double			deg_rad(double deg);
+int				iabs(int val);
 
 void			print_rgb_fd(t_rgb rgb, int fd);
 void			print_rgb(t_rgb rgb);

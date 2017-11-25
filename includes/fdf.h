@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 22:36:19 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/25 15:19:30 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct	s_map
 	t_list	*vertices;
 	t_vec4	*vertices_array;
 	t_list	*proj;
-	t_vec4	*proj_array;
+	t_vec3	*proj_array;
 	t_list	*draw;
 	t_vec2c	*draw_array;
 	size_t	nb_col;

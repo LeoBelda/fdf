@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 23:45:05 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/25 16:47:05 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,15 @@ static void	set_init_matrices(t_matrices *matrices)
 	matrices->initst.tx = 0.0;
 	matrices->initst.ty = 0.0;
 	matrices->initst.tz = 0.0;
-	matrices->initst.s = 2.0;
+	matrices->initst.s = 1.0;
 	matrices->camst.rx = 0.0;
 	matrices->camst.ry = 0.0;
 	matrices->camst.rz = 0.0;
 	matrices->camst.tx = 0.0;
 	matrices->camst.ty = 0.0;
-	matrices->camst.tz = 500.0;
-	matrices->cam->target = mat4xvec4(trsmat4new(0.0, 0.0, 0.0),
-									vec4new(0.0, 0.0, 0.0, 1.0));
-	matrices->cam->up = vec4new(0.0, 1.0, 0.0, 0.0);
-	matrices->ortho_proj = orthomat4new(frustrumnew(600.0, 337.5, 20000.0, -20000.0));
-	matrices->pers_proj = persmat4new(100.0, 2000.0, 0.0);
+	matrices->camst.tz = 300.0;
+	matrices->ortho_proj = orthomat4new(frustrumnew(1000.0, 562.5, 2000.0, -2000.0));
+	matrices->pers_proj = persmat4new(90.0, 1000.0, 1.0);
 }
 
 static void	set_colors(t_colors *colors)
@@ -86,6 +83,5 @@ void		fdf(char *file)
 	set_colors(e->colors);
 	set_controls(e->controls);
 	init_mlx(e);
-	ft_putendl("wtf");
 	mlx_loop(e->mlx);
 }

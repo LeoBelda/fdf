@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 23:02:44 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/25 15:26:00 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 static void		vertices_to_proj(t_map *map, t_mat4 f_mat)
 {
 	size_t	i;
+	t_vec4	tmp;
 
 	i = 0;
 	while (i < map->nb_vertices)
 	{
-		map->proj_array[i] = mat4xvec4(f_mat, map->vertices_array[i]);
+		tmp = mat4xvec4(f_mat, map->vertices_array[i]);
+		map->proj_array[i] = (t_vec3) {tmp.x / tmp.w, tmp.y / tmp.w,
+										tmp.z / tmp.w};
 		i++;
 	}
 }
@@ -27,7 +30,7 @@ static void		vertices_to_proj(t_map *map, t_mat4 f_mat)
 static t_rgb	get_color(double min_z, double max_z, double z, t_colors colors)
 {
 	return (rgb_interi(colors.bottom, colors.top, (int)lround(max_z - min_z),
-												(int)(lround(z))));
+												(int)(lround(z - min_z))));
 }
 
 static void		proj_to_draw(t_map *map, t_colors *colors)
@@ -46,11 +49,11 @@ static void		proj_to_draw(t_map *map, t_colors *colors)
 	}
 }
 
-static int		detect_clip(t_vec4 elem)
+static int		detect_clip(t_vec3 elem)
 {
-	if (elem.x > 1.0 || elem.x < -1.0
-	 || elem.y > 1.0 || elem.y < -1.0 
-	 || elem.z > 1.0 || elem.z < -1.0)
+	if (elem.x >= 1.0 || elem.x < -1.0
+	 || elem.y >= 1.0 || elem.y < -1.0 
+	 || elem.z >= 1.0 || elem.z < 0.0)
 		return (0);
 	else
 		return (1);
@@ -93,7 +96,7 @@ static void		clear_img(int *addr, t_rgb color)
 	(void)color;
 	i = 0;
 	while (i < (XWIN * YWIN))
-		addr[i++] = 0x00000000;
+		rgbcpy(&addr[i++], color);
 }
 
 void			draw(t_env *e)
