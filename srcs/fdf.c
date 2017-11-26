@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/25 23:01:14 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/26 16:51:12 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ static void	init_mlx(t_env *e)
 		error_exit("mlx_new_image failed to deliver");
 	e->img->addr = (int*)mlx_get_data_addr(e->img->img, &(e->img->bpp),
 						&(e->img->size_line), &(e->img->endian));
+	mlx_do_key_autorepeatoff(e->mlx);
 	mlx_key_hook(e->win, key_hook, (void*)e);
 	mlx_mouse_hook(e->win, mouse_hook, (void*)e);
+	mlx_hook(e->win, 2, 0, key_press_hook, (void*)e);
+	mlx_hook(e->win, 3, 0, key_release_hook, (void*)e);
 	mlx_expose_hook(e->win, expose_hook, (void*)e);
 	mlx_loop_hook(e->mlx, loop_hook, (void*)e);
 }
@@ -44,33 +47,6 @@ static void	alloc_env(t_env *e)
 		error_exit("");
 }
 
-static void	set_init_matrices(t_matrices *matrices)
-{
-	matrices->initst.rx = 0.0;
-	matrices->initst.ry = 0.0;
-	matrices->initst.rz = 0.0;
-	matrices->initst.tx = -400.0;
-	matrices->initst.ty = -300.0;
-	matrices->initst.tz = 0.0;
-	matrices->initst.s = 1.0;
-	matrices->camst.rx = 0.0;
-	matrices->camst.ry = 0.0;
-	matrices->camst.rz = 0.0;
-	matrices->camst.tx = 0.0;
-	matrices->camst.ty = 0.0;
-	matrices->camst.tz = 400.0;
-	matrices->ortho_proj = orthomat4new(frustrumnew(1000.0, 562.5, 2000.0, -2000.0));
-	matrices->pers_proj = persmat4new(90.0, 1000.0, 1.0);
-}
-
-static void	set_colors(t_colors *colors)
-{
-	colors->background = C_BLA;
-	colors->text = C_WHI;
-	colors->bottom = C_WHI;
-	colors->top = C_RED;
-}
-
 void		fdf(char *file)
 {
 	t_env	*e;
@@ -79,8 +55,7 @@ void		fdf(char *file)
 		error_exit("");
 	alloc_env(e);
 	parse_map(e->map, file);
-	set_init_matrices(e->matrices);
-	set_colors(e->colors);
+	init_env(e);
 	set_controls(e->controls);
 	init_mlx(e);
 	mlx_loop(e->mlx);

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/25 19:51:20 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/26 17:39:39 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,13 @@
 # define YWIN 1080
 # define X_WIN 1920.0
 # define Y_WIN 1080.0
-/*
-# define C_BLA 0x000000
-# define C_BLU 0x0000CC
-# define C_RED 0xCC0000
-# define C_WHI 0xffffff
-*/
+
 # define C_CYA 0x28c1da
 # define C_BLA (t_rgb) {0, 0, 0, 0}
 # define C_BLU (t_rgb) {0, 0, 0, 200}
-# define C_RED (t_rgb) {0, 200, 0, 0}
+# define C_RED (t_rgb) {0, 255, 0, 0}
+# define C_GRE (t_rgb) {0, 0, 255, 0}
+# define C_BRO (t_rgb) {0, 153, 76, 0}
 # define C_WHI (t_rgb) {0, 255, 255, 255}
 
 enum
@@ -64,8 +61,7 @@ typedef struct	s_kfuncs
 typedef struct	s_controls
 {
 	int			mode;
-	t_kfuncs	*modelmode;
-	t_kfuncs	*cammode;
+	t_kfuncs	*camera;
 }				t_controls;
 
 typedef struct	s_vec2c
@@ -128,11 +124,12 @@ typedef struct	s_img
 typedef struct	s_matrices
 {
 	t_modmat	initst;
-	t_modmat	camst;
+	t_modmat	movement;
 	t_cam		*cam;
-	t_mat4		ortho_proj;
-	t_mat4		pers_proj;
-	t_mat4		eye_mat;
+	t_mat4		ortho_mat;
+	t_mat4		pers_mat;
+	t_mat4		view_mat;
+	t_mat4		model_mat;
 	t_mat4		f_mat;
 }				t_matrices;
 
@@ -152,6 +149,7 @@ void			fdf(char *file);
 void			parse_map(t_map *map, char *file);
 
 void			draw(t_env *e);
+void			init_env(t_env *e);
 void			set_matrices(t_matrices *matrices);
 void			set_controls(t_controls *controls);
 void			manage_text_overlay(t_env *e);
@@ -163,29 +161,33 @@ int				expose_hook(void *param);
 
 int				key_hook(int keycode, void *param);
 int				mouse_hook(int button, int x, int y, void *param);
+int				key_press_hook(int keycode, void *param);
+int				key_release_hook(int keycode, void *param);
 
 void			k_exit(t_env *e);
 void			k_chmode(t_env *e);
-void			k_trsx(t_env *e);
-void			k_trsrx(t_env *e);
-void			k_trsy(t_env *e);
-void			k_trsry(t_env *e);
-void			k_trsz(t_env *e);
-void			k_trsrz(t_env *e);
-void			k_rotx(t_env *e);
-void			k_rotrx(t_env *e);
-void			k_roty(t_env *e);
-void			k_rotry(t_env *e);
-void			k_trscamx(t_env *e);
-void			k_trscamrx(t_env *e);
-void			k_trscamy(t_env *e);
-void			k_trscamry(t_env *e);
-void			k_trscamz(t_env *e);
-void			k_trscamrz(t_env *e);
-void			k_rotcamy(t_env *e);
-void			k_rotcamry(t_env *e);
-void			k_rotcamx(t_env *e);
-void			k_rotcamrx(t_env *e);
+void			k_trsx(t_env *e, int flag);
+void			k_trsrx(t_env *e, int flag);
+void			k_trsy(t_env *e, int flag);
+void			k_trsry(t_env *e, int flag);
+void			k_trsz(t_env *e, int flag);
+void			k_trsrz(t_env *e, int flag);
+void			k_rotx(t_env *e, int flag);
+void			k_rotrx(t_env *e, int flag);
+void			k_roty(t_env *e, int flag);
+void			k_rotry(t_env *e, int flag);
+void			k_trscamx(t_env *e, int flag);
+void			k_trscamrx(t_env *e, int flag);
+void			k_trscamy(t_env *e, int flag);
+void			k_trscamry(t_env *e, int flag);
+void			k_trscamz(t_env *e, int flag);
+void			k_trscamrz(t_env *e, int flag);
+void			k_rotcamy(t_env *e, int flag);
+void			k_rotcamry(t_env *e, int flag);
+void			k_rotcamx(t_env *e, int flag);
+void			k_rotcamrx(t_env *e, int flag);
+void			k_rotcamz(t_env *e, int flag);
+void			k_rotcamrz(t_env *e, int flag);
 
 void			usage_exit();
 void			error_exit(char *msg);

@@ -6,12 +6,14 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/24 18:26:53 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/26 17:35:06 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=srcs/main.c \
 	srcs/fdf.c \
+	srcs/init_env.c \
+	srcs/init_controls.c \
 	\
 	srcs/parse/parse_map.c \
 	\

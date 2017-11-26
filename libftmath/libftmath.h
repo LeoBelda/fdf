@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/25 15:14:32 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/26 17:26:18 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_mat4			rotxmat4new(double x);
 t_mat4			rotymat4new(double y);
 t_mat4			rotzmat4new(double z);
 t_mat4			orthomat4new(t_frustrum fr);
-t_mat4			persmat4new(double fov, double f, double n);
+t_mat4			persmat4new(double fovh, double fovl, double f, double n);
 t_frustrum		frustrumnew(double r, double t, double f, double n);
 
 t_vec4			cross_product(t_vec4 a, t_vec4 b);
