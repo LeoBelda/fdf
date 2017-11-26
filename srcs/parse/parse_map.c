@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 17:24:12 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/26 20:34:23 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		map_to_list(int fd, t_map *map)
 		if (ret == -1
 			|| !(new_line = line_to_vertices(line, i, &(map->nb_col))))
 			error_exit("");
-		ft_lstradd(&(map->vertices), new_line);
+		ft_lstradd(&(map->vertices_list), new_line);
 		free(line);
 		i++;
 	}
@@ -68,14 +68,14 @@ static void		define_z_range(t_map *map)
 	size_t	i;
 
 	i = 0;
-	map->min_z = (map->vertices_array)[0].z;
-	map->max_z = (map->vertices_array)[0].z;
+	map->min_z = (map->vertices)[0].z;
+	map->max_z = (map->vertices)[0].z;
 	while (i < map->nb_vertices)
 	{
-		if ((map->vertices_array)[i].z > map->max_z)
-			map->max_z = (map->vertices_array)[i].z;
-		if ((map->vertices_array)[i].z < map->min_z)
-			map->min_z = (map->vertices_array)[i].z;
+		if ((map->vertices)[i].z > map->max_z)
+			map->max_z = (map->vertices)[i].z;
+		if ((map->vertices)[i].z < map->min_z)
+			map->min_z = (map->vertices)[i].z;
 		i++;
 	}
 	print_double(map->max_z);
@@ -91,11 +91,11 @@ void			parse_map(t_map *map, char *file)
 	if ((fd = open(file, O_RDONLY)) == -1)
 		error_exit("");
 	map_to_list(fd, map);
-	if (!(map->proj_array = ft_memalloc(sizeof(t_vec4) * map->nb_vertices)))
+	if (!(map->proj = ft_memalloc(sizeof(t_vec4) * map->nb_vertices)))
 		error_exit("");
-	if (!(map->draw_array = ft_memalloc(sizeof(t_vec2c) * map->nb_vertices)))
+	if (!(map->draw = ft_memalloc(sizeof(t_vec2c) * map->nb_vertices)))
 		error_exit("");
-	map->vertices_array = ft_lst_to_array(map->vertices);
+	map->vertices = ft_lst_to_array(map->vertices_list);
 	//ft_lstdel(tmp_lst,,);
 	define_z_range(map);
 	if (close(fd) == -1)

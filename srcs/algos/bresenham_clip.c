@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bresenham.c                                        :+:      :+:    :+:   */
+/*   bresenham_clip.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 10:05:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 20:44:10 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/26 20:25:23 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/26 20:43:58 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static void	bresenham1(t_vec2c a, t_vec2c b, t_img imginf)
 	i = 0;
 	while (a.x <= b.x)
 	{
-		rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, dx, i));
+		if (pix_clip(a))
+			rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, dx, i));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -54,7 +55,8 @@ static void	bresenham2(t_vec2c a, t_vec2c b, t_img imginf)
 	i = 0;
 	while (a.x <= b.x)
 	{
-		rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, dx, i));
+		if (pix_clip(a))
+			rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, dx, i));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -81,7 +83,8 @@ static void	bresenham3(t_vec2c a, t_vec2c b, t_img imginf)
 	i = 0;
 	while (a.y <= b.y)
 	{
-		rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, dy, i));
+		if (pix_clip(a))
+			rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, dy, i));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -108,7 +111,8 @@ static void	bresenham4(t_vec2c a, t_vec2c b, t_img imginf)
 	i = 0;
 	while (a.y >= b.y)
 	{
-		rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, -dy, i));
+		if (pix_clip(a))
+			rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, -dy, i));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -120,7 +124,7 @@ static void	bresenham4(t_vec2c a, t_vec2c b, t_img imginf)
 	}
 }
 
-void	draw_line(t_vec2c a, t_vec2c b, t_img imginf)
+void	draw_clipline(t_vec2c a, t_vec2c b, t_img imginf)
 {
 	if (abs(b.x - a.x) > abs(b.y - a.y))
 	{

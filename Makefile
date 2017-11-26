@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/26 17:35:06 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/26 20:27:14 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRC=srcs/main.c \
 	srcs/graphics/text_overlay.c \
 	\
 	srcs/algos/bresenham.c \
+	srcs/algos/bresenham_clip.c \
+	srcs/algos/bresenham_tools.c \
 	\
 	srcs/controls/callbacks.c \
 	srcs/controls/keyboard_trs.c \

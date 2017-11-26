@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/25 15:26:00 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/26 20:45:36 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void		vertices_to_proj(t_map *map, t_mat4 f_mat)
 	i = 0;
 	while (i < map->nb_vertices)
 	{
-		tmp = mat4xvec4(f_mat, map->vertices_array[i]);
-		map->proj_array[i] = (t_vec3) {tmp.x / tmp.w, tmp.y / tmp.w,
+		tmp = mat4xvec4(f_mat, map->vertices[i]);
+		map->proj[i] = (t_vec3) {tmp.x / tmp.w, tmp.y / tmp.w,
 										tmp.z / tmp.w};
 		i++;
 	}
@@ -40,16 +40,16 @@ static void		proj_to_draw(t_map *map, t_colors *colors)
 	i = 0;
 	while (i < map->nb_vertices)
 	{
-		map->draw_array[i] = (t_vec2c)
-							{ (map->proj_array[i].x + 1.0) * X_WIN / 2.0,
-							  (map->proj_array[i].y + 1.0) * Y_WIN / 2.0,
-							  get_color(map->min_z, map->max_z,
-										map->vertices_array[i].z, *colors)};
+		map->draw[i] = (t_vec2c)
+						{ (map->proj[i].x + 1.0) * X_WIN / 2.0,
+						  (map->proj[i].y + 1.0) * Y_WIN / 2.0,
+						  get_color(map->min_z, map->max_z,
+									map->vertices[i].z, *colors)};
 		i++;
 	}
 }
 
-static int		detect_clip(t_vec3 elem)
+static int		in_clip(t_vec3 elem)
 {
 	if (elem.x >= 1.0 || elem.x < -1.0
 	 || elem.y >= 1.0 || elem.y < -1.0 
@@ -72,15 +72,21 @@ static void		coords_to_img(t_map *map, t_img *imginf)
 		x = 0;
 		while (x < map->nb_col)
 		{
-			if (detect_clip(map->proj_array[i]))
+			if (x + 1 < map->nb_col)
 			{
-				if (x + 1 < map->nb_col && detect_clip(map->proj_array[i + 1]))
-					draw_line(map->draw_array[i],
-								map->draw_array[i + 1], *imginf);
-				if (y + 1 < map->nb_line &&
-				detect_clip(map->proj_array[i + map->nb_col]))
-					draw_line(map->draw_array[i], 
-								map->draw_array[i + map->nb_col], *imginf);
+				if (in_clip(map->proj[i]) && in_clip(map->proj[i + 1]))
+					draw_line(map->draw[i], map->draw[i + 1], *imginf);
+				else if (in_clip(map->proj[i]) ||
+						 in_clip(map->proj[i + 1]))
+					draw_clipline(map->draw[i], map->draw[i + 1], *imginf);
+			}
+			if (y + 1 < map->nb_line)
+			{
+				if (in_clip(map->proj[i]) && in_clip(map->proj[i + map->nb_col]))
+					draw_line(map->draw[i], map->draw[i + map->nb_col], *imginf);
+				else if (in_clip(map->proj[i]) || 
+						 in_clip(map->proj[i + map->nb_col]))
+					draw_clipline(map->draw[i], map->draw[i + map->nb_col], *imginf);
 			}
 			i++;
 			x++;

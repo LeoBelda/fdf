@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 17:39:39 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/26 20:33:45 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,10 @@ typedef struct	s_cam
 
 typedef struct	s_map
 {
-	t_list	*vertices;
-	t_vec4	*vertices_array;
-	t_list	*proj;
-	t_vec3	*proj_array;
-	t_list	*draw;
-	t_vec2c	*draw_array;
+	t_list	*vertices_list;
+	t_vec4	*vertices;
+	t_vec3	*proj;
+	t_vec2c	*draw;
 	size_t	nb_col;
 	size_t	nb_line;
 	size_t	nb_vertices;
@@ -155,6 +153,8 @@ void			set_controls(t_controls *controls);
 void			manage_text_overlay(t_env *e);
 
 void			draw_line(t_vec2c a, t_vec2c b, t_img imginf);
+void			draw_clipline(t_vec2c a, t_vec2c b, t_img imginf);
+int				pix_clip(t_vec2c coord);
 
 int				loop_hook(void *param);
 int				expose_hook(void *param);
