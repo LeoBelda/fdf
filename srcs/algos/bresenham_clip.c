@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 20:25:23 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 20:43:58 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 19:31:55 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void	bresenham1(t_vec2c a, t_vec2c b, t_img imginf)
 	while (a.x <= b.x)
 	{
 		if (pix_clip(a))
-			rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, dx, i));
+			ft_intcpy(&(imginf.addr[a.x + a.y * XWIN]),
+					rgb_to_int(rgb_interi(a.color, b.color, dx, i)));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -56,7 +57,8 @@ static void	bresenham2(t_vec2c a, t_vec2c b, t_img imginf)
 	while (a.x <= b.x)
 	{
 		if (pix_clip(a))
-			rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, dx, i));
+			ft_intcpy(&(imginf.addr[a.x + a.y * XWIN]),
+					rgb_to_int(rgb_interi(a.color, b.color, dx, i)));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -84,7 +86,8 @@ static void	bresenham3(t_vec2c a, t_vec2c b, t_img imginf)
 	while (a.y <= b.y)
 	{
 		if (pix_clip(a))
-			rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, dy, i));
+			ft_intcpy(&(imginf.addr[a.x + a.y * XWIN]),
+					rgb_to_int(rgb_interi(a.color, b.color, dy, i)));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -112,7 +115,8 @@ static void	bresenham4(t_vec2c a, t_vec2c b, t_img imginf)
 	while (a.y >= b.y)
 	{
 		if (pix_clip(a))
-			rgbcpy(&(imginf.addr[a.x + a.y * XWIN]), rgb_interi(a.color, b.color, -dy, i));
+			ft_intcpy(&(imginf.addr[a.x + a.y * XWIN]),
+					rgb_to_int(rgb_interi(a.color, b.color, -dy, i)));
 		e += m;
 		if (e >= 0.0)
 		{

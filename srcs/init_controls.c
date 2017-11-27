@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:15:02 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 13:00:53 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 16:18:18 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	set_kfuncs(t_controls *controls)
 {
-	if (!(controls->camera = ft_memalloc(sizeof(t_kfuncs) * 10)))
+	if (!(controls->camera = ft_memalloc(sizeof(t_kfuncs) * 11)))
 		error_exit("");
 	(controls->camera)[0] = (t_kfuncs) { k_rotcamz, K_LEFT };
 	(controls->camera)[1] = (t_kfuncs) { k_rotcamrz, K_RIGHT };
@@ -24,8 +24,9 @@ static void	set_kfuncs(t_controls *controls)
 	(controls->camera)[5] = (t_kfuncs) { k_trscamrz, K_S };
 	(controls->camera)[6] = (t_kfuncs) { k_rotcamry, K_A };
 	(controls->camera)[7] = (t_kfuncs) { k_rotcamy, K_D };
-	(controls->camera)[8] = (t_kfuncs) { k_exit, K_ESC };
-	(controls->camera)[9] = (t_kfuncs) { NULL, 0 };
+	(controls->camera)[8] = (t_kfuncs) { k_chcolor, K_P };
+	(controls->camera)[9] = (t_kfuncs) { k_exit, K_ESC };
+	(controls->camera)[10] = (t_kfuncs) { NULL, 0 };
 }
 
 /*

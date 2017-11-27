@@ -6,11 +6,13 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/24 15:58:17 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/27 19:22:42 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=ft_memset.c \
+	ft_intset.c \
+	ft_intcpy.c \
 	ft_bzero.c \
 	ft_memcpy.c \
 	ft_memccpy.c \

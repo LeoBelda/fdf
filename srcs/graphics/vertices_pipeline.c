@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 13:21:57 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 17:55:06 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		vertices_to_proj(t_map *map, t_mat4 f_mat)
 	t_vec4	tmp;
 
 	i = 0;
-	while (i < map->nb_vertices)
+	while (i < map->nb_vtx)
 	{
 		tmp = mat4xvec4(f_mat, map->vertices[i]);
 		map->proj[i] = (t_vec3) {tmp.x / tmp.w, tmp.y / tmp.w,
@@ -32,7 +32,7 @@ void		proj_to_draw(t_map *map, t_colorset active)
 	size_t	i;
 
 	i = 0;
-	while (i < map->nb_vertices)
+	while (i < map->nb_vtx)
 	{
 		map->draw[i] = (t_vec2c)
 						{ (map->proj[i].x + 1.0) * X_WIN / 2.0,

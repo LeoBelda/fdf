@@ -6,13 +6,13 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 21:58:01 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 21:59:53 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 19:43:39 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftmath.h"
 
-int	rgb_to_int(t_rgb rgb)
+inline int	rgb_to_int(t_rgb rgb)
 {
-	return (rgb.b + rgb.g * 256 + rgb.r * 65536);
+	return ((int)(rgb.b) | (int)(rgb.g) << 8 | (int)(rgb.r) << 16);
 }

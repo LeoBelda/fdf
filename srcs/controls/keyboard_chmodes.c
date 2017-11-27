@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_interi.c                                       :+:      :+:    :+:   */
+/*   keyboard_chmodes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 21:17:07 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 16:45:16 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/27 15:41:27 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/27 17:08:29 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftmath.h"
+#include "fdf.h"
 
-t_rgb	rgb_interi(t_rgb c1, t_rgb c2, int distance, int progress)
+void	k_chcolor(t_env *e, int flag)
 {
-	t_rgb	inter;
-	int		ratio;
+	static size_t	i;
 
-	if (distance == 0)
-		return (c1);
-	ratio = progress * 100 / distance;
-	inter.a = 0;
-	inter.r = c1.r + (ratio * (c2.r - c1.r)) / 100;
-	inter.g = c1.g + (ratio * (c2.g - c1.g)) / 100;
-	inter.b = c1.b + (ratio * (c2.b - c1.b)) / 100;
-	return (inter);
+	if (flag == 0)
+		return ;
+	i = (i + 1) % e->colors->stock_size;
+	e->colors->from = e->colors->active;
+	e->colors->progress = 0;
+	e->colors->target = e->colors->stock[i];
 }

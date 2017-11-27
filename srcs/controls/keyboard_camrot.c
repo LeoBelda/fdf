@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 19:01:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 17:28:01 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 18:27:03 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	k_rotcamry(t_env *e, int flag)
 
 void	k_rotcamz(t_env *e, int flag)
 {
-	e->matrices->movement.rz = (flag ? 0.6 : 0.0);
+	e->matrices->movement.rz = (flag ? 1.0 : 0.0);
 }
 
 void	k_rotcamrz(t_env *e, int flag)
 {
-	e->matrices->movement.rz = (flag ? -0.6 : 0.0);
+	e->matrices->movement.rz = (flag ? -1.0 : 0.0);
 }
 
 void	k_rotcamx(t_env *e, int flag)

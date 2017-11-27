@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 13:22:51 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 20:30:48 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,21 @@
 # define Y_WIN 1440.0
 
 # define C_BLA (t_rgb) {0, 0, 0, 0}
-# define C_BLU (t_rgb) {0, 0, 0, 200}
-# define C_RED (t_rgb) {0, 255, 0, 0}
+# define C_BLU (t_rgb) {0, 0, 0, 255}
 # define C_GRE (t_rgb) {0, 0, 255, 0}
-# define C_BRO (t_rgb) {0, 153, 76, 0}
+# define C_RED (t_rgb) {0, 255, 0, 0}
 # define C_WHI (t_rgb) {0, 255, 255, 255}
+
+# define C_GOLD_PALE (t_rgb) {0, 238, 232, 170}
+# define C_ORANGE_DARK (t_rgb) {0, 255, 160, 0}
+
+# define C_GREEN_DARK (t_rgb) {0, 0, 100, 0}
+# define C_GREEN_SEA_MED (t_rgb) {0, 60, 179, 113}
+# define C_CYAN_DARK (t_rgb) {0, 0, 139, 139}
+# define C_BLUE_MIDNIGHT (t_rgb) {0, 25, 25, 112}
+# define C_BLUE_BLACK (t_rgb) {0, 12, 12, 70}
+# define C_BLUE_NAVY (t_rgb) {0, 0, 0, 128}
+# define C_INDIGO (t_rgb) {0, 75, 0, 130}
 
 enum
 {
@@ -72,8 +82,8 @@ typedef struct	s_vec2c
 
 typedef struct	s_colorset
 {
-	t_rgb	background;
 	t_rgb	text;
+	t_rgb	background;
 	t_rgb	bottom;
 	t_rgb	top;
 }				t_colorset;
@@ -81,7 +91,11 @@ typedef struct	s_colorset
 typedef struct	s_colors
 {
 	t_colorset	active;
+	t_colorset	from;
+	t_colorset	target;
 	t_colorset	*stock;
+	size_t		progress;
+	size_t		stock_size;
 }				t_colors;
 
 typedef struct	s_modmat
@@ -102,6 +116,16 @@ typedef struct	s_cam
 	t_vec4	up;
 }				t_cam;
 
+typedef struct	s_mat4set
+{
+	t_mat4	active;
+	t_mat4	from;
+	t_mat4	target;
+	t_mat4	*stock;
+	size_t	progress;
+	size_t	stock_size;
+}				t_mat4set;
+
 typedef struct	s_map
 {
 	t_list	*vertices_list;
@@ -110,7 +134,8 @@ typedef struct	s_map
 	t_vec2c	*draw;
 	size_t	nb_col;
 	size_t	nb_line;
-	size_t	nb_vertices;
+	size_t	nb_vtx;
+	t_vec4	mid_top;
 	double	min_z;
 	double	max_z;
 }				t_map;
@@ -150,7 +175,7 @@ typedef struct	s_env
 void			fdf(char *file);
 
 void			parse_map(t_map *map, char *file);
-void			init_geometry(t_matrices *matrices);
+void			init_geometry(t_matrices *matrices, t_map *map);
 void			init_colors(t_colors *colors);
 void			init_controls(t_controls *controls);
 
@@ -180,6 +205,7 @@ int				key_release_hook(int keycode, void *param);
 
 void			k_exit(t_env *e);
 void			k_chmode(t_env *e);
+void			k_chcolor(t_env *e, int flag);
 void			k_trsx(t_env *e, int flag);
 void			k_trsrx(t_env *e, int flag);
 void			k_trsy(t_env *e, int flag);

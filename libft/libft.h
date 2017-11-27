@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 16:49:43 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 19:26:00 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct	s_list
 }				t_list;
 
 void			*ft_memset(void *b, int c, size_t len);
+void			*ft_intset(void *b, int c, size_t len);
+void			ft_intcpy(void *b, int c);
 void			ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);

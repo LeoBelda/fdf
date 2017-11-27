@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/27 13:03:47 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/27 16:14:53 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC=srcs/main.c \
 	srcs/controls/keyboard_rot.c \
 	srcs/controls/keyboard_camrot.c \
 	srcs/controls/keyboard_camtrs.c \
+	srcs/controls/keyboard_chmodes.c \
 	srcs/controls/keyboard_misc.c \
 	\
 	srcs/utils/print_db.c
