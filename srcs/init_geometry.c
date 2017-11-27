@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   init_geometry.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/26 14:30:19 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 17:42:05 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/27 13:00:31 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/27 13:00:34 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_mat4	get_model_mat(t_modmat initst)
 					  sclmat4new(initst.s, initst.s, initst.s))))));
 }
 
-static void	set_init_matrices(t_matrices *matrices)
+void	init_geometry(t_matrices *matrices)
 {
 	matrices->initst.rx = 33.0;
 	matrices->initst.ry = 0.0;
@@ -58,18 +58,4 @@ static void	set_init_matrices(t_matrices *matrices)
 	matrices->pers_mat = persmat4new(90.0, 50.625, 1000.0, 1.0);
 	matrices->view_mat = get_view_mat(matrices->cam);
 	matrices->model_mat = get_model_mat(matrices->initst);
-}
-
-static void	set_colors(t_colors *colors)
-{
-	colors->background = C_BLA;
-	colors->text = C_WHI;
-	colors->bottom = C_GRE;
-	colors->top = C_WHI;
-}
-
-void		init_env(t_env *e)
-{
-	set_init_matrices(e->matrices);
-	set_colors(e->colors);
 }

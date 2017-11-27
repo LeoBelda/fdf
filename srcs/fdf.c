@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 16:51:12 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 13:03:17 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void		fdf(char *file)
 		error_exit("");
 	alloc_env(e);
 	parse_map(e->map, file);
-	init_env(e);
-	set_controls(e->controls);
+	init_geometry(e->matrices);
+	init_colors(e->colors);
+	init_controls(e->controls);
 	init_mlx(e);
 	mlx_loop(e->mlx);
 }

@@ -6,19 +6,21 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/26 20:27:14 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/27 13:03:47 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=srcs/main.c \
 	srcs/fdf.c \
-	srcs/init_env.c \
+	srcs/init_geometry.c \
+	srcs/init_colors.c \
 	srcs/init_controls.c \
 	\
 	srcs/parse/parse_map.c \
 	\
 	srcs/graphics/draw.c \
 	srcs/graphics/matrices.c \
+	srcs/graphics/vertices_pipeline.c \
 	srcs/graphics/callbacks.c \
 	srcs/graphics/text_overlay.c \
 	\

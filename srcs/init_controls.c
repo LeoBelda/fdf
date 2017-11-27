@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:15:02 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 17:29:15 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 13:00:53 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	set_kfuncs_release(t_controls *controls)
 }
 */
 
-void	set_controls(t_controls *controls)
+void	init_controls(t_controls *controls)
 {
 	set_kfuncs(controls);
 	controls->mode = 0;

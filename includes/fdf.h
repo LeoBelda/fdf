@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 20:33:45 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 13:22:51 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,11 @@
 # include <math.h>
 # include <time.h>
 
-# define XWIN 1920
-# define YWIN 1080
-# define X_WIN 1920.0
-# define Y_WIN 1080.0
+# define XWIN 2560
+# define YWIN 1440
+# define X_WIN 2560.0
+# define Y_WIN 1440.0
 
-# define C_CYA 0x28c1da
 # define C_BLA (t_rgb) {0, 0, 0, 0}
 # define C_BLU (t_rgb) {0, 0, 0, 200}
 # define C_RED (t_rgb) {0, 255, 0, 0}
@@ -71,12 +70,18 @@ typedef struct	s_vec2c
 	t_rgb	color;
 }				t_vec2c;
 
-typedef struct	s_colors
+typedef struct	s_colorset
 {
 	t_rgb	background;
 	t_rgb	text;
 	t_rgb	bottom;
 	t_rgb	top;
+}				t_colorset;
+
+typedef struct	s_colors
+{
+	t_colorset	active;
+	t_colorset	*stock;
 }				t_colors;
 
 typedef struct	s_modmat
@@ -145,12 +150,21 @@ typedef struct	s_env
 void			fdf(char *file);
 
 void			parse_map(t_map *map, char *file);
+void			init_geometry(t_matrices *matrices);
+void			init_colors(t_colors *colors);
+void			init_controls(t_controls *controls);
 
 void			draw(t_env *e);
-void			init_env(t_env *e);
 void			set_matrices(t_matrices *matrices);
-void			set_controls(t_controls *controls);
 void			manage_text_overlay(t_env *e);
+
+
+void			vertices_to_proj(t_map *map, t_mat4 f_mat);
+void			proj_to_draw(t_map *map, t_colorset active);
+void			draw_to_img(t_map *map, t_img *imginf);
+
+t_rgb			get_color(double min_z, double max_z, double z,
+												t_colorset active);
 
 void			draw_line(t_vec2c a, t_vec2c b, t_img imginf);
 void			draw_clipline(t_vec2c a, t_vec2c b, t_img imginf);
