@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 18:45:27 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 22:17:13 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,29 @@ static void		map_to_list(int fd, t_map *map)
 static void		define_attributes(t_map *map)
 {
 	size_t	i;
+	double	max;
+	double	min;
 
 	i = 0;
 	map->nb_vtx = map->nb_line * map->nb_col;
-	map->min_z = (map->vertices)[0].z;
-	map->max_z = (map->vertices)[0].z;
+	min = (map->vertices)[0].z;
+	max = (map->vertices)[0].z;
 	while (i < map->nb_vtx)
 	{
-		if ((map->vertices)[i].z > map->max_z)
-			map->max_z = (map->vertices)[i].z;
-		if ((map->vertices)[i].z < map->min_z)
-			map->min_z = (map->vertices)[i].z;
+		if ((map->vertices)[i].z > max)
+			max = (map->vertices)[i].z;
+		if ((map->vertices)[i].z < min)
+			min = (map->vertices)[i].z;
 		i++;
 	}
-	map->mid_top = vec4new((map->vertices[0].x +
-							map->vertices[map->nb_vtx - 1].x) / 2,
-							(map->vertices[0].y +
-						 	map->vertices[map->nb_vtx - 1].y) / 2,
-						0.0, 1.0);
+	map->max_z = (int)lround(max);
+	map->min_z = (int)lround(min);
+	map->mid_mod = vec4new((map->vertices[map->nb_vtx - 1].x) / 2,
+							(map->vertices[map->nb_vtx - 1].y) / 2,
+						(double)(map->max_z + map->min_z) / 2.0, 1.0);
+	map->mid_height = (double)-(map->max_z + map->min_z / 2.0);
+	map->mid_point = mat4xvec4(trsmat4new(0.0, map->mid_height , 50.0),
+						map->mid_mod);
 }
 
 void			parse_map(t_map *map, char *file)
@@ -97,6 +102,8 @@ void			parse_map(t_map *map, char *file)
 	if (!(map->proj = ft_memalloc(sizeof(t_vec4) * map->nb_vtx)))
 		error_exit("");
 	if (!(map->draw = ft_memalloc(sizeof(t_vec2c) * map->nb_vtx)))
+		error_exit("");
+	if (!(map->clip = ft_memalloc(sizeof(char) * map->nb_vtx)))
 		error_exit("");
 	//ft_lstdel(tmp_lst,,);
 	if (close(fd) == -1)

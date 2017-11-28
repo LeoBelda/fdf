@@ -6,51 +6,48 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:15:02 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 23:28:26 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 15:40:25 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	set_kfuncs(t_controls *controls)
+static void	set_kfuncs_ground(t_controls *controls)
 {
-	if (!(controls->camera = ft_memalloc(sizeof(t_kfuncs) * 12)))
+	if (!(controls->grd = ft_memalloc(sizeof(t_kfuncs) * 12)))
 		error_exit("");
-	(controls->camera)[0] = (t_kfuncs) { k_rotcamz, K_LEFT };
-	(controls->camera)[1] = (t_kfuncs) { k_rotcamrz, K_RIGHT };
-	(controls->camera)[2] = (t_kfuncs) { k_rotcamrx, K_UP };
-	(controls->camera)[3] = (t_kfuncs) { k_rotcamx, K_DOWN };
-	(controls->camera)[4] = (t_kfuncs) { k_trscamz, K_W };
-	(controls->camera)[5] = (t_kfuncs) { k_trscamrz, K_S };
-	(controls->camera)[6] = (t_kfuncs) { k_rotcamry, K_A };
-	(controls->camera)[7] = (t_kfuncs) { k_rotcamy, K_D };
-	(controls->camera)[8] = (t_kfuncs) { k_chcolor, K_C };
-	(controls->camera)[9] = (t_kfuncs) { k_chpov, K_P };
-	(controls->camera)[10] = (t_kfuncs) { k_exit, K_ESC };
-	(controls->camera)[11] = (t_kfuncs) { NULL, 0 };
+	(controls->grd)[0] = (t_kfuncs) { k_rotcamz, K_LEFT };
+	(controls->grd)[1] = (t_kfuncs) { k_rotcamrz, K_RIGHT };
+	(controls->grd)[2] = (t_kfuncs) { k_rotcamrx, K_UP };
+	(controls->grd)[3] = (t_kfuncs) { k_rotcamx, K_DOWN };
+	(controls->grd)[4] = (t_kfuncs) { k_trscamz, K_W };
+	(controls->grd)[5] = (t_kfuncs) { k_trscamrz, K_S };
+	(controls->grd)[6] = (t_kfuncs) { k_rotcamry, K_A };
+	(controls->grd)[7] = (t_kfuncs) { k_rotcamy, K_D };
+	(controls->grd)[8] = (t_kfuncs) { k_chcolor, K_C };
+	(controls->grd)[9] = (t_kfuncs) { k_chpov, K_P };
+	(controls->grd)[10] = (t_kfuncs) { k_exit, K_ESC };
+	(controls->grd)[11] = (t_kfuncs) { NULL, 0 };
 }
 
-/*
-static void	set_kfuncs_release(t_controls *controls)
+
+static void	set_kfuncs_sky(t_controls *controls)
 {
-	if (!(controls->release = ft_memalloc(sizeof(t_kfuncs) * 10)))
+	if (!(controls->sky = ft_memalloc(sizeof(t_kfuncs) * 8)))
 		error_exit("");
-	(controls->release)[0] = (t_kfuncs) { k_exit, K_ESC };
-	(controls->release)[1] = (t_kfuncs) { k_rotcamry, K_LEFT };
-	(controls->release)[2] = (t_kfuncs) { k_rotcamy, K_RIGHT };
-	(controls->release)[3] = (t_kfuncs) { k_rotcamx, K_UP };
-	(controls->release)[4] = (t_kfuncs) { k_rotcamrx, K_DOWN };
-	(controls->release)[5] = (t_kfuncs) { k_trscamx, K_A };
-	(controls->release)[6] = (t_kfuncs) { k_trscamrx, K_D };
-	(controls->release)[7] = (t_kfuncs) { k_trscamz, K_W };
-	(controls->release)[8] = (t_kfuncs) { k_trscamrz, K_S };
-	(controls->release)[9] = (t_kfuncs) { k_chmode, K_P };
-	(controls->release)[10] = (t_kfuncs) { NULL, 0 };
+	(controls->sky)[0] = (t_kfuncs) { k_trscamx, K_A };
+	(controls->sky)[1] = (t_kfuncs) { k_trscamrx, K_D };
+	(controls->sky)[2] = (t_kfuncs) { k_trscamy, K_W };
+	(controls->sky)[3] = (t_kfuncs) { k_trscamry, K_S };
+	(controls->sky)[4] = (t_kfuncs) { k_chcolor, K_C };
+	(controls->sky)[5] = (t_kfuncs) { k_chpov, K_P };
+	(controls->sky)[6] = (t_kfuncs) { k_exit, K_ESC };
+	(controls->sky)[7] = (t_kfuncs) { NULL, 0 };
 }
-*/
+
 
 void	init_controls(t_controls *controls)
 {
-	set_kfuncs(controls);
-	controls->mode = 0;
+	set_kfuncs_ground(controls);
+	set_kfuncs_sky(controls);
 }

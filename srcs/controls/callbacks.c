@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 18:36:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 23:31:05 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 16:27:56 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,33 @@ int		mouse_hook(int button, int x, int y, void *param)
 	return (0);
 }
 
-int		key_press_hook(int keycode, void *param)
+int		key_press_hook(int keycode, t_env *e)
 {
 	size_t		i;
 	t_kfuncs	*kfuncs;
 
-	kfuncs = ((t_env*)param)->controls->camera;
+	kfuncs = (e->mode == M_SKY ? e->controls->sky : e->controls->grd);
 	i = 0;
-	while (kfuncs[i].f)
+	while (kfuncs[i].f && e->matrices->views->switching == 0)
 	{
 		if (keycode == kfuncs[i].keycode)
-			kfuncs[i].f((t_env*)param, 1);
+			kfuncs[i].f(e, 1);
 		i++;
 	}
 	return (0);
 }
 
-int		key_release_hook(int keycode, void *param)
+int		key_release_hook(int keycode, t_env *e)
 {
 	size_t		i;
 	t_kfuncs	*kfuncs;
 
-	kfuncs = ((t_env*)param)->controls->camera;
+	kfuncs = (e->mode == M_SKY ? e->controls->sky : e->controls->grd);
 	i = 0;
-	while (kfuncs[i].f)
+	while (kfuncs[i].f && e->matrices->views->switching == 0)
 	{
 		if (keycode == kfuncs[i].keycode)
-			kfuncs[i].f((t_env*)param, 0);
+			kfuncs[i].f(e, 0);
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 01:09:25 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 23:25:34 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,18 @@ static void		switch_mat4(t_mat4set *set)
 	}
 	set->active = mat4_interi(set->from, set->target, 100, set->progress);
 	set->progress++;
-	print_mat4(set->active);
-	ft_putendl("");
 }
 
 void			set_matrices(t_matrices *matrices)
 {
-	if (matrices->projs->switching == 1)
-		switch_mat4(matrices->projs);
-	if (matrices->views->switching == 1)
+	if (matrices->views->switching == 1 || matrices->projs->switching == 1)
+	{
 		switch_mat4(matrices->views);
+		switch_mat4(matrices->projs);
+	}
 	else
 		matrices->views->active = refresh_view_mat(matrices->views->active,
-											matrices->movement);
+									matrices->movement);
 	matrices->f_mat = mat4xmat4(matrices->projs->active,
 					  mat4xmat4(matrices->views->active,
 					 		    matrices->model_mat));

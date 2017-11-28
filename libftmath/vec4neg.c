@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vec4_new.c                                      :+:      :+:    :+:   */
+/*   vec4neg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/18 09:49:17 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 20:42:51 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/28 20:30:52 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/28 20:33:15 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftmath.h"
 
-t_vec4	vec4new(double x, double y, double z, double w)
+t_vec4	vec4neg(t_vec4 vec)
 {
-	return (t_vec4) {x, y, z, w};
+	return ((t_vec4) {-vec.x, -vec.y, -vec.z, vec.w});
 }

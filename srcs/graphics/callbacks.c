@@ -6,17 +6,11 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 15:48:23 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/22 15:50:06 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 12:19:20 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	loop_hook(void *param)
-{
-	draw((t_env*)param);
-	return (0);
-}
 
 int	expose_hook(void *param)
 {

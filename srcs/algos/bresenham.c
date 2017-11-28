@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 10:05:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 05:41:48 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 10:13:47 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static void	bresenham1(t_vec2c a, t_vec2c b, int *addr)
 	i = 0;
 	while (a.x <= b.x)
 	{
-		ft_intcpy(&(addr[a.x + a.y * XWIN]),
-				rgbi_interi(a.color, b.color, dx, i));
+		addr[a.x + a.y * XWIN] = rgbi_interi(a.color, b.color, dx, i);
 		e += m;
 		if (e >= 0.0)
 		{
@@ -55,8 +54,7 @@ static void	bresenham2(t_vec2c a, t_vec2c b, int *addr)
 	i = 0;
 	while (a.x <= b.x)
 	{
-		ft_intcpy(&(addr[a.x + a.y * XWIN]),
-				rgbi_interi(a.color, b.color, dx, i));
+		addr[a.x + a.y * XWIN] = rgbi_interi(a.color, b.color, dx, i);
 		e += m;
 		if (e >= 0.0)
 		{
@@ -83,8 +81,7 @@ static void	bresenham3(t_vec2c a, t_vec2c b, int *addr)
 	i = 0;
 	while (a.y <= b.y)
 	{
-		ft_intcpy(&(addr[a.x + a.y * XWIN]),
-				rgbi_interi(a.color, b.color, dy, i));
+		addr[a.x + a.y * XWIN] = rgbi_interi(a.color, b.color, dy, i);
 		e += m;
 		if (e >= 0.0)
 		{
@@ -111,8 +108,7 @@ static void	bresenham4(t_vec2c a, t_vec2c b, int *addr)
 	i = 0;
 	while (a.y >= b.y)
 	{
-		ft_intcpy(&(addr[a.x + a.y * XWIN]),
-				rgbi_interi(a.color, b.color, -dy, i));
+		addr[a.x + a.y * XWIN] = rgbi_interi(a.color, b.color, -dy, i);
 		e += m;
 		if (e >= 0.0)
 		{

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 05:03:13 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 21:59:22 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,12 @@ double			dbl_interr_log(double a, double b, double ratio);
 t_vec2r			vec2rnewd(double x, double y);
 t_vec2r			vec2rnewi(int x, int y);
 t_vec4			vec4new(double x, double y, double z, double w);
+t_vec4			vec4neg(t_vec4 vec);
 t_mat4			mat4new(t_vec4 x, t_vec4 y, t_vec4 z, t_vec4 w);
 t_mat4			idmat4new(void);
 t_mat4			sclmat4new(double x, double y, double z);
 t_mat4			trsmat4new(double x, double y, double z);
+t_mat4			trsmat4vec(t_vec4 vec);
 t_mat4			rotxmat4new(double x);
 t_mat4			rotymat4new(double y);
 t_mat4			rotzmat4new(double z);
@@ -96,6 +98,7 @@ t_vec4			norm_vec4(t_vec4 vec);
 double			vec4xvec4(t_vec4 a, t_vec4 b);
 t_vec4			mat4xvec4(t_mat4 mat, t_vec4 vec);
 t_mat4			mat4xmat4(t_mat4 a, t_mat4 b);
+t_vec3			mat4xvec4_tovec3(t_mat4 mat, t_vec4 vec);
 
 double			deg_rad(double deg);
 int				iabs(int val);

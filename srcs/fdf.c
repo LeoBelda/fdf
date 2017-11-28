@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 21:05:13 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 15:25:10 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	init_mlx(t_env *e)
 	mlx_hook(e->win, 2, 0, key_press_hook, (void*)e);
 	mlx_hook(e->win, 3, 0, key_release_hook, (void*)e);
 	mlx_expose_hook(e->win, expose_hook, (void*)e);
-	mlx_loop_hook(e->mlx, loop_hook, (void*)e);
+	mlx_loop_hook(e->mlx, draw, (void*)e);
 }
 
 static void	alloc_env(t_env *e)
@@ -56,6 +56,7 @@ void		fdf(char *file)
 	init_geometry(e->matrices, e->map);
 	init_colors(e->colors);
 	init_controls(e->controls);
+	e->mode = M_GRD;
 	init_mlx(e);
 	mlx_loop(e->mlx);
 }

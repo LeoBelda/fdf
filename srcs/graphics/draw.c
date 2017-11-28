@@ -6,21 +6,21 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 06:18:13 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 18:02:06 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			get_color(double min_z, double max_z, double z, t_colorset active)
+int			get_color(int min_z, int max_z, int z, t_colorset active)
 {
-	return (rgbi_interi(active.bottom, active.top, (int)lround(max_z - min_z),
-												(int)(lround(z - min_z))));
+	return (rgbi_interi(active.bottom, active.top, max_z - min_z,
+												z - min_z));
 }
 
 static void		clear_img(int *addr, int color)
 {
-	ft_intset(addr, color, XWIN * YWIN);
+	ft_lintset(addr, (long int)color, (XWIN * YWIN) / 2);
 }
 
 static void		set_color(t_colors *colors)
@@ -49,7 +49,7 @@ static void		set_color(t_colors *colors)
 	colors->progress++;
 }
 
-void			draw(t_env *e)
+int			draw(t_env *e)
 {
 	clear_img(e->img->addr, e->colors->active.background);
 	set_matrices(e->matrices);
@@ -60,4 +60,5 @@ void			draw(t_env *e)
 	if (mlx_put_image_to_window(e->mlx, e->win, e->img->img, 0, 0) == -1)
 		error_exit("Failed to display image");
 	manage_text_overlay(e);
+	return (0);
 }

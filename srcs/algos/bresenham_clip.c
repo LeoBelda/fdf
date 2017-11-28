@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 20:25:23 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 05:39:36 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 10:16:35 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void	bresenham1(t_vec2c a, t_vec2c b, int *addr)
 	while (a.x <= b.x)
 	{
 		if (pix_clip(a))
-			ft_intcpy(&(addr[a.x + a.y * XWIN]),
-					rgbi_interi(a.color, b.color, dx, i));
+			addr[a.x + a.y * XWIN] =
+					rgbi_interi(a.color, b.color, dx, i);
 		e += m;
 		if (e >= 0.0)
 		{
@@ -57,8 +57,8 @@ static void	bresenham2(t_vec2c a, t_vec2c b, int *addr)
 	while (a.x <= b.x)
 	{
 		if (pix_clip(a))
-			ft_intcpy(&(addr[a.x + a.y * XWIN]),
-					rgbi_interi(a.color, b.color, dx, i));
+			addr[a.x + a.y * XWIN] =
+					rgbi_interi(a.color, b.color, dx, i);
 		e += m;
 		if (e >= 0.0)
 		{
@@ -86,8 +86,8 @@ static void	bresenham3(t_vec2c a, t_vec2c b, int *addr)
 	while (a.y <= b.y)
 	{
 		if (pix_clip(a))
-			ft_intcpy(&(addr[a.x + a.y * XWIN]),
-					rgbi_interi(a.color, b.color, dy, i));
+			addr[a.x + a.y * XWIN] =
+					rgbi_interi(a.color, b.color, dy, i);
 		e += m;
 		if (e >= 0.0)
 		{
@@ -115,8 +115,8 @@ static void	bresenham4(t_vec2c a, t_vec2c b, int *addr)
 	while (a.y >= b.y)
 	{
 		if (pix_clip(a))
-			ft_intcpy(&(addr[a.x + a.y * XWIN]),
-					rgbi_interi(a.color, b.color, -dy, i));
+			addr[a.x + a.y * XWIN] =
+					rgbi_interi(a.color, b.color, -dy, i);
 		e += m;
 		if (e >= 0.0)
 		{

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 05:36:08 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 22:17:24 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define C_BLUE_NAVY (t_rgb) {0, 0, 0, 128}
 # define C_INDIGO (t_rgb) {0, 75, 0, 130}
 
-enum
+enum			e_keycodes
 {
 	K_A = 0,
 	K_S,
@@ -60,7 +60,13 @@ enum
 	K_RIGHT,
 	K_DOWN,
 	K_UP
-}				keycodes;
+};
+
+typedef enum	e_modes
+{
+	M_SKY,
+	M_GRD
+}				t_modes;
 
 typedef struct	s_kfuncs
 {
@@ -70,8 +76,8 @@ typedef struct	s_kfuncs
 
 typedef struct	s_controls
 {
-	int			mode;
-	t_kfuncs	*camera;
+	t_kfuncs	*grd;
+	t_kfuncs	*sky;
 }				t_controls;
 
 typedef struct	s_vec2c
@@ -127,12 +133,15 @@ typedef struct	s_map
 	t_vec4	*vertices;
 	t_vec3	*proj;
 	t_vec2c	*draw;
+	char	*clip;
 	size_t	nb_col;
 	size_t	nb_line;
 	size_t	nb_vtx;
-	t_vec4	mid_top;
-	double	min_z;
-	double	max_z;
+	t_vec4	mid_mod;
+	t_vec4	mid_point;
+	double	mid_height;
+	int		min_z;
+	int		max_z;
 }				t_map;
 
 typedef struct	s_img
@@ -163,6 +172,7 @@ typedef struct	s_env
 	t_matrices	*matrices;
 	t_colors	*colors;
 	t_controls	*controls;
+	t_modes		mode;
 }				t_env;
 
 void			fdf(char *file);
@@ -172,32 +182,31 @@ void			init_geometry(t_matrices *matrices, t_map *map);
 void			init_colors(t_colors *colors);
 void			init_controls(t_controls *controls);
 
-void			draw(t_env *e);
+int				draw(t_env *e);
 void			set_matrices(t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
 
+t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 
 void			vertices_to_proj(t_map *map, t_mat4 f_mat);
 void			proj_to_draw(t_map *map, t_colorset active);
 void			draw_to_img(t_map *map, int *addr);
 
-int				get_color(double min_z, double max_z, double z,
+int				get_color(int min_z, int max_z, int z,
 												t_colorset active);
 
 void			draw_line(t_vec2c a, t_vec2c b, int *addr);
 void			draw_clipline(t_vec2c a, t_vec2c b, int *addr);
 int				pix_clip(t_vec2c coord);
 
-int				loop_hook(void *param);
-int				expose_hook(void *param);
 
+int				expose_hook(void *param);
 int				key_hook(int keycode, void *param);
 int				mouse_hook(int button, int x, int y, void *param);
-int				key_press_hook(int keycode, void *param);
-int				key_release_hook(int keycode, void *param);
+int				key_press_hook(int keycode, t_env *e);
+int				key_release_hook(int keycode, t_env *e);
 
 void			k_exit(t_env *e);
-void			k_chmode(t_env *e);
 void			k_chpov(t_env *e, int flag);
 void			k_chcolor(t_env *e, int flag);
 void			k_trsx(t_env *e, int flag);

@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vec4_new.c                                      :+:      :+:    :+:   */
+/*   ft_lintset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/18 09:49:17 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 20:42:51 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/28 11:29:10 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/28 11:31:38 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftmath.h"
+#include "libft.h"
 
-t_vec4	vec4new(double x, double y, double z, double w)
+void	*ft_lintset(void *b, long int c, size_t len)
 {
-	return (t_vec4) {x, y, z, w};
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+		((long int*)b)[i++] = c;
+	return (b);
 }
