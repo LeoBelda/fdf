@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 19:16:36 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 21:42:45 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void		set_color(t_colors *colors)
 		colors->progress = 0;
 		return ;
 	}
-
 	j = 0;
 	handle_act = &colors->active.text;
 	handle_tar = &colors->target.text;

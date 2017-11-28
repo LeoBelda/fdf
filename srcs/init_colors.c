@@ -6,13 +6,13 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:57:20 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 20:15:43 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 20:56:27 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	load_colorsets(t_colors *colors)
+static void	load_colorsets(t_colors *colors)
 {
 	colors->stock_size = 4;
 	if (!(colors->stock = ft_memalloc(sizeof(t_colorset) *
@@ -28,7 +28,7 @@ void	load_colorsets(t_colors *colors)
 										C_WHI, C_ORANGE_DARK };
 }
 
-void	init_colors(t_colors *colors)
+void		init_colors(t_colors *colors)
 {
 	load_colorsets(colors);
 	colors->active = colors->stock[0];

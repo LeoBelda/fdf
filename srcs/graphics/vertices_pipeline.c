@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 17:55:06 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 02:05:43 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void		proj_to_draw(t_map *map, t_colorset active)
 	while (i < map->nb_vtx)
 	{
 		map->draw[i] = (t_vec2c)
-						{ (map->proj[i].x + 1.0) * X_WIN / 2.0,
-						  (map->proj[i].y + 1.0) * Y_WIN / 2.0,
-						  get_color(map->min_z, map->max_z,
+						{(map->proj[i].x + 1.0) * X_WIN / 2.0,
+						 (map->proj[i].y + 1.0) * Y_WIN / 2.0,
+						 get_color(map->min_z, map->max_z,
 									map->vertices[i].z, active)};
 		i++;
 	}

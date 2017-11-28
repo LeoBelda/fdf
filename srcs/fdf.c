@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 17:32:13 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 21:05:13 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ static void	alloc_env(t_env *e)
 	if (!(e->img = ft_memalloc(sizeof(t_img))))
 		error_exit("");
 	if (!(e->matrices = ft_memalloc(sizeof(t_matrices))))
-		error_exit("");
-	if (!(e->matrices->cam = ft_memalloc(sizeof(t_cam))))
 		error_exit("");
 	if (!(e->colors = ft_memalloc(sizeof(t_colors))))
 		error_exit("");

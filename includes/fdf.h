@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 20:30:48 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/27 23:27:07 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ enum
 	K_A = 0,
 	K_S,
 	K_D,
+	K_C = 8,
 	K_W = 13,
 	K_P = 35,
 	K_ESC = 53,
@@ -124,6 +125,7 @@ typedef struct	s_mat4set
 	t_mat4	*stock;
 	size_t	progress;
 	size_t	stock_size;
+	int		switching;
 }				t_mat4set;
 
 typedef struct	s_map
@@ -153,10 +155,8 @@ typedef struct	s_matrices
 {
 	t_modmat	initst;
 	t_modmat	movement;
-	t_cam		*cam;
-	t_mat4		ortho_mat;
-	t_mat4		pers_mat;
-	t_mat4		view_mat;
+	t_mat4set	*projs;
+	t_mat4set	*views;
 	t_mat4		model_mat;
 	t_mat4		f_mat;
 }				t_matrices;
@@ -205,6 +205,7 @@ int				key_release_hook(int keycode, void *param);
 
 void			k_exit(t_env *e);
 void			k_chmode(t_env *e);
+void			k_chpov(t_env *e, int flag);
 void			k_chcolor(t_env *e, int flag);
 void			k_trsx(t_env *e, int flag);
 void			k_trsrx(t_env *e, int flag);

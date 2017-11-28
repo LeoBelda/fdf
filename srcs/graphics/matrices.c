@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 15:17:23 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 01:09:25 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,32 @@ static t_mat4	refresh_view_mat(t_mat4 view_mat, t_modmat movement)
 				view_mat))))));
 }
 
+static void		switch_mat4(t_mat4set *set)
+{
+	if (set->progress == 100)
+	{
+		set->active = set->target;
+		set->from = set->target;
+		set->progress = 0;
+		set->switching = 0;
+		return ;
+	}
+	set->active = mat4_interi(set->from, set->target, 100, set->progress);
+	set->progress++;
+	print_mat4(set->active);
+	ft_putendl("");
+}
+
 void			set_matrices(t_matrices *matrices)
 {
-	matrices->view_mat = refresh_view_mat(matrices->view_mat,
+	if (matrices->projs->switching == 1)
+		switch_mat4(matrices->projs);
+	if (matrices->views->switching == 1)
+		switch_mat4(matrices->views);
+	else
+		matrices->views->active = refresh_view_mat(matrices->views->active,
 											matrices->movement);
-	matrices->f_mat = mat4xmat4(matrices->pers_mat,
-					  mat4xmat4(matrices->view_mat,
+	matrices->f_mat = mat4xmat4(matrices->projs->active,
+					  mat4xmat4(matrices->views->active,
 					 		    matrices->model_mat));
 }

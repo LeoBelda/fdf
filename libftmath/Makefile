@@ -6,14 +6,19 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/25 13:37:44 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/28 01:02:58 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=rgbnew.c \
 	rgbcpy.c \
 	rgb_to_int.c \
+	\
 	rgb_interi.c \
+	mat4_interi.c \
+	dbl_interr.c \
+	dbl_interr_log.c \
+	\
 	vec2rnewd.c \
 	vec2rnewi.c \
 	vec4new.c \
