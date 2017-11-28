@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 01:02:36 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 05:03:13 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <math.h>
 # include <unistd.h>
+
+# define MSK(x) ((x) & 0x0000ff)
 
 typedef struct	s_rgb
 {
@@ -69,6 +71,7 @@ void			rgbcpy(void *dst, t_rgb src);
 int				rgb_to_int(t_rgb rgb);
 
 t_rgb			rgb_interi(t_rgb c1, t_rgb c2, int distance, int progress);
+int				rgbi_interi(int c1, int c2, int distance, int progress);
 t_mat4			mat4_interi(t_mat4 mat1, t_mat4 mat2,
 								int distance, int progress);
 double			dbl_interr(double a, double b, double ratio);

@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intcpy.c                                        :+:      :+:    :+:   */
+/*   rgbi_interi.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 19:20:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 04:27:36 by lbelda           ###   ########.fr       */
+/*   Created: 2017/11/28 04:33:03 by lbelda            #+#    #+#             */
+/*   Updated: 2017/11/28 05:03:36 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftmath.h"
 
-inline void	ft_intcpy(int *b, int c)
+int	rgbi_interi(int c1, int c2, int distance, int progress)
 {
-	*((int*)b) = c;
+
+	if (distance == 0)
+		return (c1);
+	return (((MSK(c1 >> 16) + (progress * (MSK(c2 >> 16) - MSK(c1 >> 16)))
+					/ distance) << 16)
+	      | ((MSK(c1 >> 8) + (progress * (MSK(c2 >> 8) - MSK(c1 >> 8)))
+					/ distance) << 8)
+	      | ((MSK(c1) + (progress * (MSK(c2) - MSK(c1)))
+					/ distance)));
 }

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:00:31 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 01:58:14 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 03:57:53 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_mat4	get_model_mat(t_modmat initst, t_map *map)
 
 static void	load_view_presets(t_mat4set *views, t_map *map)
 {
-	views->stock_size = 2;
+	views->stock_size = 3;
 	views->switching = 0;
 	if (!(views->stock = ft_memalloc(sizeof(t_mat4set) *
 										views->stock_size)))
@@ -56,19 +56,20 @@ static void	load_view_presets(t_mat4set *views, t_map *map)
 		vec4new(0.0, 1.0, 0.0, 0.0));
 	(views->stock[1]) = mat4xmat4(trsmat4new(0.0, 0.0, -4000.0),
 						mat4xmat4(rotxmat4new(-90.0), views->stock[0]));
-
+	(views->stock[2]) = views->stock[0];
 }
 
 static void	load_proj_presets(t_mat4set *projs)
 {
-	projs->stock_size = 2;
+	projs->stock_size = 3;
 	projs->switching = 0;
 	if (!(projs->stock = ft_memalloc(sizeof(t_mat4set) *
 										(projs->stock_size + 1))))
 		error_exit("");
 	(projs->stock[0]) = persmat4new(110.0, 78.0, 1000.0, 1.0);
 	(projs->stock[1]) = persmat4new(40.0, 25.0, 1000.0, 1.0);
-	(projs->stock[2]) = orthomat4new(frustrumnew(1000.0, 562.5, 5000.0, -5000.0));
+	(projs->stock[2]) = persmat4new(130.0, 89.0, 1000.0, 10.0);
+	(projs->stock[3]) = orthomat4new(frustrumnew(1000.0, 562.5, 5000.0, -5000.0));
 }
 
 void		init_geometry(t_matrices *matrices, t_map *map)

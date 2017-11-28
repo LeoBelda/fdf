@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 23:27:07 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 05:36:08 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@
 # define X_WIN 2560.0
 # define Y_WIN 1440.0
 
-# define C_BLA (t_rgb) {0, 0, 0, 0}
-# define C_BLU (t_rgb) {0, 0, 0, 255}
-# define C_GRE (t_rgb) {0, 0, 255, 0}
-# define C_RED (t_rgb) {0, 255, 0, 0}
-# define C_WHI (t_rgb) {0, 255, 255, 255}
+# define C_BLA 0x00000000
+# define C_BLU 0x000000ff
+# define C_GRE 0x0000ff00
+# define C_RED 0x00ff0000
+# define C_WHI 0x00ffffff
 
 # define C_GOLD_PALE (t_rgb) {0, 238, 232, 170}
 # define C_ORANGE_DARK (t_rgb) {0, 255, 160, 0}
@@ -78,15 +78,15 @@ typedef struct	s_vec2c
 {
 	int		x;
 	int		y;
-	t_rgb	color;
+	int		color;
 }				t_vec2c;
 
 typedef struct	s_colorset
 {
-	t_rgb	text;
-	t_rgb	background;
-	t_rgb	bottom;
-	t_rgb	top;
+	int		text;
+	int		background;
+	int		bottom;
+	int		top;
 }				t_colorset;
 
 typedef struct	s_colors
@@ -109,13 +109,6 @@ typedef struct	s_modmat
 	double	tz;
 	double	s;
 }				t_modmat;
-
-typedef struct	s_cam
-{
-	t_vec4	eye;
-	t_vec4	target;
-	t_vec4	up;
-}				t_cam;
 
 typedef struct	s_mat4set
 {
@@ -186,13 +179,13 @@ void			manage_text_overlay(t_env *e);
 
 void			vertices_to_proj(t_map *map, t_mat4 f_mat);
 void			proj_to_draw(t_map *map, t_colorset active);
-void			draw_to_img(t_map *map, t_img *imginf);
+void			draw_to_img(t_map *map, int *addr);
 
-t_rgb			get_color(double min_z, double max_z, double z,
+int				get_color(double min_z, double max_z, double z,
 												t_colorset active);
 
-void			draw_line(t_vec2c a, t_vec2c b, t_img imginf);
-void			draw_clipline(t_vec2c a, t_vec2c b, t_img imginf);
+void			draw_line(t_vec2c a, t_vec2c b, int *addr);
+void			draw_clipline(t_vec2c a, t_vec2c b, int *addr);
 int				pix_clip(t_vec2c coord);
 
 int				loop_hook(void *param);

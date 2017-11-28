@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 21:17:07 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 16:45:16 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 03:49:11 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 t_rgb	rgb_interi(t_rgb c1, t_rgb c2, int distance, int progress)
 {
 	t_rgb	inter;
-	int		ratio;
 
 	if (distance == 0)
 		return (c1);
-	ratio = progress * 100 / distance;
 	inter.a = 0;
-	inter.r = c1.r + (ratio * (c2.r - c1.r)) / 100;
-	inter.g = c1.g + (ratio * (c2.g - c1.g)) / 100;
-	inter.b = c1.b + (ratio * (c2.b - c1.b)) / 100;
+	inter.r = c1.r + (progress * (c2.r - c1.r)) / distance;
+	inter.g = c1.g + (progress * (c2.g - c1.g)) / distance;
+	inter.b = c1.b + (progress * (c2.b - c1.b)) / distance;
 	return (inter);
 }

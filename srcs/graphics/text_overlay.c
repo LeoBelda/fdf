@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 23:14:18 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 14:15:06 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 05:09:14 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void		manage_text_overlay(t_env *e)
 
 	fps_count = get_fps_count();
 	mlx_string_put(e->mlx, e->win, 10, 10,
-					rgb_to_int(e->colors->active.text), fps_count);
+					e->colors->active.text, fps_count);
 	ft_strdel(&fps_count);
 }

@@ -6,13 +6,13 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 10:05:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 19:29:48 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 05:41:48 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	bresenham1(t_vec2c a, t_vec2c b, t_img imginf)
+static void	bresenham1(t_vec2c a, t_vec2c b, int *addr)
 {
 	int		dx;
 	int		dy;
@@ -27,8 +27,8 @@ static void	bresenham1(t_vec2c a, t_vec2c b, t_img imginf)
 	i = 0;
 	while (a.x <= b.x)
 	{
-		ft_intcpy(&(imginf.addr[a.x + a.y * XWIN]),
-				rgb_to_int(rgb_interi(a.color, b.color, dx, i)));
+		ft_intcpy(&(addr[a.x + a.y * XWIN]),
+				rgbi_interi(a.color, b.color, dx, i));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -40,7 +40,7 @@ static void	bresenham1(t_vec2c a, t_vec2c b, t_img imginf)
 	}
 }
 
-static void	bresenham2(t_vec2c a, t_vec2c b, t_img imginf)
+static void	bresenham2(t_vec2c a, t_vec2c b, int *addr)
 {
 	int		dx;
 	int		dy;
@@ -55,8 +55,8 @@ static void	bresenham2(t_vec2c a, t_vec2c b, t_img imginf)
 	i = 0;
 	while (a.x <= b.x)
 	{
-		ft_intcpy(&(imginf.addr[a.x + a.y * XWIN]),
-				rgb_to_int(rgb_interi(a.color, b.color, dx, i)));
+		ft_intcpy(&(addr[a.x + a.y * XWIN]),
+				rgbi_interi(a.color, b.color, dx, i));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -68,7 +68,7 @@ static void	bresenham2(t_vec2c a, t_vec2c b, t_img imginf)
 	}
 }
 
-static void	bresenham3(t_vec2c a, t_vec2c b, t_img imginf)
+static void	bresenham3(t_vec2c a, t_vec2c b, int *addr)
 {
 	int		dx;
 	int		dy;
@@ -83,8 +83,8 @@ static void	bresenham3(t_vec2c a, t_vec2c b, t_img imginf)
 	i = 0;
 	while (a.y <= b.y)
 	{
-		ft_intcpy(&(imginf.addr[a.x + a.y * XWIN]),
-				rgb_to_int(rgb_interi(a.color, b.color, dy, i)));
+		ft_intcpy(&(addr[a.x + a.y * XWIN]),
+				rgbi_interi(a.color, b.color, dy, i));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -96,7 +96,7 @@ static void	bresenham3(t_vec2c a, t_vec2c b, t_img imginf)
 	}
 }
 
-static void	bresenham4(t_vec2c a, t_vec2c b, t_img imginf)
+static void	bresenham4(t_vec2c a, t_vec2c b, int *addr)
 {
 	int		dx;
 	int		dy;
@@ -111,8 +111,8 @@ static void	bresenham4(t_vec2c a, t_vec2c b, t_img imginf)
 	i = 0;
 	while (a.y >= b.y)
 	{
-		ft_intcpy(&(imginf.addr[a.x + a.y * XWIN]),
-				rgb_to_int(rgb_interi(a.color, b.color, -dy, i)));
+		ft_intcpy(&(addr[a.x + a.y * XWIN]),
+				rgbi_interi(a.color, b.color, -dy, i));
 		e += m;
 		if (e >= 0.0)
 		{
@@ -124,25 +124,25 @@ static void	bresenham4(t_vec2c a, t_vec2c b, t_img imginf)
 	}
 }
 
-void	draw_line(t_vec2c a, t_vec2c b, t_img imginf)
+void	draw_line(t_vec2c a, t_vec2c b, int *addr)
 {
 	if (abs(b.x - a.x) > abs(b.y - a.y))
 	{
 		if (b.x > a.x)
 			//oct 1 - 8
-			b.y > a.y ? bresenham1(a, b, imginf) : bresenham2(a, b, imginf);
+			b.y > a.y ? bresenham1(a, b, addr) : bresenham2(a, b, addr);
 		else
 			//oct 5 - 4
-			b.y > a.y ? bresenham2(b, a, imginf) : bresenham1(b, a, imginf);
+			b.y > a.y ? bresenham2(b, a, addr) : bresenham1(b, a, addr);
 	}
 	else
 	{
 		if (b.x > a.x)
 			//oct 2 - 7
-			b.y > a.y ? bresenham3(a, b, imginf) : bresenham4(a, b, imginf);
+			b.y > a.y ? bresenham3(a, b, addr) : bresenham4(a, b, addr);
 		else
 			//oct 6 - 3
-			b.y > a.y ? bresenham4(b, a, imginf) : bresenham3(b, a, imginf);
+			b.y > a.y ? bresenham4(b, a, addr) : bresenham3(b, a, addr);
 	}
 }
 

@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/28 01:02:58 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/28 05:03:25 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC=rgbnew.c \
 	rgb_to_int.c \
 	\
 	rgb_interi.c \
+	rgbi_interi.c \
 	mat4_interi.c \
 	dbl_interr.c \
 	dbl_interr_log.c \

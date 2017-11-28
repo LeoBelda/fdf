@@ -6,11 +6,21 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 02:05:43 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/28 06:28:17 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int	in_clip(t_vec3 elem)
+{
+	if (elem.x >= 1.0 || elem.x < -1.0
+	 || elem.y >= 1.0 || elem.y < -1.0 
+	 || elem.z >= 1.0 || elem.z < 0.0)
+		return (0);
+	else
+		return (1);
+}
 
 void		vertices_to_proj(t_map *map, t_mat4 f_mat)
 {
@@ -35,25 +45,15 @@ void		proj_to_draw(t_map *map, t_colorset active)
 	while (i < map->nb_vtx)
 	{
 		map->draw[i] = (t_vec2c)
-						{(map->proj[i].x + 1.0) * X_WIN / 2.0,
+						{ (map->proj[i].x + 1.0) * X_WIN / 2.0,
 						 (map->proj[i].y + 1.0) * Y_WIN / 2.0,
 						 get_color(map->min_z, map->max_z,
-									map->vertices[i].z, active)};
+									map->vertices[i].z, active) };
 		i++;
 	}
 }
 
-static int	in_clip(t_vec3 elem)
-{
-	if (elem.x >= 1.0 || elem.x < -1.0
-	 || elem.y >= 1.0 || elem.y < -1.0 
-	 || elem.z >= 1.0 || elem.z < 0.0)
-		return (0);
-	else
-		return (1);
-}
-
-void		draw_to_img(t_map *map, t_img *imginf)
+void		draw_to_img(t_map *map, int *addr)
 {
 	size_t	x;
 	size_t	y;
@@ -69,18 +69,18 @@ void		draw_to_img(t_map *map, t_img *imginf)
 			if (x + 1 < map->nb_col)
 			{
 				if (in_clip(map->proj[i]) && in_clip(map->proj[i + 1]))
-					draw_line(map->draw[i], map->draw[i + 1], *imginf);
+					draw_line(map->draw[i], map->draw[i + 1], addr);
 				else if (in_clip(map->proj[i]) ||
 						 in_clip(map->proj[i + 1]))
-					draw_clipline(map->draw[i], map->draw[i + 1], *imginf);
+					draw_clipline(map->draw[i], map->draw[i + 1], addr);
 			}
 			if (y + 1 < map->nb_line)
 			{
 				if (in_clip(map->proj[i]) && in_clip(map->proj[i + map->nb_col]))
-					draw_line(map->draw[i], map->draw[i + map->nb_col], *imginf);
+					draw_line(map->draw[i], map->draw[i + map->nb_col], addr);
 				else if (in_clip(map->proj[i]) || 
 						 in_clip(map->proj[i + map->nb_col]))
-					draw_clipline(map->draw[i], map->draw[i + map->nb_col], *imginf);
+					draw_clipline(map->draw[i], map->draw[i + map->nb_col], addr);
 			}
 			i++;
 			x++;
