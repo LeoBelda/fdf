@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 15:41:27 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 23:31:56 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/29 20:42:41 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,44 @@
 void	k_chcolor(t_env *e, int flag)
 {
 	static size_t	i;
-
+/*
 	if (flag == 0)
 		return ;
 	i = (i + 1) % e->colors->stock_size;
 	e->colors->from = e->colors->active;
 	e->colors->progress = 0;
 	e->colors->target = e->colors->stock[i];
+	*/
+	(void)i;
+	(void)flag;
+	print_vec4(get_eye_pos(e->matrices->views->active));
+	ft_putendl("");
 }
 
-static t_mat4	set_to_bird(t_mat4 active)
+static void	set_to_bird(t_matrices *matrices)
 {
-	print_mat4(active);
-	return (get_view_mat(
-					vec4new(-active.w.x, -1950.0, -active.w.z, 1.0),
-						vec4new(-active.w.x, -2000.0, -active.w.z, 1.0),
-						vec4new(0.0, 0.0, 1.0, 0.0)));
+	t_vec4	tmp;
+
+	tmp = get_eye_pos(matrices->views->active);
+	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, 0.0, 4000.0),
+								vec4new(tmp.x, tmp.z, 0.0, 1.0));
+	print_vec4(matrices->eye_pos);
+	ft_putendl("");
+	matrices->views->target = get_view_mat(matrices->eye_pos,
+				mat4xvec4(trsmat4new(0.0, -50.0, 0.0), matrices->eye_pos),
+				vec4new(0.0, 0.0, 1.0, 0.0));
 }
 
-static t_mat4	set_to_fox(t_mat4 active, double mid_height)
+static void	set_to_fox(t_matrices *matrices, double mid_height)
 {
-	return (
-			get_view_mat(vec4new(-active.w.x, -mid_height * 1.6, -active.w.y, 1.0),
-						mat4xvec4(trsmat4new(0.0, 0.0, 50.0),
-								vec4new(-active.w.x, -mid_height * 1.6, -active.w.y, 1.0)),
-						vec4new(0.0, 1.0, 0.0, 0.0)));
+	t_vec4	tmp;
+
+	tmp = get_eye_pos(matrices->views->active);
+	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, -mid_height * 2.0, 0.0),
+								vec4new(tmp.x, 0.0, tmp.z, 1.0));
+	matrices->views->target = get_view_mat(matrices->eye_pos,
+				mat4xvec4(trsmat4new(0.0, 0.0, 50.0), matrices->eye_pos),
+						vec4new(0.0, 1.0, 0.0, 0.0));
 }
 
 void	k_chpov(t_env *e, int flag)
@@ -48,14 +61,13 @@ void	k_chpov(t_env *e, int flag)
 
 	if (flag == 0)
 		return ;
-	i = (i + 1) % e->matrices->views->stock_size;
+	i = (i + 1) % e->matrices->projs->stock_size;
 	e->mode = (e->mode == M_SKY ? M_GRD : M_SKY);
 	e->matrices->views->from = e->matrices->views->active;
 	if (e->mode == M_SKY)
-		e->matrices->views->target = set_to_bird(e->matrices->views->active);
+		set_to_bird(e->matrices);
 	else
-		e->matrices->views->target = set_to_fox(e->matrices->views->active,
-											e->map->mid_height);
+		set_to_fox(e->matrices, e->map->mid_height);
 
 	ft_bzero(&(e->matrices->movement), sizeof(t_modmat));
 	e->matrices->movement.s = 1.0;

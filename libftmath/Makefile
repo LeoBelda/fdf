@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/28 21:59:33 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/29 19:22:41 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC=rgbnew.c \
 	norm_vec4.c \
 	vec4xvec4.c \
 	mat4xvec4.c \
+	vec4xmat4.c \
 	mat4xmat4.c \
 	mat4xvec4_tovec3.c \
 	\

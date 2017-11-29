@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:00:31 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 23:10:26 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/29 19:56:04 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up)
 	return (mat4new(vec4new(x_vec.x, y_vec.x, z_vec.x, 0.0),
 		  			  vec4new(x_vec.y, y_vec.y, z_vec.y, 0.0),
 					  vec4new(x_vec.z, y_vec.z, z_vec.z, 0.0),
-					  vec4new(-(vec4xvec4(x_vec, eye)),
-						  	  -(vec4xvec4(y_vec, eye)),
-							  -(vec4xvec4(z_vec, eye)), 1.0)));
+					  vec4new(-(eye.x),
+						  	  -(eye.y),
+							  -(eye.z), 1.0)));
 }
 
 static t_mat4	get_model_mat(t_modmat initst, t_map *map)
@@ -42,23 +42,19 @@ static t_mat4	get_model_mat(t_modmat initst, t_map *map)
 					  sclmat4new(initst.s, initst.s, initst.s))))))));
 }
 
-static void	load_view_presets(t_mat4set *views, t_map *map)
+static void	load_view_presets(t_matrices *matrices, t_map *map)
 {
-	views->stock_size = 2;
-	views->switching = 0;
-	if (!(views->stock = ft_memalloc(sizeof(t_mat4set) *
-										views->stock_size)))
+	matrices->views->stock_size = 1;
+	matrices->views->switching = 0;
+	if (!(matrices->views->stock = ft_memalloc(sizeof(t_mat4set) *
+										matrices->views->stock_size)))
 		error_exit("");
-	(void)map;
-	(views->stock[0]) = get_view_mat(
-		mat4xvec4(trsmat4new(0.0, -(map->max_z + map->min_z / 1.5), 0.0),
-				map->mid_mod),
-		mat4xvec4(trsmat4new(0.0, -(map->max_z + map->min_z / 1.5), 50.0),
-				map->mid_mod),
+	matrices->eye_pos = mat4xvec4(
+			trsmat4new(0.0, -(map->max_z + map->min_z / 1.5), 0.0),
+			map->mid_mod);
+	(matrices->views->stock[0]) = get_view_mat(matrices->eye_pos,
+		mat4xvec4(trsmat4new(0.0, 0.0, 50.0), matrices->eye_pos),
 		vec4new(0.0, 1.0, 0.0, 0.0));
-	(views->stock[1]) = mat4xmat4(trsmat4new(0.0, 0.0, -6000.0),
-						mat4xmat4(rotxmat4new(-90.0), views->stock[0]));
-	(views->stock[2]) = views->stock[0];
 }
 
 static void	load_proj_presets(t_mat4set *projs)
@@ -69,7 +65,7 @@ static void	load_proj_presets(t_mat4set *projs)
 										(projs->stock_size + 2))))
 		error_exit("");
 	(projs->stock[0]) = persmat4new(110.0, 78.0, 1000.0, 1.0);
-	(projs->stock[1]) = persmat4new(40.0, 25.0, 1000.0, 1.0);
+	(projs->stock[1]) = persmat4new(30.0, 15.0, 1000.0, 1.0);
 	(projs->stock[2]) = persmat4new(150.0, 45.0, 1000.0, 5.0);
 	(projs->stock[3]) = orthomat4new(frustrumnew(1000.0, 562.5, 5000.0, -5000.0));
 }
@@ -90,7 +86,7 @@ void		init_geometry(t_matrices *matrices, t_map *map)
 	ft_bzero(&(matrices->movement), sizeof(t_modmat));
 	matrices->movement.s = 1.0;
 	matrices->model_mat = get_model_mat(matrices->initst, map);
-	load_view_presets(matrices->views, map);
+	load_view_presets(matrices, map);
 	matrices->views->active = matrices->views->stock[0];
 	matrices->views->target = matrices->views->stock[0];
 	matrices->views->from = matrices->views->stock[0];

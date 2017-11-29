@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 22:17:24 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/29 18:34:18 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ typedef struct	s_matrices
 	t_modmat	movement;
 	t_mat4set	*projs;
 	t_mat4set	*views;
+	t_vec4		eye_pos;
 	t_mat4		model_mat;
 	t_mat4		f_mat;
 }				t_matrices;
@@ -181,12 +182,13 @@ void			parse_map(t_map *map, char *file);
 void			init_geometry(t_matrices *matrices, t_map *map);
 void			init_colors(t_colors *colors);
 void			init_controls(t_controls *controls);
+t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 
 int				draw(t_env *e);
 void			set_matrices(t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
 
-t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
+t_vec4			get_eye_pos(t_mat4 active);
 
 void			vertices_to_proj(t_map *map, t_mat4 f_mat);
 void			proj_to_draw(t_map *map, t_colorset active);
