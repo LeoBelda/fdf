@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 19:22:15 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/29 21:25:17 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <math.h>
 # include <unistd.h>
 
-# define MSK(x) ((x) & 0x0000ff)
+# define MSK(x) ((x) & 0x000000ff)
 
 typedef struct	s_rgb
 {

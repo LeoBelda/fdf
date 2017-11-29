@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 18:34:18 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/29 23:44:47 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ typedef struct	s_vec2c
 
 typedef struct	s_colorset
 {
-	int		text;
-	int		background;
-	int		bottom;
-	int		top;
+	int			text;
+	long int	background;
+	int			bottom;
+	int			top;
 }				t_colorset;
 
 typedef struct	s_colors
@@ -164,6 +164,11 @@ typedef struct	s_matrices
 	t_mat4		f_mat;
 }				t_matrices;
 
+typedef struct	s_overlay
+{
+	char	*fps;
+}				t_overlay;
+
 typedef struct	s_env
 {
 	void		*mlx;
@@ -173,6 +178,7 @@ typedef struct	s_env
 	t_matrices	*matrices;
 	t_colors	*colors;
 	t_controls	*controls;
+	t_overlay	*overlay;
 	t_modes		mode;
 }				t_env;
 
@@ -182,6 +188,7 @@ void			parse_map(t_map *map, char *file);
 void			init_geometry(t_matrices *matrices, t_map *map);
 void			init_colors(t_colors *colors);
 void			init_controls(t_controls *controls);
+void			init_overlay(t_overlay *overlay);
 t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 
 int				draw(t_env *e);
@@ -189,6 +196,8 @@ void			set_matrices(t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
 
 t_vec4			get_eye_pos(t_mat4 active);
+
+void			set_color(t_colors *color);
 
 void			vertices_to_proj(t_map *map, t_mat4 f_mat);
 void			proj_to_draw(t_map *map, t_colorset active);

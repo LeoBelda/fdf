@@ -6,52 +6,24 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 19:44:07 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/29 23:22:47 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			get_color(int min_z, int max_z, int z, t_colorset active)
-{
-	return (rgbi_interi(active.bottom, active.top, max_z - min_z,
-												z - min_z));
-}
-
 static void		clear_img(int *addr, int color)
 {
-	ft_lintset(addr, (long int)color, (XWIN * YWIN) / 2);
-}
+	long int	longcolor;
 
-static void		set_color(t_colors *colors)
-{
-	size_t	j;
-	int		*handle_act;
-	int		*handle_tar;
-	int		*handle_from;
-
-	if (!ft_memcmp((void*)&(colors->active),
-				   (void*)&(colors->target), sizeof(t_colorset)))
-	{
-		colors->progress = 0;
-		return ;
-	}
-	j = 0;
-	handle_act = &colors->active.text;
-	handle_tar = &colors->target.text;
-	handle_from = &colors->from.text;
-	while (&(handle_tar[j]) <= &colors->target.top)
-	{
-		handle_act[j] = rgbi_interi(handle_from[j], handle_tar[j],
-									100, colors->progress);
-		j++;
-	}
-	colors->progress++;
+	ft_intset(&longcolor, color, 2);
+	ft_lintset(addr, longcolor, XWIN * YWIN / 2);
 }
 
 int			draw(t_env *e)
 {
 	clear_img(e->img->addr, e->colors->active.background);
+	e->matrices->eye_pos = get_eye_pos(e->matrices->views->active);
 	set_matrices(e->matrices);
 	set_color(e->colors);
 	vertices_to_proj(e->map, e->matrices->f_mat);

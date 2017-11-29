@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/27 16:14:53 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/29 23:44:21 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,12 @@ SRC=srcs/main.c \
 	srcs/init_geometry.c \
 	srcs/init_colors.c \
 	srcs/init_controls.c \
+	srcs/init_overlay.c \
 	\
 	srcs/parse/parse_map.c \
 	\
 	srcs/graphics/draw.c \
+	srcs/graphics/colors.c \
 	srcs/graphics/matrices.c \
 	srcs/graphics/vertices_pipeline.c \
 	srcs/graphics/callbacks.c \

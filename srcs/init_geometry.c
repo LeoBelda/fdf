@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:00:31 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 19:56:04 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/29 20:56:23 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	load_proj_presets(t_mat4set *projs)
 	if (!(projs->stock = ft_memalloc(sizeof(t_mat4set) *
 										(projs->stock_size + 2))))
 		error_exit("");
-	(projs->stock[0]) = persmat4new(110.0, 78.0, 1000.0, 1.0);
+	(projs->stock[0]) = persmat4new(110.0, 78.0, 500.0, 1.0);
 	(projs->stock[1]) = persmat4new(30.0, 15.0, 1000.0, 1.0);
 	(projs->stock[2]) = persmat4new(150.0, 45.0, 1000.0, 5.0);
 	(projs->stock[3]) = orthomat4new(frustrumnew(1000.0, 562.5, 5000.0, -5000.0));

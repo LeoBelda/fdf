@@ -6,20 +6,20 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 23:14:18 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 05:09:14 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/29 23:46:49 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static char	*get_fps_count(void)
+static void	get_fps_count(char *fps_str)
 {
 	static struct timespec	now;
 	static int				i;
 	struct timespec			tmp_time;
-	char					*fps_str;
 	static long int			fps_nb;
 
+	ft_strclr(fps_str);
 	if (i == 3)
 	{
 		tmp_time = now;
@@ -29,20 +29,14 @@ static char	*get_fps_count(void)
 				((double)tmp_time.tv_sec + 1.0e-9 * tmp_time.tv_nsec)) / 3.0));
 		i = 0;
 	}
-	if (!(fps_str = ft_strnew(20)))
-		error_exit("");
 	ft_strcat(fps_str, "FPS : ");
 	ft_strcat(fps_str, ft_itoa(fps_nb));
 	i++;
-	return (fps_str);
 }
 
 void		manage_text_overlay(t_env *e)
 {
-	char	*fps_count;
-
-	fps_count = get_fps_count();
+	get_fps_count(e->overlay->fps);
 	mlx_string_put(e->mlx, e->win, 10, 10,
-					e->colors->active.text, fps_count);
-	ft_strdel(&fps_count);
+					e->colors->active.text, e->overlay->fps);
 }

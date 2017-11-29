@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 15:41:27 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 20:42:41 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/29 23:01:07 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,13 @@
 void	k_chcolor(t_env *e, int flag)
 {
 	static size_t	i;
-/*
+
 	if (flag == 0)
 		return ;
 	i = (i + 1) % e->colors->stock_size;
 	e->colors->from = e->colors->active;
 	e->colors->progress = 0;
 	e->colors->target = e->colors->stock[i];
-	*/
-	(void)i;
-	(void)flag;
-	print_vec4(get_eye_pos(e->matrices->views->active));
-	ft_putendl("");
 }
 
 static void	set_to_bird(t_matrices *matrices)
@@ -68,7 +63,6 @@ void	k_chpov(t_env *e, int flag)
 		set_to_bird(e->matrices);
 	else
 		set_to_fox(e->matrices, e->map->mid_height);
-
 	ft_bzero(&(e->matrices->movement), sizeof(t_modmat));
 	e->matrices->movement.s = 1.0;
 	e->matrices->views->progress = 0;
