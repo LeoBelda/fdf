@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 22:17:13 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/30 18:51:28 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_list	*line_to_vertices(char *line, size_t y_pos, size_t *count_col)
 	}
 	if (!*count_col)
 		*count_col = j;
-	if (j < 2 || (size_t)j != *count_col)
+	if (j < 1 || (size_t)j != *count_col)
 		error_exit("Invalid map - irregular lines");
 	return (vertices_line);
 }
@@ -58,7 +58,7 @@ static void		map_to_list(int fd, t_map *map)
 		free(line);
 		i++;
 	}
-	if ((map->nb_line = i) < 2)
+	if ((map->nb_line = i) < 1)
 		error_exit("Invalid map - not enough lines");
 }
 

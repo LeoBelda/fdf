@@ -6,23 +6,20 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 23:22:47 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/30 21:04:29 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		clear_img(int *addr, int color)
+static void		clear_img(int *addr, t_colorset colorset)
 {
-	long int	longcolor;
-
-	ft_intset(&longcolor, color, 2);
-	ft_lintset(addr, longcolor, XWIN * YWIN / 2);
+	plain_background(addr, colorset.background1);
 }
 
 int			draw(t_env *e)
 {
-	clear_img(e->img->addr, e->colors->active.background);
+	clear_img(e->img->addr, e->colors->active);
 	e->matrices->eye_pos = get_eye_pos(e->matrices->views->active);
 	set_matrices(e->matrices);
 	set_color(e->colors);

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 21:16:42 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/30 22:18:25 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static int	in_clip(t_vec3 elem)
 {
 	if (elem.x >= 1.0 || elem.x < -1.0
 	 || elem.y >= 1.0 || elem.y < -1.0
-	 || elem.z >= 1.0 || elem.z < 0.0)
+	 || elem.z >= 1.0 || elem.z < -1.0)
 	{
-		if (elem.z >= 1.0 || elem.z < 0.9)
+		if (elem.z >= 1.0 || elem.z < -1.0)
 			return (2);
 		else
 			return (1);

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 23:44:47 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/11/30 23:11:41 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,13 @@ typedef enum	e_modes
 	M_GRD
 }				t_modes;
 
+typedef enum	e_cmodes
+{
+	C_STOCK,
+	C_DISCO,
+	C_DAYNIGHT
+}				t_cmodes;
+
 typedef struct	s_kfuncs
 {
 	void	(*f)();
@@ -90,7 +97,8 @@ typedef struct	s_vec2c
 typedef struct	s_colorset
 {
 	int			text;
-	long int	background;
+	int			background1;
+	int			background2;
 	int			bottom;
 	int			top;
 }				t_colorset;
@@ -101,8 +109,10 @@ typedef struct	s_colors
 	t_colorset	from;
 	t_colorset	target;
 	t_colorset	*stock;
+	t_colorset	*disco;
 	size_t		progress;
 	size_t		stock_size;
+	t_cmodes	mode;
 }				t_colors;
 
 typedef struct	s_modmat
@@ -194,6 +204,9 @@ t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 int				draw(t_env *e);
 void			set_matrices(t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
+
+void			plain_background(int *addr, int color);
+void			stripped_background(int *addr, int cola, int colb, size_t thick);
 
 t_vec4			get_eye_pos(t_mat4 active);
 

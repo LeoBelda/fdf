@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/29 23:44:21 by lbelda           ###   ########.fr        #
+#    Updated: 2017/11/30 19:24:40 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC=srcs/main.c \
 	srcs/graphics/matrices.c \
 	srcs/graphics/vertices_pipeline.c \
 	srcs/graphics/callbacks.c \
+	srcs/graphics/background.c \
 	srcs/graphics/text_overlay.c \
 	\
 	srcs/algos/bresenham.c \
@@ -59,13 +60,13 @@ FRAMEWORKS=-framework OpenGL -framework AppKit
 
 NAME=fdf
 CC=gcc
-CFLAGS=-O3 -Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror
 MAKE=make
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LMLXDIR)$(LIBMLX)
-	-@$(CC) -O3 -o $(NAME) -I$(LFTDIR) -I$(LFTMTDIR) -I$(LMLXDIR) -I$(INCLUDES) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(LMLXDIR) -l$(MLXLK) $(FRAMEWORKS) $(OBJ)
+	-@$(CC) -o $(NAME) -I$(LFTDIR) -I$(LFTMTDIR) -I$(LMLXDIR) -I$(INCLUDES) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(LMLXDIR) -l$(MLXLK) $(FRAMEWORKS) $(OBJ)
 	-@echo "FdF ready."
 
 %.o: %.c
