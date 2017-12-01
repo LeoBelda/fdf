@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:00:31 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 15:46:37 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 17:13:12 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,27 @@ t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up)
 	x_vec = cross_product(norm_vec4(up), z_vec);
 	y_vec = cross_product(z_vec, x_vec);
 	return (mat4new(vec4new(x_vec.x, y_vec.x, z_vec.x, 0.0),
-		  			  vec4new(x_vec.y, y_vec.y, z_vec.y, 0.0),
-					  vec4new(x_vec.z, y_vec.z, z_vec.z, 0.0),
-					  vec4new(-(eye.x),
-						  	  -(eye.y),
-							  -(eye.z), 1.0)));
+					vec4new(x_vec.y, y_vec.y, z_vec.y, 0.0),
+					vec4new(x_vec.z, y_vec.z, z_vec.z, 0.0),
+					vec4new(-(eye.x),
+							-(eye.y),
+							-(eye.z), 1.0)));
 }
 
 static t_mat4	get_model_mat(t_modmat initst, t_map *map)
 {
 	return (mat4xmat4(trsmat4new(initst.tx, initst.ty, initst.tz),
-			mat4xmat4(trsmat4new(map->mid_mod.x, map->mid_mod.y, map->mid_mod.z),
+			mat4xmat4(trsmat4new(
+						map->mid_mod.x, map->mid_mod.y, map->mid_mod.z),
 			mat4xmat4(rotymat4new(initst.ry),
 			mat4xmat4(rotxmat4new(initst.rx),
 			mat4xmat4(rotzmat4new(initst.rz),
-			mat4xmat4(trsmat4new(-map->mid_mod.x, -map->mid_mod.y, -map->mid_mod.z),
-					  sclmat4new(initst.s, initst.s, initst.s))))))));
+			mat4xmat4(trsmat4new(
+						-map->mid_mod.x, -map->mid_mod.y, -map->mid_mod.z),
+					sclmat4new(initst.s, initst.s, initst.s))))))));
 }
 
-static void	load_view_presets(t_matrices *matrices, t_map *map)
+static void		load_view_presets(t_matrices *matrices, t_map *map)
 {
 	matrices->views->stock_size = 1;
 	matrices->views->switching = 0;
@@ -57,7 +59,7 @@ static void	load_view_presets(t_matrices *matrices, t_map *map)
 		vec4new(0.0, 1.0, 0.0, 0.0));
 }
 
-static void	load_proj_presets(t_mat4set *projs)
+static void		load_proj_presets(t_mat4set *projs)
 {
 	projs->stock_size = 2;
 	projs->switching = 0;
@@ -67,10 +69,11 @@ static void	load_proj_presets(t_mat4set *projs)
 	(projs->stock[0]) = persmat4new(110.0, 78.0, 1000.0, 1.0);
 	(projs->stock[1]) = persmat4new(45.0, 22.0, 1000.0, 1.0);
 	(projs->stock[2]) = persmat4new(130.0, 85.0, 1000.0, 3.0);
-	(projs->stock[3]) = orthomat4new(frustrumnew(1000.0, 562.5, 5000.0, -5000.0));
+	(projs->stock[3]) = orthomat4new(
+					frustrumnew(1000.0, 562.5, 5000.0, -5000.0));
 }
 
-void		init_geometry(t_matrices *matrices, t_map *map)
+void			init_geometry(t_matrices *matrices, t_map *map)
 {
 	if (!(matrices->views = ft_memalloc(sizeof(t_mat4set))))
 		error_exit("");

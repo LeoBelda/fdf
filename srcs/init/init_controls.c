@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:15:02 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 15:46:25 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 17:07:37 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	set_kfuncs_ground(t_controls *controls)
 	(controls->grd)[14] = (t_kfuncs) { NULL, 0 };
 }
 
-
 static void	set_kfuncs_sky(t_controls *controls)
 {
 	if (!(controls->sky = ft_memalloc(sizeof(t_kfuncs) * 10)))
@@ -50,8 +49,7 @@ static void	set_kfuncs_sky(t_controls *controls)
 	(controls->sky)[9] = (t_kfuncs) { NULL, 0 };
 }
 
-
-void	init_controls(t_controls *controls)
+void		init_controls(t_controls *controls)
 {
 	set_kfuncs_ground(controls);
 	set_kfuncs_sky(controls);

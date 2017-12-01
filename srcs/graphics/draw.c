@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 15:02:53 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 20:09:10 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void		set_color(t_colors *colors)
 		i++;
 	}
 }
-
 
 static void		clear_img(int *addr, t_colorset colorset)
 {

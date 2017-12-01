@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_rot.c                                     :+:      :+:    :+:   */
+/*   kb_camtrsz.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 16:15:05 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/26 17:38:58 by lbelda           ###   ########.fr       */
+/*   Created: 2017/12/01 17:31:39 by lbelda            #+#    #+#             */
+/*   Updated: 2017/12/01 17:31:51 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	k_rotx(t_env *e, int flag)
+void	k_trscamz(t_env *e, int flag)
 {
-	(void)flag;
-	(void)e;
+	e->matrices->movement.tz = (flag ? 3.0 : 0.0);
 }
 
-void	k_rotrx(t_env *e, int flag)
+void	k_trscamrz(t_env *e, int flag)
 {
-	(void)flag;
-	(void)e;
-}
-
-void	k_roty(t_env *e, int flag)
-{
-	(void)flag;
-	(void)e;
-}
-
-void	k_rotry(t_env *e, int flag)
-{
-	(void)flag;
-	(void)e;
+	e->matrices->movement.tz = (flag ? -3.0 : 0.0);
 }

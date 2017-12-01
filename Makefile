@@ -6,21 +6,23 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/30 19:24:40 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/01 19:06:07 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=srcs/main.c \
 	srcs/fdf.c \
-	srcs/init_geometry.c \
-	srcs/init_colors.c \
-	srcs/init_controls.c \
-	srcs/init_overlay.c \
+	srcs/init/init_geometry.c \
+	srcs/init/init_colors.c \
+	srcs/init/init_colorprogs.c \
+	srcs/init/init_controls.c \
+	srcs/init/init_overlay.c \
 	\
 	srcs/parse/parse_map.c \
 	\
 	srcs/graphics/draw.c \
 	srcs/graphics/colors.c \
+	srcs/graphics/color_progs.c \
 	srcs/graphics/matrices.c \
 	srcs/graphics/vertices_pipeline.c \
 	srcs/graphics/callbacks.c \
@@ -32,12 +34,15 @@ SRC=srcs/main.c \
 	srcs/algos/bresenham_tools.c \
 	\
 	srcs/controls/callbacks.c \
-	srcs/controls/keyboard_trs.c \
-	srcs/controls/keyboard_rot.c \
-	srcs/controls/keyboard_camrot.c \
-	srcs/controls/keyboard_camtrs.c \
-	srcs/controls/keyboard_chmodes.c \
-	srcs/controls/keyboard_misc.c \
+	srcs/controls/kb_camrotx.c \
+	srcs/controls/kb_camroty.c \
+	srcs/controls/kb_camrotz.c \
+	srcs/controls/kb_camtrsx.c \
+	srcs/controls/kb_camtrsy.c \
+	srcs/controls/kb_camtrsz.c \
+	srcs/controls/kb_chpov.c \
+	srcs/controls/kb_chcolor.c \
+	srcs/controls/kb_misc.c \
 	\
 	srcs/utils/print_db.c
 

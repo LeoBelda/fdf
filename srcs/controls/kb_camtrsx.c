@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_camtrs.c                                  :+:      :+:    :+:   */
+/*   kb_camtrsx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 00:56:50 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 17:45:51 by lbelda           ###   ########.fr       */
+/*   Created: 2017/12/01 17:30:08 by lbelda            #+#    #+#             */
+/*   Updated: 2017/12/01 17:30:33 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,4 @@ void	k_trscamx(t_env *e, int flag)
 void	k_trscamrx(t_env *e, int flag)
 {
 	e->matrices->movement.tx = (flag ? -10 : 0.0);
-}
-
-void	k_trscamy(t_env *e, int flag)
-{
-	e->matrices->movement.ty = (flag ? 10 : 0.0);
-}
-
-void	k_trscamry(t_env *e, int flag)
-{
-	e->matrices->movement.ty = (flag ? -10 : 0.0);
-}
-
-void	k_trscamz(t_env *e, int flag)
-{
-	e->matrices->movement.tz = (flag ? 3.0 : 0.0);
-}
-
-void	k_trscamrz(t_env *e, int flag)
-{
-	e->matrices->movement.tz = (flag ? -3.0 : 0.0);
 }

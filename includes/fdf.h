@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 15:55:35 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 18:07:02 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,10 @@ void			init_controls(t_controls *controls);
 void			init_overlay(t_overlay *overlay);
 t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 
+void			load_program_blacknwhite(t_colors *colors);
+void			load_program_daynight(t_colors *colors);
+void			load_program_disco(t_colors *colors);
+
 int				draw(t_env *e);
 void			set_matrices(t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
@@ -248,10 +252,9 @@ void			proj_to_draw(t_map *map, t_colorset active);
 void			draw_to_img(t_map *map, int *addr);
 
 
-void			draw_line(t_vec2c a, t_vec2c b, int *addr);
-void			draw_clipline(t_vec2c a, t_vec2c b, int *addr);
+void			bresenham(t_vec2c a, t_vec2c b, int *addr);
+void			bresenham_clip(t_vec2c a, t_vec2c b, int *addr);
 int				pix_clip(t_vec2c coord);
-
 
 int				expose_hook(void *param);
 int				key_hook(int keycode, void *param);
@@ -265,16 +268,6 @@ void			k_chcolor_stock(t_env *e, int flag);
 void			k_chcolor_program(t_env *e, int flag);
 void			k_chbuff_mode(t_env *e, int flag);
 void			k_chspace(t_env *e, int flag);
-void			k_trsx(t_env *e, int flag);
-void			k_trsrx(t_env *e, int flag);
-void			k_trsy(t_env *e, int flag);
-void			k_trsry(t_env *e, int flag);
-void			k_trsz(t_env *e, int flag);
-void			k_trsrz(t_env *e, int flag);
-void			k_rotx(t_env *e, int flag);
-void			k_rotrx(t_env *e, int flag);
-void			k_roty(t_env *e, int flag);
-void			k_rotry(t_env *e, int flag);
 void			k_trscamx(t_env *e, int flag);
 void			k_trscamrx(t_env *e, int flag);
 void			k_trscamy(t_env *e, int flag);
@@ -288,7 +281,7 @@ void			k_rotcamrx(t_env *e, int flag);
 void			k_rotcamz(t_env *e, int flag);
 void			k_rotcamrz(t_env *e, int flag);
 
-void			usage_exit();
+void			usage_exit(void);
 void			error_exit(char *msg);
 
 void			print_parsed_map(t_list *map);

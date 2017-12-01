@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 15:40:31 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 18:40:25 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_mat4	refresh_view_mat(t_mat4 view_mat, t_modmat movement)
 				view_mat))))));
 }
 
-t_vec4	get_eye_pos(t_mat4 active)
+t_vec4			get_eye_pos(t_mat4 active)
 {
 	return (vec4xmat4(vec4neg(active.w),
 					mat4new(active.x, active.y,
@@ -52,6 +52,6 @@ void			set_matrices(t_matrices *matrices)
 	matrices->views->active = refresh_view_mat(matrices->views->active,
 									matrices->movement);
 	matrices->f_mat = mat4xmat4(matrices->projs->active,
-					  mat4xmat4(matrices->views->active,
-					 		    matrices->model_mat));
+						mat4xmat4(matrices->views->active,
+						matrices->model_mat));
 }

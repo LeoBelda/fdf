@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/28 11:32:04 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/01 19:44:29 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC=ft_memset.c \
 	ft_memdel.c \
 	ft_strnew.c \
 	ft_strdel.c \
+	ft_tabdel.c \
 	ft_strclr.c \
 	ft_striter.c \
 	ft_striteri.c \

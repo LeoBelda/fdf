@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/30 22:18:25 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 18:39:21 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static int	in_clip(t_vec3 elem)
 {
 	if (elem.x >= 1.0 || elem.x < -1.0
-	 || elem.y >= 1.0 || elem.y < -1.0
-	 || elem.z >= 1.0 || elem.z < -1.0)
+	|| elem.y >= 1.0 || elem.y < -1.0
+	|| elem.z >= 1.0 || elem.z < -1.0)
 	{
 		if (elem.z >= 1.0 || elem.z < -1.0)
 			return (2);
@@ -46,12 +46,23 @@ void		proj_to_draw(t_map *map, t_colorset active)
 	i = 0;
 	while (i < map->nb_vtx)
 	{
-			map->draw[i] = (t_vec2c)
-						{ (map->proj[i].x + 1.0) * X_WIN / 2.0,
-						 (map->proj[i].y + 1.0) * Y_WIN / 2.0,
-						 get_color(map->min_z, map->max_z,
-									(int)map->vertices[i].z, active) };
+		map->draw[i] = (t_vec2c)
+			{ (map->proj[i].x + 1.0) * X_WIN / 2.0,
+			(map->proj[i].y + 1.0) * Y_WIN / 2.0,
+			get_color(map->min_z, map->max_z,
+						(int)map->vertices[i].z, active) };
 		i++;
+	}
+}
+
+void		draw_line(t_map *map, int *addr, size_t i, size_t j)
+{
+	if (!map->clip[i] || !map->clip[j])
+	{
+		if (!map->clip[i] && !map->clip[j])
+			bresenham(map->draw[i], map->draw[j], addr);
+		else if (map->clip[i] != 2 && map->clip[j] != 2)
+			bresenham_clip(map->draw[i], map->draw[j], addr);
 	}
 }
 
@@ -69,21 +80,9 @@ void		draw_to_img(t_map *map, int *addr)
 		while (x < map->nb_col)
 		{
 			if (x + 1 < map->nb_col)
-				if (!map->clip[i] || !map->clip[i +1])
-				{
-					if (!map->clip[i] && !map->clip[i + 1])
-						draw_line(map->draw[i], map->draw[i + 1], addr);
-					else if (map->clip[i] != 2 && map->clip[i + 1] != 2)
-						draw_clipline(map->draw[i], map->draw[i + 1], addr);
-				}
+				draw_line(map, addr, i, i + 1);
 			if (y + 1 < map->nb_line)
-				if (!map->clip[i] || !map->clip[i + map->nb_col])
-				{
-					if (!map->clip[i] && !map->clip[i + map->nb_col])
-						draw_line(map->draw[i], map->draw[i + map->nb_col], addr);
-					else if (map->clip[i] != 2 && map->clip[i + map->nb_col] != 2)
-						draw_clipline(map->draw[i], map->draw[i + map->nb_col], addr);
-				}
+				draw_line(map, addr, i, i + map->nb_col);
 			i++;
 			x++;
 		}

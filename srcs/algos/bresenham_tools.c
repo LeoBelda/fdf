@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 20:27:36 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 06:27:31 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 18:38:01 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	pix_clip(t_vec2c coord)
 {
 	if (coord.x < 0 || coord.x >= XWIN
-	 || coord.y < 0 || coord.y >= YWIN)
+	|| coord.y < 0 || coord.y >= YWIN)
 		return (0);
 	else
 		return (1);

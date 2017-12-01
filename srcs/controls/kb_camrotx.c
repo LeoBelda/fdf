@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotzmat4new.c                                      :+:      :+:    :+:   */
+/*   kb_camrotx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 17:32:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 18:56:43 by lbelda           ###   ########.fr       */
+/*   Created: 2017/12/01 17:26:42 by lbelda            #+#    #+#             */
+/*   Updated: 2017/12/01 17:27:05 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftmath.h"
+#include "fdf.h"
 
-t_mat4	rotzmat4new(double z)
+void	k_rotcamx(t_env *e, int flag)
 {
-	t_mat4	rotmat;
-	double	rad;
+	e->matrices->movement.rx = (flag ? 0.6 : 0.0);
+}
 
-	rad = deg_rad(z);
-	rotmat.x = vec4new(cos(rad), sin(rad), 0.0, 0.0);
-	rotmat.y = vec4new(-sin(rad), cos(rad), 0.0, 0.0);
-	rotmat.z = vec4new(0.0, 0.0, 1.0, 0.0);
-	rotmat.w = vec4new(0.0, 0.0, 0.0, 1.0);
-	return (rotmat);
+void	k_rotcamrx(t_env *e, int flag)
+{
+	e->matrices->movement.rx = (flag ? -0.6 : 0.0);
 }

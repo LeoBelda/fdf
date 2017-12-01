@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 22:51:29 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/21 22:53:33 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 18:57:47 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_putnbr_fd(int n, int fd)
 	write(fd, &(to_write), 1);
 }
 
-void	print_vec2r_fd(t_vec2r vec, int fd)
+void		print_vec2r_fd(t_vec2r vec, int fd)
 {
 	write(fd, "x: ", 3);
 	ft_putnbr_fd(vec.x, fd);

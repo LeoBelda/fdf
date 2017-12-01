@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 23:14:18 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 23:46:49 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 20:27:44 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,22 @@ static void	get_fps_count(char *fps_str)
 	static int				i;
 	struct timespec			tmp_time;
 	static long int			fps_nb;
+	char					*tmp;
 
 	ft_strclr(fps_str);
 	if (i == 3)
 	{
 		tmp_time = now;
 		clock_gettime(CLOCK_MONOTONIC, &now);
-		fps_nb = lround(1.0 / 
+		fps_nb = lround(1.0 /
 				((((double)now.tv_sec + 1.0e-9 * now.tv_nsec) -
 				((double)tmp_time.tv_sec + 1.0e-9 * tmp_time.tv_nsec)) / 3.0));
 		i = 0;
 	}
 	ft_strcat(fps_str, "FPS : ");
-	ft_strcat(fps_str, ft_itoa(fps_nb));
+	tmp = ft_itoa(fps_nb);
+	ft_strcat(fps_str, tmp);
+	free(tmp);
 	i++;
 }
 

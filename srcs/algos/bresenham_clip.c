@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 20:25:23 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 10:16:35 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 18:37:39 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,26 +128,27 @@ static void	bresenham4(t_vec2c a, t_vec2c b, int *addr)
 	}
 }
 
-void	draw_clipline(t_vec2c a, t_vec2c b, int *addr)
+/*
+** BRESENHAM : 1 and 2 (a,b) for quadrants 1/8
+**			   2 and 1 (b,a) for quadrants 5/4
+**			   3 and 4 (a,b) for quadrants 2/7
+**			   4 and 3 (b,a) for quadrants 6/3
+*/
+
+void		bresenham_clip(t_vec2c a, t_vec2c b, int *addr)
 {
 	if (abs(b.x - a.x) > abs(b.y - a.y))
 	{
 		if (b.x > a.x)
-			//oct 1 - 8
 			b.y > a.y ? bresenham1(a, b, addr) : bresenham2(a, b, addr);
 		else
-			//oct 5 - 4
 			b.y > a.y ? bresenham2(b, a, addr) : bresenham1(b, a, addr);
 	}
 	else
 	{
 		if (b.x > a.x)
-			//oct 2 - 7
 			b.y > a.y ? bresenham3(a, b, addr) : bresenham4(a, b, addr);
 		else
-			//oct 6 - 3
 			b.y > a.y ? bresenham4(b, a, addr) : bresenham3(b, a, addr);
 	}
 }
-
-

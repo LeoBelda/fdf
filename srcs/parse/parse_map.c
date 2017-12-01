@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/30 18:51:28 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 19:59:10 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static t_list	*line_to_vertices(char *line, size_t y_pos, size_t *count_col)
 			error_exit("");
 		ft_lstradd(&vertices_line, elem);
 	}
+	ft_tabdel(&splitted_line);
 	if (!*count_col)
 		*count_col = j;
 	if (j < 1 || (size_t)j != *count_col)
@@ -86,7 +87,7 @@ static void		define_attributes(t_map *map)
 							(map->vertices[map->nb_vtx - 1].y) / 2,
 						(double)(map->max_z + map->min_z) / 2.0, 1.0);
 	map->mid_height = (double)-(map->max_z + map->min_z / 2.0);
-	map->mid_point = mat4xvec4(trsmat4new(0.0, map->mid_height , 50.0),
+	map->mid_point = mat4xvec4(trsmat4new(0.0, map->mid_height, 50.0),
 						map->mid_mod);
 }
 

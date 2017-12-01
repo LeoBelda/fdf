@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 23:07:12 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 23:19:08 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 18:58:05 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_putnbr_fd(int n, int fd)
 	write(fd, &(to_write), 1);
 }
 
-void	print_rgb_fd(t_rgb rgb, int fd)
+void		print_rgb_fd(t_rgb rgb, int fd)
 {
 	write(fd, "a: ", 3);
 	ft_putnbr_fd(rgb.a, fd);
