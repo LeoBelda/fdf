@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:00:31 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/30 21:50:14 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 15:46:37 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,12 @@ static void	load_proj_presets(t_mat4set *projs)
 	projs->stock_size = 2;
 	projs->switching = 0;
 	if (!(projs->stock = ft_memalloc(sizeof(t_mat4set) *
-										(projs->stock_size + 3))))
+										(projs->stock_size + 2))))
 		error_exit("");
 	(projs->stock[0]) = persmat4new(110.0, 78.0, 1000.0, 1.0);
 	(projs->stock[1]) = persmat4new(45.0, 22.0, 1000.0, 1.0);
-	(projs->stock[3]) = persmat4new(110.0, 78.0, 1000.0, 5.0);
-	(projs->stock[4]) = persmat4new(150.0, 45.0, 1000.0, 5.0);
-	(projs->stock[5]) = orthomat4new(frustrumnew(1000.0, 562.5, 5000.0, -5000.0));
+	(projs->stock[2]) = persmat4new(130.0, 85.0, 1000.0, 3.0);
+	(projs->stock[3]) = orthomat4new(frustrumnew(1000.0, 562.5, 5000.0, -5000.0));
 }
 
 void		init_geometry(t_matrices *matrices, t_map *map)
@@ -95,4 +94,5 @@ void		init_geometry(t_matrices *matrices, t_map *map)
 	matrices->projs->active = matrices->projs->stock[0];
 	matrices->projs->target = matrices->projs->stock[0];
 	matrices->projs->from = matrices->projs->stock[0];
+	matrices->projmode = P_DEFAULT;
 }

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/30 23:11:41 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 15:55:35 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,21 @@
 # define C_RED 0x00ff0000
 # define C_WHI 0x00ffffff
 
-# define C_GOLD_PALE (t_rgb) {0, 238, 232, 170}
-# define C_ORANGE_DARK (t_rgb) {0, 255, 160, 0}
-
-# define C_GREEN_DARK (t_rgb) {0, 0, 100, 0}
-# define C_GREEN_SEA_MED (t_rgb) {0, 60, 179, 113}
-# define C_CYAN_DARK (t_rgb) {0, 0, 139, 139}
-# define C_BLUE_MIDNIGHT (t_rgb) {0, 25, 25, 112}
-# define C_BLUE_BLACK (t_rgb) {0, 12, 12, 70}
-# define C_BLUE_NAVY (t_rgb) {0, 0, 0, 128}
-# define C_INDIGO (t_rgb) {0, 75, 0, 130}
+# define C_GOLD_PALE 0x00ffe7ba
+# define C_GREEN_DARK 0x00006400
+# define C_PURPLE_DARK 0x00551a8b
+# define C_ORANGE_DARK 0x008b2500
+# define C_BLUE_NAVY 0x00000080
 
 enum			e_keycodes
 {
 	K_A = 0,
 	K_S,
 	K_D,
+	K_F,
+	K_H,
 	K_C = 8,
+	K_B = 11,
 	K_W = 13,
 	K_P = 35,
 	K_ESC = 53,
@@ -70,16 +68,38 @@ typedef enum	e_modes
 
 typedef enum	e_cmodes
 {
-	C_STOCK,
+	C_STOCK = 1,
 	C_DISCO,
-	C_DAYNIGHT
+	C_DAYNIGHT,
+	C_BLACKNWHITE,
+	C_LAST
 }				t_cmodes;
+
+typedef enum	e_bufmodes
+{
+	B_DEFAULT = 1,
+	B_TRIPPY,
+	B_LAST
+}				t_bufmodes;
+
+typedef enum	e_projmodes
+{
+	P_DEFAULT = 1,
+	P_SPACE,
+	P_LAST
+}				t_projmodes;
 
 typedef struct	s_kfuncs
 {
 	void	(*f)();
 	int		keycode;
 }				t_kfuncs;
+
+typedef struct	s_cfuncs
+{
+	void		(*f)();
+	t_cmodes	cmode;
+}				t_cfuncs;
 
 typedef struct	s_controls
 {
@@ -110,9 +130,13 @@ typedef struct	s_colors
 	t_colorset	target;
 	t_colorset	*stock;
 	t_colorset	*disco;
+	t_colorset	*daynight;
+	t_colorset	*blacknwhite;
 	size_t		progress;
 	size_t		stock_size;
-	t_cmodes	mode;
+	t_cmodes	cmode;
+	t_bufmodes	bufmode;
+	t_cfuncs	*cfuncs;
 }				t_colors;
 
 typedef struct	s_modmat
@@ -172,6 +196,7 @@ typedef struct	s_matrices
 	t_vec4		eye_pos;
 	t_mat4		model_mat;
 	t_mat4		f_mat;
+	t_projmodes	projmode;
 }				t_matrices;
 
 typedef struct	s_overlay
@@ -210,14 +235,18 @@ void			stripped_background(int *addr, int cola, int colb, size_t thick);
 
 t_vec4			get_eye_pos(t_mat4 active);
 
-void			set_color(t_colors *color);
+void			switch_colorset(t_colors *colors);
+void			switch_colors(t_colors *colors, size_t distance, size_t progress);
+void			program_disco(t_colors *colors);
+void			program_daynight(t_colors *colors);
+void			program_blacknwhite(t_colors *colors);
+int				get_color(int min_z, int max_z, int z,
+												t_colorset active);
 
 void			vertices_to_proj(t_map *map, t_mat4 f_mat);
 void			proj_to_draw(t_map *map, t_colorset active);
 void			draw_to_img(t_map *map, int *addr);
 
-int				get_color(int min_z, int max_z, int z,
-												t_colorset active);
 
 void			draw_line(t_vec2c a, t_vec2c b, int *addr);
 void			draw_clipline(t_vec2c a, t_vec2c b, int *addr);
@@ -232,7 +261,10 @@ int				key_release_hook(int keycode, t_env *e);
 
 void			k_exit(t_env *e);
 void			k_chpov(t_env *e, int flag);
-void			k_chcolor(t_env *e, int flag);
+void			k_chcolor_stock(t_env *e, int flag);
+void			k_chcolor_program(t_env *e, int flag);
+void			k_chbuff_mode(t_env *e, int flag);
+void			k_chspace(t_env *e, int flag);
 void			k_trsx(t_env *e, int flag);
 void			k_trsrx(t_env *e, int flag);
 void			k_trsy(t_env *e, int flag);

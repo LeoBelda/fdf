@@ -6,22 +6,52 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 15:41:27 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 23:01:07 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/01 15:33:03 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	k_chcolor(t_env *e, int flag)
+void	k_chcolor_stock(t_env *e, int flag)
 {
 	static size_t	i;
 
 	if (flag == 0)
 		return ;
+	e->colors->cmode = C_STOCK;
 	i = (i + 1) % e->colors->stock_size;
 	e->colors->from = e->colors->active;
 	e->colors->progress = 0;
 	e->colors->target = e->colors->stock[i];
+}
+
+void	k_chcolor_program(t_env *e, int flag)
+{
+	if (flag == 0)
+		return ;
+	if (++(e->colors->cmode) == C_LAST)
+		e->colors->cmode = C_STOCK;
+	e->colors->progress = 0;
+}
+
+void	k_chbuff_mode(t_env *e, int flag)
+{
+	if (flag == 0)
+		return ;
+	if (++(e->colors->bufmode) == B_LAST)
+		e->colors->bufmode = B_DEFAULT;
+}
+
+void	k_chspace(t_env *e, int flag)
+{
+	if (flag == 0)
+		return ;
+	if (++(e->matrices->projmode) == P_LAST)
+		e->matrices->projmode = P_DEFAULT;
+	e->matrices->projs->switching = 1;
+	e->matrices->projs->progress = 0;
+	e->matrices->projs->target = (e->matrices->projmode == P_DEFAULT ?
+			e->matrices->projs->stock[0] : e->matrices->projs->stock[2]);
 }
 
 static void	set_to_bird(t_matrices *matrices)
@@ -31,8 +61,6 @@ static void	set_to_bird(t_matrices *matrices)
 	tmp = get_eye_pos(matrices->views->active);
 	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, 0.0, 4000.0),
 								vec4new(tmp.x, tmp.z, 0.0, 1.0));
-	print_vec4(matrices->eye_pos);
-	ft_putendl("");
 	matrices->views->target = get_view_mat(matrices->eye_pos,
 				mat4xvec4(trsmat4new(0.0, -50.0, 0.0), matrices->eye_pos),
 				vec4new(0.0, 0.0, 1.0, 0.0));
