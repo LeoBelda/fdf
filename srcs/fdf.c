@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/29 23:47:22 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/02 17:21:16 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static void	alloc_env(t_env *e)
 		error_exit("");
 	if (!(e->overlay = ft_memalloc(sizeof(t_overlay))))
 		error_exit("");
+	if (!(e->sound = ft_memalloc(sizeof(t_sound))))
+		error_exit("");
 }
 
 void		fdf(char *file)
@@ -59,6 +61,7 @@ void		fdf(char *file)
 	init_colors(e->colors);
 	init_controls(e->controls);
 	init_overlay(e->overlay);
+	init_sound(e->sound);
 	e->mode = M_GRD;
 	init_mlx(e);
 	mlx_loop(e->mlx);

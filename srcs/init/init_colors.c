@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:57:20 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 17:17:07 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/02 14:16:05 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ static void	load_colorsets(t_colors *colors)
 
 static void	set_cfuncs(t_colors *colors)
 {
-	if (!(colors->cfuncs = ft_memalloc(sizeof(t_cfuncs) * 5)))
+	if (!(colors->cfuncs = ft_memalloc(sizeof(t_cfuncs) * 6)))
 		error_exit("");
 	(colors->cfuncs)[0] = (t_cfuncs) { switch_colorset, C_STOCK };
 	(colors->cfuncs)[1] = (t_cfuncs) { program_disco, C_DISCO };
 	(colors->cfuncs)[2] = (t_cfuncs) { program_daynight, C_DAYNIGHT };
-	(colors->cfuncs)[3] = (t_cfuncs) { program_blacknwhite, C_BLACKNWHITE };
-	(colors->cfuncs)[4] = (t_cfuncs) { NULL, 0 };
+	(colors->cfuncs)[3] = (t_cfuncs) { program_strobo, C_STROBO };
+	(colors->cfuncs)[4] = (t_cfuncs) { program_glowing, C_GLOWING };
+	(colors->cfuncs)[5] = (t_cfuncs) { NULL, 0 };
 }
 
 void		init_colors(t_colors *colors)
@@ -44,7 +45,8 @@ void		init_colors(t_colors *colors)
 	load_colorsets(colors);
 	load_program_disco(colors);
 	load_program_daynight(colors);
-	load_program_blacknwhite(colors);
+	load_program_strobo(colors);
+	load_program_glowing(colors);
 	set_cfuncs(colors);
 	colors->active = colors->stock[0];
 	colors->target = colors->stock[0];

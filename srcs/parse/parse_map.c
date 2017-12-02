@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 19:59:10 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/02 21:14:42 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,9 @@ void			parse_map(t_map *map, char *file)
 	map_to_list(fd, map);
 	map->vertices = ft_lst_to_array(map->vertices_list);
 	define_attributes(map);
-	if (!(map->proj = ft_memalloc(sizeof(t_vec4) * map->nb_vtx)))
+	if (!(map->mod_vertices = ft_memalloc(sizeof(t_vec4) * map->nb_vtx)))
+		error_exit("");
+	if (!(map->proj = ft_memalloc(sizeof(t_vec3) * map->nb_vtx)))
 		error_exit("");
 	if (!(map->draw = ft_memalloc(sizeof(t_vec2c) * map->nb_vtx)))
 		error_exit("");

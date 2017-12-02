@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 18:07:02 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/02 21:16:20 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libftmath.h"
+# include "fmod.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -29,6 +30,8 @@
 # define YWIN 1440
 # define X_WIN 2560.0
 # define Y_WIN 1440.0
+
+# define FFT_SIZE 512
 
 # define C_BLA 0x00000000
 # define C_BLU 0x000000ff
@@ -71,7 +74,8 @@ typedef enum	e_cmodes
 	C_STOCK = 1,
 	C_DISCO,
 	C_DAYNIGHT,
-	C_BLACKNWHITE,
+	C_STROBO,
+	C_GLOWING,
 	C_LAST
 }				t_cmodes;
 
@@ -131,7 +135,8 @@ typedef struct	s_colors
 	t_colorset	*stock;
 	t_colorset	*disco;
 	t_colorset	*daynight;
-	t_colorset	*blacknwhite;
+	t_colorset	*strobo;
+	t_colorset	*glowing;
 	size_t		progress;
 	size_t		stock_size;
 	t_cmodes	cmode;
@@ -165,6 +170,7 @@ typedef struct	s_map
 {
 	t_list	*vertices_list;
 	t_vec4	*vertices;
+	t_vec4	*mod_vertices;
 	t_vec3	*proj;
 	t_vec2c	*draw;
 	char	*clip;
@@ -204,6 +210,22 @@ typedef struct	s_overlay
 	char	*fps;
 }				t_overlay;
 
+typedef struct	s_audiodata
+{
+	float							volume;
+	FMOD_DSP_PARAMETER_FFT			*spec;
+	float							p_spec[3];
+}				t_audiodata;
+
+typedef struct	s_sound
+{
+	FMOD_SYSTEM		*system;
+	FMOD_SOUND		*song;
+	FMOD_CHANNEL	*channel;
+	FMOD_DSP		*fft;
+	t_audiodata		*data;
+}				t_sound;
+
 typedef struct	s_env
 {
 	void		*mlx;
@@ -214,6 +236,7 @@ typedef struct	s_env
 	t_colors	*colors;
 	t_controls	*controls;
 	t_overlay	*overlay;
+	t_sound		*sound;
 	t_modes		mode;
 }				t_env;
 
@@ -224,13 +247,17 @@ void			init_geometry(t_matrices *matrices, t_map *map);
 void			init_colors(t_colors *colors);
 void			init_controls(t_controls *controls);
 void			init_overlay(t_overlay *overlay);
+void			init_sound(t_sound *sound);
 t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 
-void			load_program_blacknwhite(t_colors *colors);
-void			load_program_daynight(t_colors *colors);
 void			load_program_disco(t_colors *colors);
+void			load_program_daynight(t_colors *colors);
+void			load_program_strobo(t_colors *colors);
+void			load_program_glowing(t_colors *colors);
 
 int				draw(t_env *e);
+void			get_audio_data(t_sound *sound);
+void			map_audio(float *spectrum, t_map *map);
 void			set_matrices(t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
 
@@ -243,7 +270,8 @@ void			switch_colorset(t_colors *colors);
 void			switch_colors(t_colors *colors, size_t distance, size_t progress);
 void			program_disco(t_colors *colors);
 void			program_daynight(t_colors *colors);
-void			program_blacknwhite(t_colors *colors);
+void			program_strobo(t_colors *colors);
+void			program_glowing(t_colors *colors);
 int				get_color(int min_z, int max_z, int z,
 												t_colorset active);
 

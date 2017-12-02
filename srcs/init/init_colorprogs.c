@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 17:14:05 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 17:20:16 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/02 14:01:21 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,32 @@ void	load_program_daynight(t_colors *colors)
 	(colors->daynight[6]) = (t_colorset) { 0, 0, 0, 0, 0 };
 }
 
-void	load_program_blacknwhite(t_colors *colors)
+void	load_program_strobo(t_colors *colors)
 {
-	if (!(colors->blacknwhite = ft_memalloc(sizeof(t_colorset) * 7)))
+	if (!(colors->strobo = ft_memalloc(sizeof(t_colorset) * 7)))
 		error_exit("");
-	(colors->blacknwhite[0]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
+	(colors->strobo[0]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
 											C_WHI, C_WHI };
-	(colors->blacknwhite[1]) = (t_colorset) { C_BLA, C_WHI, C_WHI,
+	(colors->strobo[1]) = (t_colorset) { C_BLA, C_WHI, C_WHI,
 											C_BLA, C_BLA };
-	(colors->blacknwhite[2]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
+	(colors->strobo[2]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
 											C_WHI, C_WHI };
-	(colors->blacknwhite[3]) = (t_colorset) { C_BLA, C_WHI, C_WHI,
+	(colors->strobo[3]) = (t_colorset) { C_BLA, C_WHI, C_WHI,
 											C_BLA, C_BLA };
-	(colors->blacknwhite[4]) = (t_colorset) { C_BLA, C_BLA, C_BLA,
+	(colors->strobo[4]) = (t_colorset) { C_BLA, C_BLA, C_BLA,
 											C_WHI, C_WHI };
-	(colors->blacknwhite[5]) = (t_colorset) { C_WHI, C_BLA, C_WHI,
+	(colors->strobo[5]) = (t_colorset) { C_WHI, C_BLA, C_WHI,
 											C_BLA, C_BLA };
-	(colors->blacknwhite[6]) = (t_colorset) { 0, 0, 0, 0, 0 };
+	(colors->strobo[6]) = (t_colorset) { 0, 0, 0, 0, 0 };
+}
+
+void	load_program_glowing(t_colors *colors)
+{
+	if (!(colors->glowing = ft_memalloc(sizeof(t_colorset) * 3)))
+		error_exit("");
+	(colors->glowing[0]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
+											C_RED, C_RED };
+	(colors->glowing[1]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
+											C_BLA, C_BLA };
+	(colors->glowing[2]) = (t_colorset) { 0, 0, 0, 0, 0 };
 }

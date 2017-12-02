@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/01 19:06:07 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/02 21:09:36 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,12 @@ SRC=srcs/main.c \
 	srcs/init/init_colorprogs.c \
 	srcs/init/init_controls.c \
 	srcs/init/init_overlay.c \
+	srcs/init/init_sound.c \
 	\
 	srcs/parse/parse_map.c \
+	\
+	srcs/audio/audio_data.c \
+	srcs/audio/map_audio.c \
 	\
 	srcs/graphics/draw.c \
 	srcs/graphics/colors.c \
@@ -58,6 +62,9 @@ LFTMTDIR=libftmath/
 LIBFTMT=libftmath.a
 FTMTLK=ftmath
 
+FMODDIR=fmod/
+FMODLK=fmodL
+
 LMLXDIR=minilibx/
 LIBMLX=libmlx.a
 MLXLK=mlx
@@ -67,15 +74,17 @@ NAME=fdf
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 MAKE=make
+INT=install_name_tool -change
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LMLXDIR)$(LIBMLX)
-	-@$(CC) -o $(NAME) -I$(LFTDIR) -I$(LFTMTDIR) -I$(LMLXDIR) -I$(INCLUDES) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(LMLXDIR) -l$(MLXLK) $(FRAMEWORKS) $(OBJ)
+	-@$(CC) -o $(NAME) -I$(LFTDIR) -I$(LFTMTDIR) -I$(LMLXDIR) -I$(INCLUDES) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(FMODDIR) -l$(FMODLK) -L$(LMLXDIR) -l$(MLXLK) $(FRAMEWORKS) $(OBJ)
+	$(INT) @rpath/libfmodL.dylib $(FMODDIR)libfmodL.dylib $(NAME)
 	-@echo "FdF ready."
 
 %.o: %.c
-	$(CC) $(CFLAGS) -o $@ -I$(LFTDIR) -I$(LFTMTDIR) -I$(LMLXDIR) -I$(INCLUDES) -c $^
+	$(CC) $(CFLAGS) -o $@ -I$(LFTDIR) -I$(LFTMTDIR) -I$(FMODDIR) -I$(LMLXDIR) -I$(INCLUDES) -c $^
 
 $(LFTDIR)$(LIBFT):
 	$(MAKE) -C $(LFTDIR)

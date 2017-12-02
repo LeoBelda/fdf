@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 20:09:10 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/02 21:10:39 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int				draw(t_env *e)
 {
 	if (e->colors->bufmode == B_DEFAULT)
 		clear_img(e->img->addr, e->colors->active);
+	get_audio_data(e->sound);
+	map_audio(e->sound->data->p_spec, e->map);
 	e->matrices->eye_pos = get_eye_pos(e->matrices->views->active);
 	set_matrices(e->matrices);
 	set_color(e->colors);

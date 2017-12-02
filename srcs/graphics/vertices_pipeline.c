@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 18:39:21 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/02 21:26:07 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		vertices_to_proj(t_map *map, t_mat4 f_mat)
 	i = 0;
 	while (i < map->nb_vtx)
 	{
-		map->proj[i] = mat4xvec4_tovec3(f_mat, map->vertices[i]);
+		map->proj[i] = mat4xvec4_tovec3(f_mat, map->mod_vertices[i]);
 		map->clip[i] = in_clip(map->proj[i]);
 		i++;
 	}
