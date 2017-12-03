@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 15:30:26 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/02 21:04:47 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/03 15:44:35 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	dsp_init(t_sound *sound)
 					FMOD_DSP_TYPE_FFT, &sound->fft)) != FMOD_OK)
 		error_exit("FMOD Failed to create system");
 	if ((err = FMOD_DSP_SetParameterInt(sound->fft,
-					FMOD_DSP_FFT_WINDOWSIZE, 256)) != FMOD_OK)
+					FMOD_DSP_FFT_WINDOWSIZE, 1024)) != FMOD_OK)
 		error_exit("FMOD Failed to create system");
 	if ((err = FMOD_Channel_AddDSP(sound->channel, 0,
 					sound->fft)) != FMOD_OK)
@@ -53,6 +53,8 @@ static void	dsp_init(t_sound *sound)
 void	init_sound(t_sound *sound)
 {
 	if (!(sound->data = ft_memalloc(sizeof(t_audiodata))))
+		error_exit("");
+	if (!(sound->data->p_spec = ft_memalloc(sizeof(t_spec))))
 		error_exit("");
 	system_init(sound);
 	channel_init(sound);

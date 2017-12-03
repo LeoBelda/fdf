@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/02 21:16:20 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/03 15:18:39 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ typedef struct	s_map
 {
 	t_list	*vertices_list;
 	t_vec4	*vertices;
+	float	*target_vtx_z;
 	t_vec4	*mod_vertices;
 	t_vec3	*proj;
 	t_vec2c	*draw;
@@ -210,11 +211,19 @@ typedef struct	s_overlay
 	char	*fps;
 }				t_overlay;
 
+typedef struct	s_spec
+{
+	float	low_band;
+	float	mid_band;
+	float	high_band;
+	float	total;
+}				t_spec;
+
 typedef struct	s_audiodata
 {
 	float							volume;
 	FMOD_DSP_PARAMETER_FFT			*spec;
-	float							p_spec[3];
+	t_spec							*p_spec;
 }				t_audiodata;
 
 typedef struct	s_sound
@@ -257,7 +266,7 @@ void			load_program_glowing(t_colors *colors);
 
 int				draw(t_env *e);
 void			get_audio_data(t_sound *sound);
-void			map_audio(float *spectrum, t_map *map);
+void			map_audio(t_spec *spec, t_map *map);
 void			set_matrices(t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
 

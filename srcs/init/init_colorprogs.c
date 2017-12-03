@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 17:14:05 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/02 14:01:21 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/03 14:44:03 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	load_program_glowing(t_colors *colors)
 	if (!(colors->glowing = ft_memalloc(sizeof(t_colorset) * 3)))
 		error_exit("");
 	(colors->glowing[0]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
-											C_RED, C_RED };
+											C_BLA, C_RED };
 	(colors->glowing[1]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
 											C_BLA, C_BLA };
 	(colors->glowing[2]) = (t_colorset) { 0, 0, 0, 0, 0 };
