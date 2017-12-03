@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/03 15:18:39 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/03 19:45:36 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,10 @@ typedef struct	s_map
 	t_vec4	*vertices;
 	float	*target_vtx_z;
 	t_vec4	*mod_vertices;
+	t_vec4	*world_coords;
+	float	*distances;
+	int		viewdist_active;
+	int		viewdist_target;
 	t_vec3	*proj;
 	t_vec2c	*draw;
 	char	*clip;
@@ -259,6 +263,9 @@ void			init_overlay(t_overlay *overlay);
 void			init_sound(t_sound *sound);
 t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 
+void			load_view_presets(t_matrices *matrices, t_map *map);
+void			load_proj_presets(t_mat4set *projs);
+
 void			load_program_disco(t_colors *colors);
 void			load_program_daynight(t_colors *colors);
 void			load_program_strobo(t_colors *colors);
@@ -266,7 +273,8 @@ void			load_program_glowing(t_colors *colors);
 
 int				draw(t_env *e);
 void			get_audio_data(t_sound *sound);
-void			map_audio(t_spec *spec, t_map *map);
+void			audio_map(t_spec *spec, t_map *map);
+void			audio_color(t_spec *spec, t_map *map, t_colorset active);
 void			set_matrices(t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
 

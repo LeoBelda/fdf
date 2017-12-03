@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 20:19:08 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/03 16:04:36 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/03 21:18:05 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,28 @@ static float	get_total_spec(FMOD_DSP_PARAMETER_FFT *spec)
 	return (total);
 }
 
+static float	get_mid_spec(FMOD_DSP_PARAMETER_FFT *spec)
+{
+	float	mid;
+	int		chan;
+	int		bin;
+
+	mid = 0;
+	chan = 0;
+	while (chan < spec->numchannels)
+	{
+		bin = 100;
+		while (bin < 200)
+		{
+			mid += spec->spectrum[chan][bin];
+			bin++;
+		}
+		chan++;
+	}
+	mid /= 1;
+	return (mid);
+}
+
 static void		analyze_fft_output(t_audiodata *data)
 {
 	
@@ -53,13 +75,12 @@ static void		analyze_fft_output(t_audiodata *data)
 							+ data->spec->spectrum[1][1]) / 2.0;
 	if (data->p_spec->low_band < 0.1)
 		data->p_spec->low_band = 0.0;
-	data->p_spec->mid_band = (data->spec->spectrum[0][4]
-							+ data->spec->spectrum[1][4]) / 2.0;
+	data->p_spec->mid_band = get_mid_spec(data->spec);
+	if (data->p_spec->mid_band < 0.01)
+		data->p_spec->mid_band = 0.0;
 	data->p_spec->high_band = (data->spec->spectrum[0][15]
 							+ data->spec->spectrum[1][15]) / 2.0;
 	data->p_spec->total = get_total_spec(data->spec);
-	if (data->p_spec->low_band > 0.2)
-	printf("0:%f  1:%f  2:%f  \n", data->p_spec->low_band, data->p_spec->mid_band, data->p_spec->high_band);
 }
 
 void		get_audio_data(t_sound *sound)

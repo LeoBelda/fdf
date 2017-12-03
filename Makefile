@@ -6,13 +6,14 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/02 21:09:36 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/03 17:58:12 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC=srcs/main.c \
 	srcs/fdf.c \
 	srcs/init/init_geometry.c \
+	srcs/init/init_geometrypresets.c \
 	srcs/init/init_colors.c \
 	srcs/init/init_colorprogs.c \
 	srcs/init/init_controls.c \

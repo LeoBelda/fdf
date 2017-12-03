@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 21:10:56 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/03 16:25:04 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/03 21:38:41 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,36 @@ static float	get_mod_z(float act, float tar)
 		return (act = act + (tar >= 0 ? -((tar + act) / 10.0) : -((tar + act) / 10.0)));
 }
 
-void			map_audio(t_spec *spec, t_map *map)
+static int		get_mod_dist(int act, int tar)
+{
+	if (tar > act)
+		return (act += (tar - act) / 8.0);
+	else
+		return (act -= ((act - tar) / 10.0));
+}
+
+void			audio_color(t_spec *spec, t_map *map, t_colorset active)
+{
+	size_t	i;
+
+	i = 0;
+	(void)spec;
+	map->viewdist_target = (int)lround(4000.0 * (spec->low_band + 0.15));
+	map->viewdist_active = get_mod_dist(map->viewdist_active,
+										map->viewdist_target);
+	while (i < map->nb_vtx)
+	{
+		/*
+		map->draw[i].color = rgbi_interi_ltd(map->draw[i].color, active.background1,
+				map->viewdist_active, (int)lround(map->distances[i]));
+				*/
+		map->draw[i].color = rgbi_interi(map->draw[i].color, active.background1,
+				300, (int)lround(map->distances[i]));
+		i++;
+	}
+}
+
+void			audio_map(t_spec *spec, t_map *map)
 {
 	size_t	i;
 

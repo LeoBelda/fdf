@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 19:04:22 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/02 14:01:45 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/03 20:19:14 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	program_glowing(t_colors *colors)
 
 	if (!handle)
 		handle = colors->glowing;
-	if (i == 90)
+	if (i == 60)
 	{
 		handle++;
 		if (ft_ismemzero((void*)handle, sizeof(t_colorset)))
@@ -88,6 +88,6 @@ void	program_glowing(t_colors *colors)
 		colors->target = *handle;
 		i = 0;
 	}
-	switch_colors(colors, 90, i);
+	switch_colors(colors, 60, i);
 	i++;
 }

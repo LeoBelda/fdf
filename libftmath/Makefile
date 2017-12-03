@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/11/29 19:22:41 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/03 19:14:14 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC=rgbnew.c \
 	\
 	rgb_interi.c \
 	rgbi_interi.c \
+	rgbi_interi_ltd.c \
 	mat4_interi.c \
 	dbl_interr.c \
 	dbl_interr_log.c \
@@ -38,6 +39,8 @@ SRC=rgbnew.c \
 	\
 	cross_product.c \
 	norm_vec4.c \
+	vec4_xy_distance.c \
+	vec4_xz_distance.c \
 	vec4xvec4.c \
 	mat4xvec4.c \
 	vec4xmat4.c \
