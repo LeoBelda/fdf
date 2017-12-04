@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/04 17:15:19 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/04 21:07:37 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 # define X_WIN 2560.0
 # define Y_WIN 1440.0
 
-# define FFT_SIZE 512
+# define FFT_SIZE 1024
+# define OCT_NB 9
 
 # define C_BLA 0x00000000
 # define C_BLU 0x000000ff
@@ -232,9 +233,10 @@ typedef struct	s_spec
 
 typedef struct	s_audiodata
 {
-	float							volume;
-	FMOD_DSP_PARAMETER_FFT			*spec;
-	t_spec							*p_spec;
+	float					volume;
+	FMOD_DSP_PARAMETER_FFT	*spec;
+	float					**oct;
+	t_spec					*p_spec;
 }				t_audiodata;
 
 typedef struct	s_sound

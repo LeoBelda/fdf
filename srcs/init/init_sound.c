@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 15:30:26 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/04 16:57:37 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/04 21:14:31 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,34 @@ static int	channel_init(t_sound *sound, char *file)
 static void	dsp_init(t_sound *sound)
 {
 	FMOD_RESULT	err;
+	int			i;
 
+	i = 0;
 	if ((err = FMOD_System_CreateDSPByType(sound->system,
 					FMOD_DSP_TYPE_FFT, &sound->fft)) != FMOD_OK)
 		error_exit("FMOD Failed to create DSP");
 	if ((err = FMOD_DSP_SetParameterInt(sound->fft,
-					FMOD_DSP_FFT_WINDOWSIZE, 1024)) != FMOD_OK)
+					FMOD_DSP_FFT_WINDOWSIZE, FFT_SIZE)) != FMOD_OK)
 		error_exit("FMOD Failed to configure DSP");
 	if ((err = FMOD_Channel_AddDSP(sound->channel, 0,
 					sound->fft)) != FMOD_OK)
 		error_exit("FMOD Failed to connect DSP");
+	if ((err = FMOD_System_Update(sound->system)) != FMOD_OK)
+		error_exit("Failed to update FMOD System");
+	if ((err = FMOD_DSP_GetParameterData(sound->fft,
+			FMOD_DSP_FFT_SPECTRUMDATA, (void*)&sound->data->spec,
+			0, 0, 0)))
+		error_exit("");
+	if (!(sound->data->oct = ft_memalloc(
+					sizeof(float*) * 2)))
+		error_exit("");
+	while (i < 2)
+	{
+		if (!(sound->data->oct[i] = ft_memalloc(sizeof(float) * OCT_NB)))
+			error_exit("");
+		i++;
+	}
+	ft_putnbr(sound->data->spec->numchannels);
 }
 
 void	init_sound(t_sound *sound, char *file)

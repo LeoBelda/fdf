@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 20:19:08 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/03 21:18:05 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/04 22:10:41 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,63 +24,73 @@ static void		refresh_audio(t_sound *sound)
 		error_exit("");
 }
 
-static float	get_total_spec(FMOD_DSP_PARAMETER_FFT *spec)
+static float	get_total_spec(float **oct)
 {
 	int		chan;
-	int		bin;
+	int		noct;
 	float	total;
 
 	chan = 0;
 	total = 0;
-	while (chan < spec->numchannels)
+	while (chan < 2)
 	{
-		bin = 0;
-		while (bin < spec->length / 2)
+		noct = 0;
+		while (noct < OCT_NB)
 		{
-			total += spec->spectrum[chan][bin];
-			bin++;
+			total += oct[chan][noct];
+			noct++;
 		}
 		chan++;
 	}
-	total /= (chan * bin / 2);
+	total /= (chan * noct);
 	return (total);
 }
 
-static float	get_mid_spec(FMOD_DSP_PARAMETER_FFT *spec)
+static float	get_bins(float *bins, size_t a, size_t b)
 {
-	float	mid;
-	int		chan;
-	int		bin;
+	size_t	i;
+	float	total;
 
-	mid = 0;
-	chan = 0;
-	while (chan < spec->numchannels)
+	i = a;
+	total = 0;
+	while (i < b)
 	{
-		bin = 100;
-		while (bin < 200)
-		{
-			mid += spec->spectrum[chan][bin];
-			bin++;
-		}
-		chan++;
+		total += bins[i];
+		i++;
 	}
-	mid /= 1;
-	return (mid);
+	return (total);
+}
+
+static void		freq_to_oct(t_audiodata *data)
+{
+	int	nbchan;
+
+	nbchan = 0;
+	while (nbchan < data->spec->numchannels)
+	{
+		data->oct[nbchan][0] = get_bins(data->spec->spectrum[nbchan], 1, 2);
+		data->oct[nbchan][1] = get_bins(data->spec->spectrum[nbchan], 2, 4);
+		data->oct[nbchan][2] = get_bins(data->spec->spectrum[nbchan], 4, 8);
+		data->oct[nbchan][3] = get_bins(data->spec->spectrum[nbchan], 8, 16);
+		data->oct[nbchan][4] = get_bins(data->spec->spectrum[nbchan], 16, 32);
+		data->oct[nbchan][5] = get_bins(data->spec->spectrum[nbchan], 32, 64);
+		data->oct[nbchan][6] = get_bins(data->spec->spectrum[nbchan], 64, 128);
+		data->oct[nbchan][7] = get_bins(data->spec->spectrum[nbchan], 128, 256);
+		data->oct[nbchan][8] = get_bins(data->spec->spectrum[nbchan], 256, 512);
+		nbchan++;
+	}
 }
 
 static void		analyze_fft_output(t_audiodata *data)
 {
-	
-	data->p_spec->low_band = (data->spec->spectrum[0][1]
-							+ data->spec->spectrum[1][1]) / 2.0;
+	freq_to_oct(data);
+	data->p_spec->low_band = (data->oct[0][0]
+							+ data->oct[1][0]) / 2.0;
 	if (data->p_spec->low_band < 0.1)
 		data->p_spec->low_band = 0.0;
-	data->p_spec->mid_band = get_mid_spec(data->spec);
-	if (data->p_spec->mid_band < 0.01)
-		data->p_spec->mid_band = 0.0;
-	data->p_spec->high_band = (data->spec->spectrum[0][15]
-							+ data->spec->spectrum[1][15]) / 2.0;
-	data->p_spec->total = get_total_spec(data->spec);
+	data->p_spec->total = get_total_spec(data->oct) * 1.0;
+	if (data->p_spec->total < 0.02)
+		data->p_spec->total = 0.0;
 }
 
 void		get_audio_data(t_sound *sound)
