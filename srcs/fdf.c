@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/02 17:21:16 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/04 17:02:28 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	alloc_env(t_env *e)
 		error_exit("");
 }
 
-void		fdf(char *file)
+void		fdf(char *file, char *audio)
 {
 	t_env	*e;
 
@@ -61,7 +61,8 @@ void		fdf(char *file)
 	init_colors(e->colors);
 	init_controls(e->controls);
 	init_overlay(e->overlay);
-	init_sound(e->sound);
+	if (audio)
+		init_sound(e->sound, audio);
 	e->mode = M_GRD;
 	init_mlx(e);
 	mlx_loop(e->mlx);

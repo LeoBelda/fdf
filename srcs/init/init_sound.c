@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 15:30:26 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/03 21:25:52 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/04 16:57:37 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@ static void	system_init(t_sound *sound)
 		error_exit("FMOD Failed to init system");
 }
 
-static void	channel_init(t_sound *sound)
+static int	channel_init(t_sound *sound, char *file)
 {
 	FMOD_RESULT	err;
 
-	if ((err = FMOD_System_CreateStream(sound->system, "res/tired", 
+	if ((err = FMOD_System_CreateStream(sound->system, file, 
 					FMOD_DEFAULT, 0, &(sound->song))) != FMOD_OK)
-		error_exit("FMOD Failed to open audio file");
+		return (0);
 	if ((err = FMOD_System_PlaySound(sound->system, sound->song,
 					0, 0, &(sound->channel))) != FMOD_OK)
 		error_exit("FMOD Failed to play audio");
+	return (1);
 }
 
 static void	dsp_init(t_sound *sound)
@@ -41,22 +42,25 @@ static void	dsp_init(t_sound *sound)
 
 	if ((err = FMOD_System_CreateDSPByType(sound->system,
 					FMOD_DSP_TYPE_FFT, &sound->fft)) != FMOD_OK)
-		error_exit("FMOD Failed to create system");
+		error_exit("FMOD Failed to create DSP");
 	if ((err = FMOD_DSP_SetParameterInt(sound->fft,
 					FMOD_DSP_FFT_WINDOWSIZE, 1024)) != FMOD_OK)
-		error_exit("FMOD Failed to create system");
+		error_exit("FMOD Failed to configure DSP");
 	if ((err = FMOD_Channel_AddDSP(sound->channel, 0,
 					sound->fft)) != FMOD_OK)
-		error_exit("FMOD Failed to create system");
+		error_exit("FMOD Failed to connect DSP");
 }
 
-void	init_sound(t_sound *sound)
+void	init_sound(t_sound *sound, char *file)
 {
 	if (!(sound->data = ft_memalloc(sizeof(t_audiodata))))
 		error_exit("");
 	if (!(sound->data->p_spec = ft_memalloc(sizeof(t_spec))))
 		error_exit("");
 	system_init(sound);
-	channel_init(sound);
-	dsp_init(sound);
+	if (channel_init(sound, file))
+	{
+		sound->mode = S_ON;
+		dsp_init(sound);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/03 19:45:36 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/04 17:15:19 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,12 @@ typedef enum	e_projmodes
 	P_LAST
 }				t_projmodes;
 
+typedef enum	e_soundmodes
+{
+	S_OFF = 0,
+	S_ON
+}				t_soundmodes;
+
 typedef struct	s_kfuncs
 {
 	void	(*f)();
@@ -173,7 +179,8 @@ typedef struct	s_map
 	float	*target_vtx_z;
 	t_vec4	*mod_vertices;
 	t_vec4	*world_coords;
-	float	*distances;
+	float	*distancesxy;
+	float	*distancesxz;
 	int		viewdist_active;
 	int		viewdist_target;
 	t_vec3	*proj;
@@ -237,6 +244,7 @@ typedef struct	s_sound
 	FMOD_CHANNEL	*channel;
 	FMOD_DSP		*fft;
 	t_audiodata		*data;
+	t_soundmodes	mode;
 }				t_sound;
 
 typedef struct	s_env
@@ -253,14 +261,14 @@ typedef struct	s_env
 	t_modes		mode;
 }				t_env;
 
-void			fdf(char *file);
+void			fdf(char *file, char *audio);
 
 void			parse_map(t_map *map, char *file);
 void			init_geometry(t_matrices *matrices, t_map *map);
 void			init_colors(t_colors *colors);
 void			init_controls(t_controls *controls);
 void			init_overlay(t_overlay *overlay);
-void			init_sound(t_sound *sound);
+void			init_sound(t_sound *sound, char *file);
 t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 
 void			load_view_presets(t_matrices *matrices, t_map *map);
@@ -292,7 +300,7 @@ void			program_glowing(t_colors *colors);
 int				get_color(int min_z, int max_z, int z,
 												t_colorset active);
 
-void			vertices_to_proj(t_map *map, t_mat4 f_mat);
+void			vertices_to_proj(t_map *map, t_mat4 f_mat, t_soundmodes smode);
 void			proj_to_draw(t_map *map, t_colorset active);
 void			draw_to_img(t_map *map, int *addr);
 

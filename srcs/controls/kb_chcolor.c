@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:56:47 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 16:57:24 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/04 15:14:38 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ void	k_chcolor_program(t_env *e, int flag)
 	if (flag == 0)
 		return ;
 	if (++(e->colors->cmode) == C_LAST)
+	{
 		e->colors->cmode = C_STOCK;
+		e->colors->from = e->colors->active;
+		e->colors->target = e->colors->stock[0];
+	}
 	e->colors->progress = 0;
 }
 
