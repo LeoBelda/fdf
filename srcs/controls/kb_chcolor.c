@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 16:56:47 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/04 15:14:38 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/05 14:17:27 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	k_chbuff_mode(t_env *e, int flag)
 {
 	if (flag == 0)
 		return ;
-	if (++(e->colors->bufmode) == B_LAST)
-		e->colors->bufmode = B_DEFAULT;
+	if (++(e->colors->bmode) == B_LAST)
+		e->colors->bmode = B_DEFAULT;
 }

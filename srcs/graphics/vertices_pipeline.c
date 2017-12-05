@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/04 17:14:47 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/05 21:18:02 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static int	in_clip(t_vec3 elem)
 	return (0);
 }
 
-void		vertices_to_proj(t_map *map, t_mat4 f_mat, t_soundmodes smode)
+void		vertices_to_proj(t_map *map, t_mat4 f_mat)
 {
 	size_t	i;
 	t_vec4	*vertices;
 
 	i = 0;
-	vertices = (smode ? map->mod_vertices : map->vertices);
+	vertices = map->mod_vertices;
 	while (i < map->nb_vtx)
 	{
 		map->proj[i] = mat4xvec4_tovec3(f_mat, vertices[i]);

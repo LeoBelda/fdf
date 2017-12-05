@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:00:31 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/03 18:12:35 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/05 18:56:01 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,6 @@ void			init_geometry(t_matrices *matrices, t_map *map)
 	matrices->projs->target = matrices->projs->stock[0];
 	matrices->projs->from = matrices->projs->stock[0];
 	matrices->projmode = P_DEFAULT;
+	set_dstfuncs(map);
+	map->dstmode = DST_AROUND_FLAT;
 }

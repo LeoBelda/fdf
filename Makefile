@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/03 17:58:12 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/05 19:07:12 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,20 +14,28 @@ SRC=srcs/main.c \
 	srcs/fdf.c \
 	srcs/init/init_geometry.c \
 	srcs/init/init_geometrypresets.c \
+	srcs/init/init_dstfuncs.c \
 	srcs/init/init_colors.c \
 	srcs/init/init_colorprogs.c \
+	srcs/init/init_colorfuncs.c \
 	srcs/init/init_controls.c \
 	srcs/init/init_overlay.c \
 	srcs/init/init_sound.c \
+	srcs/init/init_soundprogs.c \
 	\
 	srcs/parse/parse_map.c \
 	\
-	srcs/audio/audio_data.c \
-	srcs/audio/map_audio.c \
+	srcs/sound/sound_data.c \
+	srcs/sound/sound_map.c \
+	srcs/sound/sr_programs.c \
+	srcs/sound/sound_color.c \
+	srcs/sound/sc_programs.c \
 	\
 	srcs/graphics/draw.c \
 	srcs/graphics/colors.c \
 	srcs/graphics/color_progs.c \
+	srcs/graphics/dst_map.c \
+	srcs/graphics/dst_programs.c \
 	srcs/graphics/matrices.c \
 	srcs/graphics/vertices_pipeline.c \
 	srcs/graphics/callbacks.c \

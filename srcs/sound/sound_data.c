@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 20:19:08 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/04 22:10:41 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/05 21:44:20 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,16 @@ static void		analyze_fft_output(t_audiodata *data)
 							+ data->oct[1][0]) / 2.0;
 	if (data->p_spec->low_band < 0.1)
 		data->p_spec->low_band = 0.0;
-	data->p_spec->total = get_total_spec(data->oct) * 1.0;
-	if (data->p_spec->total < 0.02)
+	data->p_spec->total = get_total_spec(data->oct) * 10.0;
+	if (data->p_spec->total < 0.1)
 		data->p_spec->total = 0.0;
 }
 
-void		get_audio_data(t_sound *sound)
+void		get_sound_data(t_sound *sound)
 {
-	refresh_audio(sound);
-	analyze_fft_output(sound->data);
+	if (sound->mode == S_ON)
+	{
+		refresh_audio(sound);
+		analyze_fft_output(sound->data);
+	}
 }

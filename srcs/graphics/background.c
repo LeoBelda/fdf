@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 19:16:00 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/30 19:39:32 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/05 14:13:25 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	plain_background(int *addr, int color)
 
 	ft_intset(&longcolor, color, 2);
 	ft_lintset(addr, longcolor, XWIN * YWIN / 2);
+}
+
+void	no_background(int *addr, int color)
+{
+	(void)addr;
+	(void)color;
 }
 
 void	stripped_background(int *addr, int cola, int colb, size_t thick)

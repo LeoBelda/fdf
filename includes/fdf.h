@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/04 21:07:37 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/05 21:22:44 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,13 @@ typedef enum	e_modes
 	M_GRD
 }				t_modes;
 
+typedef enum	e_dstmodes
+{
+	DST_DEFAULT = 1,
+	DST_AROUND_FLAT,
+	DST_LAST
+}				t_dstmodes;
+
 typedef enum	e_cmodes
 {
 	C_STOCK = 1,
@@ -80,12 +87,12 @@ typedef enum	e_cmodes
 	C_LAST
 }				t_cmodes;
 
-typedef enum	e_bufmodes
+typedef enum	e_bmodes
 {
 	B_DEFAULT = 1,
 	B_TRIPPY,
 	B_LAST
-}				t_bufmodes;
+}				t_bmodes;
 
 typedef enum	e_projmodes
 {
@@ -100,17 +107,56 @@ typedef enum	e_soundmodes
 	S_ON
 }				t_soundmodes;
 
+typedef enum	e_srmodes
+{
+	SR_DEFAULT = 1,
+	SR_BASS_ALTI,
+	SR_TOTAL_ALTI,
+	SR_LAST
+}				t_srmodes;
+
+typedef enum	e_scmodes
+{
+	SC_DEFAULT = 1,
+	SC_TOTAL_VISION,
+	SC_LAST
+}				t_scmodes;
+
 typedef struct	s_kfuncs
 {
 	void	(*f)();
 	int		keycode;
 }				t_kfuncs;
 
+typedef struct	s_dstfuncs
+{
+	void		(*f)();
+	t_dstmodes	dstmode;
+}				t_dstfuncs;
+
 typedef struct	s_cfuncs
 {
 	void		(*f)();
 	t_cmodes	cmode;
 }				t_cfuncs;
+
+typedef struct	s_bfuncs
+{
+	void		(*f)();
+	t_bmodes	bmode;
+}				t_bfuncs;
+
+typedef struct	s_srfuncs
+{
+	void		(*f)();
+	t_srmodes	srmode;
+}				t_srfuncs;
+
+typedef struct	s_scfuncs
+{
+	void		(*f)();
+	t_scmodes	scmode;
+}				t_scfuncs;
 
 typedef struct	s_controls
 {
@@ -147,8 +193,9 @@ typedef struct	s_colors
 	size_t		progress;
 	size_t		stock_size;
 	t_cmodes	cmode;
-	t_bufmodes	bufmode;
+	t_bmodes	bmode;
 	t_cfuncs	*cfuncs;
+	t_bfuncs	*bfuncs;
 }				t_colors;
 
 typedef struct	s_modmat
@@ -175,26 +222,28 @@ typedef struct	s_mat4set
 
 typedef struct	s_map
 {
-	t_list	*vertices_list;
-	t_vec4	*vertices;
-	float	*target_vtx_z;
-	t_vec4	*mod_vertices;
-	t_vec4	*world_coords;
-	float	*distancesxy;
-	float	*distancesxz;
-	int		viewdist_active;
-	int		viewdist_target;
-	t_vec3	*proj;
-	t_vec2c	*draw;
-	char	*clip;
-	size_t	nb_col;
-	size_t	nb_line;
-	size_t	nb_vtx;
-	t_vec4	mid_mod;
-	t_vec4	mid_point;
-	double	mid_height;
-	int		min_z;
-	int		max_z;
+	t_list		*vertices_list;
+	t_vec4		*vertices;
+	float		*target_vtx_z;
+	t_vec4		*mod_vertices;
+	t_vec4		*world_coords;
+	float		*distancesxy;
+	float		*distancesxz;
+	int			viewdist_active;
+	int			viewdist_target;
+	t_vec3		*proj;
+	t_vec2c		*draw;
+	char		*clip;
+	size_t		nb_col;
+	size_t		nb_line;
+	size_t		nb_vtx;
+	t_vec4		mid_mod;
+	t_vec4		mid_point;
+	double		mid_height;
+	int			min_z;
+	int			max_z;
+	t_dstmodes	dstmode;
+	t_dstfuncs	*dstfuncs;
 }				t_map;
 
 typedef struct	s_img
@@ -247,6 +296,10 @@ typedef struct	s_sound
 	FMOD_DSP		*fft;
 	t_audiodata		*data;
 	t_soundmodes	mode;
+	t_srmodes		srmode;
+	t_scmodes		scmode;
+	t_srfuncs		*srfuncs;
+	t_scfuncs		*scfuncs;
 }				t_sound;
 
 typedef struct	s_env
@@ -275,20 +328,40 @@ t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 
 void			load_view_presets(t_matrices *matrices, t_map *map);
 void			load_proj_presets(t_mat4set *projs);
+void			set_dstfuncs(t_map *map);
 
 void			load_program_disco(t_colors *colors);
 void			load_program_daynight(t_colors *colors);
 void			load_program_strobo(t_colors *colors);
 void			load_program_glowing(t_colors *colors);
+void			set_cfuncs(t_colors *colors);
+void			set_bfuncs(t_colors *colors);
+
+void			set_sr_funcs(t_sound *sound);
+void			set_sc_funcs(t_sound *sound);
 
 int				draw(t_env *e);
-void			get_audio_data(t_sound *sound);
-void			audio_map(t_spec *spec, t_map *map);
-void			audio_color(t_spec *spec, t_map *map, t_colorset active);
+
+void			get_sound_data(t_sound *sound);
+
+void			set_dst_map(t_map *map);
+void			dst_default(t_map *map);
+void			dst_around_flat(t_map *map);
+
+void			set_sound_map(t_sound *sound, t_map *map);
+void			sr_default(t_spec *spec, t_map *map);
+void			sr_bass_alti(t_spec *spec, t_map *map);
+void			sr_total_alti(t_spec *spec, t_map *map);
+
+void			set_sound_color(t_sound *sound, t_map *map, t_colorset active);
+void			sc_default(t_spec *spec, t_map *map, t_colorset active);
+void			sc_total_vision(t_spec *spec, t_map *map, t_colorset active);
+
 void			set_matrices(t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
 
 void			plain_background(int *addr, int color);
+void			no_background(int *addr, int color);
 void			stripped_background(int *addr, int cola, int colb, size_t thick);
 
 t_vec4			get_eye_pos(t_mat4 active);
@@ -302,7 +375,7 @@ void			program_glowing(t_colors *colors);
 int				get_color(int min_z, int max_z, int z,
 												t_colorset active);
 
-void			vertices_to_proj(t_map *map, t_mat4 f_mat, t_soundmodes smode);
+void			vertices_to_proj(t_map *map, t_mat4 f_mat);
 void			proj_to_draw(t_map *map, t_colorset active);
 void			draw_to_img(t_map *map, int *addr);
 
