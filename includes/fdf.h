@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 21:22:44 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/05 23:58:43 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,13 @@ typedef enum	e_dstmodes
 	DST_LAST
 }				t_dstmodes;
 
+typedef enum	e_vdstmodes
+{
+	VDST_DEFAULT = 1,
+	VDST_SOUND_TOTAL,
+	VDST_LAST
+}				t_vdstmodes;
+
 typedef enum	e_cmodes
 {
 	C_STOCK = 1,
@@ -134,6 +141,12 @@ typedef struct	s_dstfuncs
 	t_dstmodes	dstmode;
 }				t_dstfuncs;
 
+typedef struct	s_vdstfuncs
+{
+	void		(*f)();
+	t_vdstmodes	vdstmode;
+}				t_vdstfuncs;
+
 typedef struct	s_cfuncs
 {
 	void		(*f)();
@@ -169,6 +182,7 @@ typedef struct	s_vec2c
 	int		x;
 	int		y;
 	int		color;
+	float	dst;
 }				t_vec2c;
 
 typedef struct	s_colorset
@@ -244,6 +258,8 @@ typedef struct	s_map
 	int			max_z;
 	t_dstmodes	dstmode;
 	t_dstfuncs	*dstfuncs;
+	t_vdstmodes	vdstmode;
+	t_vdstfuncs	*vdstfuncs;
 }				t_map;
 
 typedef struct	s_img
@@ -329,6 +345,7 @@ t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 void			load_view_presets(t_matrices *matrices, t_map *map);
 void			load_proj_presets(t_mat4set *projs);
 void			set_dstfuncs(t_map *map);
+void			set_vdstfuncs(t_map *map);
 
 void			load_program_disco(t_colors *colors);
 void			load_program_daynight(t_colors *colors);
@@ -348,14 +365,17 @@ void			set_dst_map(t_map *map);
 void			dst_default(t_map *map);
 void			dst_around_flat(t_map *map);
 
+void			vdst_default(t_spec *spec, t_map *map);
+void			vdst_sound_total(t_spec *spec, t_map *map);
+
 void			set_sound_map(t_sound *sound, t_map *map);
 void			sr_default(t_spec *spec, t_map *map);
 void			sr_bass_alti(t_spec *spec, t_map *map);
 void			sr_total_alti(t_spec *spec, t_map *map);
 
 void			set_sound_color(t_sound *sound, t_map *map, t_colorset active);
-void			sc_default(t_spec *spec, t_map *map, t_colorset active);
-void			sc_total_vision(t_spec *spec, t_map *map, t_colorset active);
+void			sc_default(t_map *map, t_colorset active);
+void			sc_total_vision(t_map *map, t_colorset active);
 
 void			set_matrices(t_matrices *matrices);
 void			manage_text_overlay(t_env *e);

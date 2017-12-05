@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 10:05:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 18:37:16 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/05 23:03:26 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,11 @@ static void	bresenham4(t_vec2c a, t_vec2c b, int *addr)
 }
 
 /*
-** BRESENHAM : 1 and 2 (a,b) for quadrants 1/8
-**			   2 and 1 (b,a) for quadrants 5/4
-**			   3 and 4 (a,b) for quadrants 2/7
-**			   4 and 3 (b,a) for quadrants 6/3
-*/
+ ** BRESENHAM : 1 and 2 (a,b) for quadrants 1/8
+ **			   2 and 1 (b,a) for quadrants 5/4
+ **			   3 and 4 (a,b) for quadrants 2/7
+ **			   4 and 3 (b,a) for quadrants 6/3
+ */
 
 void		bresenham(t_vec2c a, t_vec2c b, int *addr)
 {

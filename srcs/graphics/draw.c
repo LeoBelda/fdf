@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 21:29:37 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 00:01:17 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,31 @@ static void		get_distances(t_vec4 eye_pos, t_map *map)
 	}
 }
 
+static void		set_vdst(t_sound *sound, t_map *map)
+{
+	size_t	i;
+
+	i = 0;
+	while (map->vdstfuncs[i].vdstmode)
+	{
+		if (map->vdstmode == map->vdstfuncs[i].vdstmode)
+		{
+			map->vdstfuncs[i].f(sound->data->p_spec, map);
+			break ;
+		}
+		i++;
+	}
+}
+
 int				draw(t_env *e)
 {
 	set_buffer(e->img->addr, e->colors);
 	get_sound_data(e->sound);
 	e->matrices->eye_pos = get_eye_pos(e->matrices->views->active);
 	get_distances(e->matrices->eye_pos, e->map);
-	set_sound_map(e->sound, e->map);
+	set_vdst(e->sound, e->map);
 	set_dst_map(e->map);
+	set_sound_map(e->sound, e->map);
 	set_matrices(e->matrices);
 	set_color(e->colors);
 	vertices_to_proj(e->map, e->matrices->f_mat);

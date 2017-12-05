@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/05 19:07:12 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/05 23:50:52 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC=srcs/main.c \
 	srcs/graphics/color_progs.c \
 	srcs/graphics/dst_map.c \
 	srcs/graphics/dst_programs.c \
+	srcs/graphics/vdst_programs.c \
 	srcs/graphics/matrices.c \
 	srcs/graphics/vertices_pipeline.c \
 	srcs/graphics/callbacks.c \

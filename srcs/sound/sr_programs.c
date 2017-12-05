@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 15:40:42 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 21:44:55 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/05 22:32:12 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,9 @@ void			sr_bass_alti(t_spec *spec, t_map *map)
 	i = 0;
 	while (i < map->nb_vtx)
 	{
-		map->target_vtx_z[i] = map->mod_vertices[i].z * spec->low_band * 2;
+		map->target_vtx_z[i] = map->target_vtx_z[i] * spec->low_band * 2;
 		map->mod_vertices[i].z = get_mod_z(map->mod_vertices[i].z,
 											map->target_vtx_z[i], 5.0, 10.0);
-		map->mod_vertices[i].y = map->mod_vertices[i].y;
-		map->mod_vertices[i].x = map->mod_vertices[i].x;
-		map->mod_vertices[i].w = map->mod_vertices[i].w;
 		i++;
 	}
 }
@@ -53,12 +50,12 @@ void			sr_total_alti(t_spec *spec, t_map *map)
 	i = 0;
 	while (i < map->nb_vtx)
 	{
-		map->target_vtx_z[i] = map->vertices[i].z * spec->total * 8;
-		map->mod_vertices[i].z = get_mod_z(map->mod_vertices[i].z,
+		if (map->distancesxz[i] < map->viewdist_active)
+		{
+			map->target_vtx_z[i] = map->target_vtx_z[i] * spec->total * 4;
+			map->mod_vertices[i].z = get_mod_z(map->mod_vertices[i].z,
 											map->target_vtx_z[i], 100.0, 120.0);
-		map->mod_vertices[i].y = map->vertices[i].y;
-		map->mod_vertices[i].x = map->vertices[i].x;
-		map->mod_vertices[i].w = map->vertices[i].w;
+		}
 		i++;
 	}
 }
