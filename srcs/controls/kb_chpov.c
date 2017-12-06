@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 15:41:27 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 17:20:52 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 19:36:17 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ static void	set_to_fox(t_matrices *matrices, double mid_height)
 {
 	t_vec4	tmp;
 
+	(void)mid_height;
 	tmp = get_eye_pos(matrices->views->active);
-	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, -mid_height * 2.0, 0.0),
+	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, 0.0, 0.0),
 								vec4new(tmp.x, 0.0, tmp.z, 1.0));
 	matrices->views->target = get_view_mat(matrices->eye_pos,
 				mat4xvec4(trsmat4new(0.0, 0.0, 50.0), matrices->eye_pos),
@@ -56,6 +57,9 @@ void		k_chpov(t_env *e, int flag)
 		return ;
 	i = (i + 1) % e->matrices->projs->stock_size;
 	e->mode = (e->mode == M_SKY ? M_GRD : M_SKY);
+	switch_kbmode(e, &e->controls->active, KB_SWI);
+	switch_kbmode(e, &e->controls->target,
+					get_mode_sync(e->controls->kbsync, e->mode));
 	e->matrices->views->from = e->matrices->views->active;
 	if (e->mode == M_SKY)
 		set_to_bird(e->matrices);

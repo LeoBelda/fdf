@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/05 23:50:52 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/06 19:32:34 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRC=srcs/main.c \
 	srcs/controls/kb_chpov.c \
 	srcs/controls/kb_chcolor.c \
 	srcs/controls/kb_misc.c \
+	srcs/controls/tools.c \
 	\
 	srcs/utils/print_db.c
 

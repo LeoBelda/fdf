@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 18:40:25 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 20:55:41 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_vec4			get_eye_pos(t_mat4 active)
 					active.z, vec4new(0.0, 0.0, 0.0, 1.0))));
 }
 
-static void		switch_mat4(t_mat4set *set)
+static void		switch_mat4(t_env *e, t_mat4set *set)
 {
 	if (set->progress == 100)
 	{
@@ -37,18 +37,20 @@ static void		switch_mat4(t_mat4set *set)
 		set->from = set->target;
 		set->progress = 0;
 		set->switching = 0;
+		if (e)
+			e->controls->active = e->controls->target;
 		return ;
 	}
 	set->active = mat4_interi(set->from, set->target, 100, set->progress);
 	set->progress++;
 }
 
-void			set_matrices(t_matrices *matrices)
+void			set_matrices(t_env *e, t_matrices *matrices)
 {
 	if (matrices->views->switching == 1)
-		switch_mat4(matrices->views);
+		switch_mat4(NULL, matrices->views);
 	if (matrices->projs->switching == 1)
-		switch_mat4(matrices->projs);
+		switch_mat4(e, matrices->projs);
 	matrices->views->active = refresh_view_mat(matrices->views->active,
 									matrices->movement);
 	matrices->f_mat = mat4xmat4(matrices->projs->active,

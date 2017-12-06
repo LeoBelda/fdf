@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 17:31:39 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 22:33:24 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 17:06:02 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	k_trscamz(t_env *e, int flag)
 {
-	e->matrices->movement.tz = (flag ? 1.5 : 0.0);
+	e->matrices->movement.tz = (flag ? 0.9 : 0.0);
 }
 
 void	k_trscamrz(t_env *e, int flag)
 {
-	e->matrices->movement.tz = (flag ? -1.5 : 0.0);
+	e->matrices->movement.tz = (flag ? -0.9 : 0.0);
 }

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 00:01:17 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 20:31:05 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int				draw(t_env *e)
 	set_vdst(e->sound, e->map);
 	set_dst_map(e->map);
 	set_sound_map(e->sound, e->map);
-	set_matrices(e->matrices);
+	set_matrices(e, e->matrices);
 	set_color(e->colors);
 	vertices_to_proj(e->map, e->matrices->f_mat);
 	proj_to_draw(e->map, e->colors->active);

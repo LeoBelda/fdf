@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 15:40:42 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 22:32:12 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 17:10:07 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static float	get_mod_z(float act, float tar, float atk, float rls)
 {
-	if (fabs(tar) > fabs(act))
+	if (fabs(tar) > fabs(act) + 100)
 		return (act = act + (tar >= 0 ? ((tar - act) / atk) : ((tar - act) / atk)));
 	else
-		return (act = act + (tar >= 0 ? -((tar + act) / rls) : -((tar + act) / rls)));
+		return (act = act + (act >= 0 ? -act / rls : -act / rls));
 }
 
 void			sr_default(t_spec *spec, t_map *map)

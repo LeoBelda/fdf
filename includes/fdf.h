@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 23:58:43 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 20:50:20 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ enum			e_keycodes
 
 typedef enum	e_modes
 {
-	M_SKY,
-	M_GRD
+	M_SKY = 1,
+	M_GRD,
+	M_LAST
 }				t_modes;
 
 typedef enum	e_dstmodes
@@ -129,6 +130,14 @@ typedef enum	e_scmodes
 	SC_LAST
 }				t_scmodes;
 
+typedef enum	e_kbmodes
+{
+	KB_GRD = 1,
+	KB_SWI,
+	KB_SKY,
+	KB_LAST
+}				t_kbmodes;
+
 typedef struct	s_kfuncs
 {
 	void	(*f)();
@@ -171,10 +180,24 @@ typedef struct	s_scfuncs
 	t_scmodes	scmode;
 }				t_scfuncs;
 
+typedef struct	s_kbpreset
+{
+	t_kfuncs	*preset;
+	t_kbmodes	kbmode;
+}				t_kbpreset;
+
+typedef struct	s_kbsync
+{
+	t_modes		envmode;
+	t_kbmodes	kbmode;
+}				t_kbsync;
+
 typedef struct	s_controls
 {
-	t_kfuncs	*grd;
-	t_kfuncs	*sky;
+	t_kfuncs	*active;
+	t_kfuncs	*target;
+	t_kbpreset	*presets;
+	t_kbsync	*kbsync;
 }				t_controls;
 
 typedef struct	s_vec2c
@@ -337,10 +360,13 @@ void			fdf(char *file, char *audio);
 void			parse_map(t_map *map, char *file);
 void			init_geometry(t_matrices *matrices, t_map *map);
 void			init_colors(t_colors *colors);
-void			init_controls(t_controls *controls);
+void			init_controls(t_env *e);
 void			init_overlay(t_overlay *overlay);
 void			init_sound(t_sound *sound, char *file);
 t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
+
+void			switch_kbmode(t_env *e, t_kfuncs **preset, t_kbmodes mode);
+t_kbmodes		get_mode_sync(t_kbsync *kbsync, t_modes envmode);
 
 void			load_view_presets(t_matrices *matrices, t_map *map);
 void			load_proj_presets(t_mat4set *projs);
@@ -377,7 +403,7 @@ void			set_sound_color(t_sound *sound, t_map *map, t_colorset active);
 void			sc_default(t_map *map, t_colorset active);
 void			sc_total_vision(t_map *map, t_colorset active);
 
-void			set_matrices(t_matrices *matrices);
+void			set_matrices(t_env *e, t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
 
 void			plain_background(int *addr, int color);
@@ -410,7 +436,7 @@ int				mouse_hook(int button, int x, int y, void *param);
 int				key_press_hook(int keycode, t_env *e);
 int				key_release_hook(int keycode, t_env *e);
 
-void			k_exit(t_env *e);
+void			k_exit(t_env *e, int flag);
 void			k_chpov(t_env *e, int flag);
 void			k_chcolor_stock(t_env *e, int flag);
 void			k_chcolor_program(t_env *e, int flag);

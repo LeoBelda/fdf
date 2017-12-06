@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 23:46:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 00:00:23 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 20:36:44 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int		get_mod_dist(int act, int tar, int atk, int rls)
 void	vdst_default(t_spec *spec, t_map *map)
 {
 	(void)spec;
-	(void)map;
+	map->viewdist_active = 1000;
+	map->viewdist_target = 1000;
 }
 
 void	vdst_sound_total(t_spec *spec, t_map *map)
