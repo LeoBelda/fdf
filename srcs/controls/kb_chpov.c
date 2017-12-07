@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 15:41:27 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 00:34:17 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 01:49:07 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	set_to_bird(t_matrices *matrices)
 
 	i = 0;
 	tmp = get_eye_pos(matrices->views->active);
-	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, 0.0, 4000.0),
+	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, 0.0, 2000.0),
 								vec4new(tmp.x, tmp.z, 0.0, 1.0));
 	while (matrices->views->stock[i].gmode.vmode)
 	{
@@ -44,16 +44,15 @@ static void	set_to_bird(t_matrices *matrices)
 	matrices->projs->gmode.pmode = P_SKY;
 }
 
-static void	set_to_fox(t_matrices *matrices, double mid_height)
+static void	set_to_fox(t_matrices *matrices, t_vec4 mid_mod)
 {
 	t_vec4	tmp;
 	size_t	i;
 
-	(void)mid_height;
 	i = 0;
 	tmp = get_eye_pos(matrices->views->active);
 	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, 0.0, 0.0),
-								vec4new(tmp.x, 0.0, tmp.z, 1.0));
+								vec4new(tmp.x, mid_mod.y, tmp.z, 1.0));
 	while (matrices->views->stock[i].gmode.vmode)
 	{
 		if (matrices->views->stock[i].gmode.vmode == V_GRD)
@@ -84,7 +83,7 @@ void		k_chpov(t_env *e, int flag)
 	if (e->mode == M_SKY)
 		set_to_bird(e->matrices);
 	else
-		set_to_fox(e->matrices, e->map->mid_height);
+		set_to_fox(e->matrices, e->map->mid_mod);
 	ft_bzero(&(e->matrices->movement), sizeof(t_modmat));
 	e->matrices->movement.s = 1.0;
 }

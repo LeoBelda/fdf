@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/04 15:36:47 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 01:47:04 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void			parse_map(t_map *map, char *file)
 		error_exit("");
 	if (!(map->clip = ft_memalloc(sizeof(char) * map->nb_vtx)))
 		error_exit("");
-	//ft_lstdel(tmp_lst,,);
 	if (close(fd) == -1)
 		error_exit("");
 }

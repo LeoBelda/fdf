@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:15:02 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 21:11:17 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 01:52:05 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,13 @@ static t_kfuncs	*kfuncs_swi(void)
 {
 	t_kfuncs	*config;
 
-	if (!(config = ft_memalloc(sizeof(t_kfuncs) * 6)))
+	if (!(config = ft_memalloc(sizeof(t_kfuncs) * 5)))
 		error_exit("");
-	config[0] = (t_kfuncs) { k_chpov, K_P };
-	config[1] = (t_kfuncs) { k_chcolor_stock, K_C };
-	config[2] = (t_kfuncs) { k_chcolor_program, K_F };
-	config[3] = (t_kfuncs) { k_chbuff_mode, K_B };
-	config[4] = (t_kfuncs) { k_exit, K_ESC };
-	config[5] = (t_kfuncs) { NULL, 0 };
+	config[0] = (t_kfuncs) { k_chcolor_stock, K_C };
+	config[1] = (t_kfuncs) { k_chcolor_program, K_F };
+	config[2] = (t_kfuncs) { k_chbuff_mode, K_B };
+	config[3] = (t_kfuncs) { k_exit, K_ESC };
+	config[4] = (t_kfuncs) { NULL, 0 };
 	return (config);
 }
 
