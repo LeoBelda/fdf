@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/06 21:12:53 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/07 10:05:10 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC=srcs/main.c \
 	srcs/init/states.c \
 	\
 	srcs/parse/parse_map.c \
+	srcs/parse/active_vtx.c \
 	\
 	srcs/sound/sound_data.c \
 	srcs/sound/sound_map.c \
@@ -84,14 +85,14 @@ FRAMEWORKS=-framework OpenGL -framework AppKit
 
 NAME=fdf
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-O3 -Wall -Wextra -Werror
 MAKE=make
 INT=install_name_tool -change
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LMLXDIR)$(LIBMLX)
-	-@$(CC) -o $(NAME) -I$(LFTDIR) -I$(LFTMTDIR) -I$(LMLXDIR) -I$(INCLUDES) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(FMODDIR) -l$(FMODLK) -L$(LMLXDIR) -l$(MLXLK) $(FRAMEWORKS) $(OBJ)
+	-@$(CC) -O3 -o $(NAME) -I$(LFTDIR) -I$(LFTMTDIR) -I$(LMLXDIR) -I$(INCLUDES) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(FMODDIR) -l$(FMODLK) -L$(LMLXDIR) -l$(MLXLK) $(FRAMEWORKS) $(OBJ)
 	$(INT) @rpath/libfmodL.dylib $(FMODDIR)libfmodL.dylib $(NAME)
 	-@echo "FdF ready."
 

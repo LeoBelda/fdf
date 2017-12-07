@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 04:49:59 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 11:21:09 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ static void		map_to_list(int fd, t_map *map)
 	while ((ret = get_next_line(fd, &line)))
 	{
 		if (ret == -1
-			|| !(new_line = line_to_vertices(line, i, &(map->nb_col))))
+			|| !(new_line = line_to_vertices(line, i, &(map->nb_col_glb))))
 			error_exit("");
 		ft_lstradd(&(map->vertices_list), new_line);
 		free(line);
 		i++;
 	}
-	if ((map->nb_line = i) < 1)
+	if ((map->nb_line_glb = i) < 1)
 		error_exit("Invalid map - not enough lines");
 }
 
@@ -70,40 +70,41 @@ static void		define_attributes(t_map *map)
 	double	min;
 
 	i = 0;
-	map->nb_vtx = map->nb_line * map->nb_col;
-	min = (map->vertices)[0].z;
-	max = (map->vertices)[0].z;
-	while (i < map->nb_vtx)
+	map->nb_vtx_glb = map->nb_line_glb * map->nb_col_glb;
+	min = (map->vertices_glb)[0].z;
+	max = (map->vertices_glb)[0].z;
+	while (i < map->nb_vtx_glb)
 	{
-		if ((map->vertices)[i].z > max)
-			max = (map->vertices)[i].z;
-		if ((map->vertices)[i].z < min)
-			min = (map->vertices)[i].z;
+		if ((map->vertices_glb)[i].z > max)
+			max = (map->vertices_glb)[i].z;
+		if ((map->vertices_glb)[i].z < min)
+			min = (map->vertices_glb)[i].z;
 		i++;
 	}
 	map->max_z = (int)lround(max);
 	map->min_z = (int)lround(min);
-	map->mid_mod = vec4new((map->vertices[map->nb_vtx - 1].x) / 2,
-							(map->vertices[map->nb_vtx - 1].y) / 2,
+	map->mid_mod = vec4new((map->vertices_glb[map->nb_vtx_glb - 1].x) / 2,
+							(map->vertices_glb[map->nb_vtx_glb - 1].y) / 2,
 						(double)(map->max_z + map->min_z) / 2.0, 1.0);
 	map->mid_height = (double)-(map->max_z + map->min_z / 2.0);
 	map->mid_point = mat4xvec4(trsmat4new(0.0, map->mid_height, 50.0),
 						map->mid_mod);
 	map->az_targut = 0;
+	map->nb_vtx = SIDE * SIDE;
+	map->nb_col = SIDE;
+	map->nb_line = SIDE;
+	map->middle = (map->nb_line_glb / 2) * map->nb_col_glb + map->nb_col_glb / 2;
 }
 
-void			parse_map(t_map *map, char *file)
+static void		alloc_map(t_map *map)
 {
-	int		fd;
-
-	if ((fd = open(file, O_RDONLY)) == -1)
+	if (!(map->vertices = ft_memalloc(sizeof(t_vec4) * map->nb_vtx)))
 		error_exit("");
-	map_to_list(fd, map);
-	map->vertices = ft_lst_to_array(map->vertices_list);
-	define_attributes(map);
 	if (!(map->mod_vertices = ft_memalloc(sizeof(t_vec4) * map->nb_vtx)))
 		error_exit("");
 	if (!(map->target_vtx_z = ft_memalloc(sizeof(float) * map->nb_vtx)))
+		error_exit("");
+	if (!(map->world_coords_glb = ft_memalloc(sizeof(t_vec4) * map->nb_vtx_glb)))
 		error_exit("");
 	if (!(map->world_coords = ft_memalloc(sizeof(t_vec4) * map->nb_vtx)))
 		error_exit("");
@@ -117,6 +118,20 @@ void			parse_map(t_map *map, char *file)
 		error_exit("");
 	if (!(map->clip = ft_memalloc(sizeof(char) * map->nb_vtx)))
 		error_exit("");
+}
+
+void			parse_map(t_map *map, char *file)
+{
+	int		fd;
+
+	if ((fd = open(file, O_RDONLY)) == -1)
+		error_exit("");
+	map_to_list(fd, map);
+	ft_putendl("map is in da list");
+	map->vertices_glb = ft_lst_to_array(map->vertices_list);
+	ft_putendl("map is in da array");
+	define_attributes(map);
+	alloc_map(map);
 	if (close(fd) == -1)
 		error_exit("");
 }

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 23:06:21 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 07:17:53 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ void		proj_to_draw(t_map *map, t_colorset active)
 
 void		draw_line(t_map *map, int *addr, size_t i, size_t j)
 {
-	if ((!map->clip[i] || !map->clip[j]) && 
-			((float)map->draw[i].dst < map->viewdist_active ||
-			 (float)map->draw[j].dst < map->viewdist_active))
+	if ((!map->clip[i] || !map->clip[j]))
 	{
 		if (!map->clip[i] && !map->clip[j])
 			bresenham(map->draw[i], map->draw[j], addr);

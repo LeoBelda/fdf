@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 19:44:47 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 11:08:16 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
-# define BUFF_SIZE 64
+# define BUFF_SIZE 4096
 
 typedef struct	s_stock
 {

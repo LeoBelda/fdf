@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 04:48:58 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 13:08:53 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define YWIN 1440
 # define X_WIN 2560.0
 # define Y_WIN 1440.0
+
+# define SIDE 100
 
 # define FFT_SIZE 1024
 # define OCT_NB 9
@@ -284,10 +286,12 @@ typedef struct	s_mat4set
 typedef struct	s_map
 {
 	t_list		*vertices_list;
+	t_vec4		*vertices_glb;
 	t_vec4		*vertices;
 	float		*target_vtx_z;
 	int			az_targut;
 	t_vec4		*mod_vertices;
+	t_vec4		*world_coords_glb;
 	t_vec4		*world_coords;
 	float		*distancesxy;
 	float		*distancesxz;
@@ -296,8 +300,13 @@ typedef struct	s_map
 	t_vec3		*proj;
 	t_vec2c		*draw;
 	char		*clip;
+	size_t		nb_col_glb;
+	size_t		nb_line_glb;
 	size_t		nb_col;
 	size_t		nb_line;
+	size_t		middle;
+	size_t		closest_vtx_i;
+	size_t		nb_vtx_glb;
 	size_t		nb_vtx;
 	t_vec4		mid_mod;
 	t_vec4		mid_point;
@@ -388,6 +397,10 @@ void			init_controls(t_env *e);
 void			init_overlay(t_overlay *overlay);
 void			init_sound(t_sound *sound, char *file);
 t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
+
+void			get_active_vertices(t_map *map);
+void			get_active_world(t_map *map);
+size_t			get_new_middle(t_map *map);
 
 void			switch_kbmode(t_env *e, t_kfuncs **preset, t_kbmodes mode);
 t_kbmodes		get_mode_sync(t_kbsync *kbsync, t_modes envmode);
