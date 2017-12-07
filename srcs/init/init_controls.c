@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:15:02 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 20:34:20 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 21:11:17 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,4 @@ void			init_controls(t_env *e)
 	(e->controls->presets)[2] = (t_kbpreset) { kfuncs_sky(), KB_SKY };
 	(e->controls->presets)[3] = (t_kbpreset) { NULL, 0 };
 	set_kbsync(e->controls);
-	switch_kbmode(e, &e->controls->active, KB_GRD);
 }

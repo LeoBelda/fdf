@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 20:55:41 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 01:08:38 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,38 @@ static void		switch_mat4(t_env *e, t_mat4set *set)
 	set->progress++;
 }
 
+static void		check_mode(t_mat4set *set)
+{
+	size_t	i;
+
+	i = 0;
+	while (!ft_ismemzero(&(set->stock[i].gmode), sizeof(t_gmodes)))
+	{
+		if (!ft_memcmp(&(set->gmode), &(set->stock[i].gmode), sizeof(t_gmodes)))
+		{
+			if (ft_memcmp(&set->target, &set->stock[i].mat, sizeof(t_mat4)))
+			{
+				set->target = set->stock[i].mat;
+				set->from = set->active;
+				set->switching = 1;
+				set->progress = 0;
+				break ;
+			}
+			else
+				break ;
+		}
+		i++;
+	}
+}
+
 void			set_matrices(t_env *e, t_matrices *matrices)
 {
+	check_mode(matrices->views);
+	check_mode(matrices->projs);
 	if (matrices->views->switching == 1)
-		switch_mat4(NULL, matrices->views);
+		switch_mat4(e, matrices->views);
 	if (matrices->projs->switching == 1)
-		switch_mat4(e, matrices->projs);
+		switch_mat4(NULL, matrices->projs);
 	matrices->views->active = refresh_view_mat(matrices->views->active,
 									matrices->movement);
 	matrices->f_mat = mat4xmat4(matrices->projs->active,

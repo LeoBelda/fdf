@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 20:50:20 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 00:04:30 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,24 @@ typedef enum	e_bmodes
 typedef enum	e_projmodes
 {
 	P_DEFAULT = 1,
+	P_SKY,
 	P_SPACE,
+	P_ORTHO,
 	P_LAST
 }				t_projmodes;
+
+typedef enum	e_viewmodes
+{
+	V_GRD = 1,
+	V_SKY,
+	V_LAST
+}				t_viewmodes;
+
+typedef union	u_gmodes
+{
+	t_projmodes	pmode;
+	t_viewmodes	vmode;
+}				t_gmodes;
 
 typedef enum	e_soundmodes
 {
@@ -167,6 +182,12 @@ typedef struct	s_bfuncs
 	void		(*f)();
 	t_bmodes	bmode;
 }				t_bfuncs;
+
+typedef struct	s_matstock
+{
+	t_mat4		mat;
+	t_gmodes	gmode;
+}				t_matstock;
 
 typedef struct	s_srfuncs
 {
@@ -248,13 +269,14 @@ typedef struct	s_modmat
 
 typedef struct	s_mat4set
 {
-	t_mat4	active;
-	t_mat4	from;
-	t_mat4	target;
-	t_mat4	*stock;
-	size_t	progress;
-	size_t	stock_size;
-	int		switching;
+	t_mat4		active;
+	t_mat4		from;
+	t_mat4		target;
+	size_t		progress;
+	size_t		stock_size;
+	int			switching;
+	t_matstock	*stock;
+	t_gmodes	gmode;
 }				t_mat4set;
 
 typedef struct	s_map
@@ -303,7 +325,6 @@ typedef struct	s_matrices
 	t_vec4		eye_pos;
 	t_mat4		model_mat;
 	t_mat4		f_mat;
-	t_projmodes	projmode;
 }				t_matrices;
 
 typedef struct	s_overlay
@@ -334,7 +355,7 @@ typedef struct	s_sound
 	FMOD_CHANNEL	*channel;
 	FMOD_DSP		*fft;
 	t_audiodata		*data;
-	t_soundmodes	mode;
+	t_soundmodes	smode;
 	t_srmodes		srmode;
 	t_scmodes		scmode;
 	t_srfuncs		*srfuncs;
@@ -372,6 +393,8 @@ void			load_view_presets(t_matrices *matrices, t_map *map);
 void			load_proj_presets(t_mat4set *projs);
 void			set_dstfuncs(t_map *map);
 void			set_vdstfuncs(t_map *map);
+
+void			set_state_basic(t_env *e);
 
 void			load_program_disco(t_colors *colors);
 void			load_program_daynight(t_colors *colors);

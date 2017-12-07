@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 20:19:08 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 21:44:20 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 21:15:29 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void		analyze_fft_output(t_audiodata *data)
 
 void		get_sound_data(t_sound *sound)
 {
-	if (sound->mode == S_ON)
+	if (sound->smode == S_ON)
 	{
 		refresh_audio(sound);
 		analyze_fft_output(sound->data);

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 15:55:01 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 00:00:26 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 21:15:08 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_sound_color(t_sound *sound, t_map *map, t_colorset active)
 	size_t	i;
 
 	i = 0;
-	if (sound->mode == S_ON)
+	if (sound->smode == S_ON)
 		while (sound->scfuncs[i].scmode)
 		{
 			if (sound->scmode == sound->scfuncs[i].scmode)

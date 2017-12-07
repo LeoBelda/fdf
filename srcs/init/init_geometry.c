@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:00:31 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 23:49:52 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 00:37:58 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,7 @@ void			init_geometry(t_matrices *matrices, t_map *map)
 	matrices->model_mat = get_model_mat(matrices->initst, map);
 	get_world_coords(matrices->model_mat, map);
 	load_view_presets(matrices, map);
-	matrices->views->active = matrices->views->stock[0];
-	matrices->views->target = matrices->views->stock[0];
-	matrices->views->from = matrices->views->stock[0];
 	load_proj_presets(matrices->projs);
-	matrices->projs->active = matrices->projs->stock[0];
-	matrices->projs->target = matrices->projs->stock[0];
-	matrices->projs->from = matrices->projs->stock[0];
-	matrices->projmode = P_DEFAULT;
 	set_dstfuncs(map);
 	set_vdstfuncs(map);
-	map->dstmode = DST_AROUND_FLAT;
-	map->vdstmode = VDST_SOUND_TOTAL;
 }

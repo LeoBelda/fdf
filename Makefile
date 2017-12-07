@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/06 19:32:34 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/06 21:12:53 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC=srcs/main.c \
 	srcs/init/init_overlay.c \
 	srcs/init/init_sound.c \
 	srcs/init/init_soundprogs.c \
+	srcs/init/states.c \
 	\
 	srcs/parse/parse_map.c \
 	\

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 15:30:26 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 20:37:28 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 21:15:46 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,11 @@ void	init_sound(t_sound *sound, char *file)
 	system_init(sound);
 	if (channel_init(sound, file))
 	{
-		sound->mode = S_ON;
+		sound->smode = S_ON;
 		set_sr_funcs(sound);
 		set_sc_funcs(sound);
-		sound->srmode = SR_TOTAL_ALTI;
-		sound->scmode = SC_DEFAULT;
 		dsp_init(sound);
 	}
 	else
-	{
-		sound->mode = S_OFF;
-		sound->srmode = SR_DEFAULT;
-		sound->scmode = SC_DEFAULT;
-	}
+		sound->smode = S_OFF;
 }

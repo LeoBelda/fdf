@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 21:10:56 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 16:01:55 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/06 21:15:16 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_sound_map(t_sound *sound, t_map *map)
 	size_t	i;
 
 	i = 0;
-	if (sound->mode == S_ON)
+	if (sound->smode == S_ON)
 		while (sound->srfuncs[i].srmode)
 		{
 			if (sound->srmode == sound->srfuncs[i].srmode)
