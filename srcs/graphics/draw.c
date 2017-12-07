@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 20:31:05 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 02:39:06 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,18 @@ static void		set_vdst(t_sound *sound, t_map *map)
 	size_t	i;
 
 	i = 0;
-	while (map->vdstfuncs[i].vdstmode)
-	{
-		if (map->vdstmode == map->vdstfuncs[i].vdstmode)
+	if (sound->smode == S_ON)
+		while (map->vdstfuncs[i].vdstmode)
 		{
-			map->vdstfuncs[i].f(sound->data->p_spec, map);
-			break ;
+			if (map->vdstmode == map->vdstfuncs[i].vdstmode)
+			{
+				map->vdstfuncs[i].f(sound->data->p_spec, map);
+				break ;
+			}
+			i++;
 		}
-		i++;
-	}
+	else
+		vdst_default((t_spec*)sound, map);
 }
 
 int				draw(t_env *e)

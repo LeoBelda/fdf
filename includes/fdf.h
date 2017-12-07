@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 00:04:30 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 04:48:58 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef enum	e_dstmodes
 {
 	DST_DEFAULT = 1,
 	DST_AROUND_FLAT,
+	DST_DEFAULT_NS,
+	DST_AROUND_FLAT_NS,
 	DST_LAST
 }				t_dstmodes;
 
@@ -284,6 +286,7 @@ typedef struct	s_map
 	t_list		*vertices_list;
 	t_vec4		*vertices;
 	float		*target_vtx_z;
+	int			az_targut;
 	t_vec4		*mod_vertices;
 	t_vec4		*world_coords;
 	float		*distancesxy;
@@ -394,7 +397,8 @@ void			load_proj_presets(t_mat4set *projs);
 void			set_dstfuncs(t_map *map);
 void			set_vdstfuncs(t_map *map);
 
-void			set_state_basic(t_env *e);
+void			set_state_eno(t_env *e);
+void			set_state_psych(t_env *e);
 
 void			load_program_disco(t_colors *colors);
 void			load_program_daynight(t_colors *colors);
@@ -412,7 +416,9 @@ void			get_sound_data(t_sound *sound);
 
 void			set_dst_map(t_map *map);
 void			dst_default(t_map *map);
+void			dst_default_ns(t_map *map);
 void			dst_around_flat(t_map *map);
+void			dst_around_flat_ns(t_map *map);
 
 void			vdst_default(t_spec *spec, t_map *map);
 void			vdst_sound_total(t_spec *spec, t_map *map);

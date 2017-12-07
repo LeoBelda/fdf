@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 21:08:32 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 02:58:26 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		fdf(char *file, char *audio)
 	init_overlay(e->overlay);
 	if (audio)
 		init_sound(e->sound, audio);
-	set_state_basic(e);
+	set_state_psych(e);
 	init_mlx(e);
 	mlx_loop(e->mlx);
 }

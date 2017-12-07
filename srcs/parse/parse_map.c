@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 01:47:04 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 04:49:59 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static void		define_attributes(t_map *map)
 	map->mid_height = (double)-(map->max_z + map->min_z / 2.0);
 	map->mid_point = mat4xvec4(trsmat4new(0.0, map->mid_height, 50.0),
 						map->mid_mod);
+	map->az_targut = 0;
 }
 
 void			parse_map(t_map *map, char *file)
