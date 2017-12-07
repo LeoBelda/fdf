@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 17:26:53 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 18:04:44 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -413,6 +413,7 @@ void			set_vdstfuncs(t_map *map);
 void			set_state_eno(t_env *e);
 void			set_state_psych(t_env *e);
 void			set_state_satin(t_env *e);
+void			set_state_test(t_env *e);
 
 void			load_program_disco(t_colors *colors);
 void			load_program_daynight(t_colors *colors);

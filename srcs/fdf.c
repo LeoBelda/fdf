@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 17:27:13 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 19:24:27 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,10 @@ void		fdf(char *file, char *audio)
 		error_exit("");
 	alloc_env(e);
 	parse_map(e->map, file);
-	ft_putendl("map iz parse");
 	init_geometry(e->matrices, e->map);
 	init_colors(e->colors);
 	init_controls(e);
 	init_overlay(e->overlay);
-	ft_putendl("init is init");
 	if (audio)
 		init_sound(e->sound, audio);
 	set_state_satin(e);
