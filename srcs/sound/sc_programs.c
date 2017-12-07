@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 15:56:16 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 23:59:19 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 17:08:56 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void			sc_total_vision(t_map *map, t_colorset active)
 	while (i < map->nb_vtx)
 	{
 		/*
-		map->draw[i].color = rgbi_interi_ltd(map->draw[i].color, active.background1,
+		map->draw[i].color = rgbi_interi(map->draw[i].color, active.background1,
 				200, (int)lround(map->distancesxy[i]));
 				*/
-		map->draw[i].color = rgbi_interi_ltd(map->draw[i].color, active.background1,
+		map->draw[i].color = rgbi_interi_ltd(map->draw[i].color, active.background1, 
 				map->viewdist_active, (int)lround(map->distancesxz[i]));
 		i++;
 	}

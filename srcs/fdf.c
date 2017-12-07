@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 13:10:07 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 17:27:13 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	init_mlx(t_env *e)
 {
 	if (!(e->mlx = mlx_init()))
 		error_exit("");
-	if (!(e->win = mlx_new_window(e->mlx, XWIN, YWIN, "No Man's Sky 2")))
+	if (!(e->win = mlx_new_window(e->mlx, XWIN, YWIN, "fdf")))
 		error_exit("");
 	if (!(e->img->img = mlx_new_image(e->mlx, XWIN, YWIN)))
 		error_exit("mlx_new_image failed to deliver");
@@ -65,7 +65,7 @@ void		fdf(char *file, char *audio)
 	ft_putendl("init is init");
 	if (audio)
 		init_sound(e->sound, audio);
-	set_state_eno(e);
+	set_state_satin(e);
 	init_mlx(e);
 	mlx_loop(e->mlx);
 }

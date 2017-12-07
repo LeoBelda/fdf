@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 13:08:53 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 17:26:53 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define X_WIN 2560.0
 # define Y_WIN 1440.0
 
-# define SIDE 100
+# define SIDE 150
 
 # define FFT_SIZE 1024
 # define OCT_NB 9
@@ -304,7 +304,7 @@ typedef struct	s_map
 	size_t		nb_line_glb;
 	size_t		nb_col;
 	size_t		nb_line;
-	size_t		middle;
+	t_vec2r		middle;
 	size_t		closest_vtx_i;
 	size_t		nb_vtx_glb;
 	size_t		nb_vtx;
@@ -400,7 +400,7 @@ t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 
 void			get_active_vertices(t_map *map);
 void			get_active_world(t_map *map);
-size_t			get_new_middle(t_map *map);
+t_vec2r			get_new_middle(t_map *map);
 
 void			switch_kbmode(t_env *e, t_kfuncs **preset, t_kbmodes mode);
 t_kbmodes		get_mode_sync(t_kbsync *kbsync, t_modes envmode);
@@ -412,6 +412,7 @@ void			set_vdstfuncs(t_map *map);
 
 void			set_state_eno(t_env *e);
 void			set_state_psych(t_env *e);
+void			set_state_satin(t_env *e);
 
 void			load_program_disco(t_colors *colors);
 void			load_program_daynight(t_colors *colors);

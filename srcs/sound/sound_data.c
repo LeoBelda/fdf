@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 20:19:08 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 04:12:31 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 17:07:48 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void		analyze_fft_output(t_audiodata *data)
 							+ data->oct[1][0]) / 2.0;
 	if (data->p_spec->low_band < 0.1)
 		data->p_spec->low_band = 0.0;
-	data->p_spec->total = get_total_spec(data->oct) * 2.0;
+	data->p_spec->total = get_total_spec(data->oct) * 10.0;
 	if (data->p_spec->total < 0.1)
 		data->p_spec->total = 0.0;
 }

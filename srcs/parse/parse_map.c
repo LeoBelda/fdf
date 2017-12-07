@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 11:21:09 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/07 17:06:43 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void		define_attributes(t_map *map)
 	map->nb_vtx = SIDE * SIDE;
 	map->nb_col = SIDE;
 	map->nb_line = SIDE;
-	map->middle = (map->nb_line_glb / 2) * map->nb_col_glb + map->nb_col_glb / 2;
+	map->middle = (t_vec2r) { map->nb_col_glb / 2, map->nb_line_glb / 2 };
 }
 
 static void		alloc_map(t_map *map)
