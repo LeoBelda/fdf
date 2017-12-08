@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 17:56:40 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 00:37:04 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/08 16:55:33 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,20 @@ void	load_view_presets(t_matrices *matrices, t_map *map)
 
 void	load_proj_presets(t_mat4set *projs)
 {
-	if (!(projs->stock = ft_memalloc(sizeof(t_matstock) * 5)))
+	if (!(projs->stock = ft_memalloc(sizeof(t_matstock) * 6)))
 		error_exit("");
 	(projs->stock[0]) = (t_matstock)
 			{ persmat4new(110.0, 78.0, 1000.0, 1.0), .gmode.pmode = P_DEFAULT };
 	(projs->stock[1]) = (t_matstock)
-			{ persmat4new(45.0, 22.0, 1000.0, 1.0), .gmode.pmode = P_SKY };
+			{ persmat4new(150.0, 90.0, 1000.0, 1.0), .gmode.pmode = P_WIDE };
 	(projs->stock[2]) = (t_matstock)
 			{ persmat4new(130.0, 85.0, 1000.0, 3.0), .gmode.pmode = P_SPACE };
 	(projs->stock[3]) = (t_matstock)
+			{ persmat4new(45.0, 22.0, 1000.0, 1.0), .gmode.pmode = P_SKY };
+	(projs->stock[4]) = (t_matstock)
 			{ orthomat4new(frustrumnew(1000.0, 562.5, 5000.0, -5000.0)),
 													.gmode.pmode = P_ORTHO };
-	(projs->stock[4]) = (t_matstock) { trsmat4new(0.0, 0.0, 0.0),
+	(projs->stock[5]) = (t_matstock) { trsmat4new(0.0, 0.0, 0.0),
 													.gmode.pmode = 0 };
 	projs->active = projs->stock[0].mat;
 	projs->target = projs->stock[0].mat;

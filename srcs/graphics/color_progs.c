@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 19:04:22 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/03 20:19:14 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/08 16:21:51 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ void	program_disco(t_colors *colors)
 	i++;
 }
 
-void	program_daynight(t_colors *colors)
+void	program_hyper(t_colors *colors)
 {
 	static size_t		i;
 	static t_colorset	*handle;
 
 	if (!handle)
-		handle = colors->daynight;
-	if (i == 600)
+		handle = colors->hyper;
+	if (i == 200)
 	{
 		handle++;
 		if (ft_ismemzero((void*)handle, sizeof(t_colorset)))
-			handle = colors->daynight;
+			handle = colors->hyper;
 		colors->from = colors->active;
 		colors->target = *handle;
 		i = 0;
 	}
-	switch_colors(colors, 600, i);
+	switch_colors(colors, 200, i);
 	i++;
 }
 

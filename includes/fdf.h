@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 18:04:44 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/08 16:50:27 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef enum	e_cmodes
 {
 	C_STOCK = 1,
 	C_DISCO,
-	C_DAYNIGHT,
+	C_HYPER,
 	C_STROBO,
 	C_GLOWING,
 	C_LAST
@@ -109,8 +109,9 @@ typedef enum	e_bmodes
 typedef enum	e_projmodes
 {
 	P_DEFAULT = 1,
-	P_SKY,
+	P_WIDE,
 	P_SPACE,
+	P_SKY,
 	P_ORTHO,
 	P_LAST
 }				t_projmodes;
@@ -146,6 +147,7 @@ typedef enum	e_scmodes
 {
 	SC_DEFAULT = 1,
 	SC_TOTAL_VISION,
+	SC_TOTAL_UNVISION,
 	SC_LAST
 }				t_scmodes;
 
@@ -249,7 +251,7 @@ typedef struct	s_colors
 	t_colorset	target;
 	t_colorset	*stock;
 	t_colorset	*disco;
-	t_colorset	*daynight;
+	t_colorset	*hyper;
 	t_colorset	*strobo;
 	t_colorset	*glowing;
 	size_t		progress;
@@ -416,7 +418,7 @@ void			set_state_satin(t_env *e);
 void			set_state_test(t_env *e);
 
 void			load_program_disco(t_colors *colors);
-void			load_program_daynight(t_colors *colors);
+void			load_program_hyper(t_colors *colors);
 void			load_program_strobo(t_colors *colors);
 void			load_program_glowing(t_colors *colors);
 void			set_cfuncs(t_colors *colors);
@@ -446,6 +448,7 @@ void			sr_total_alti(t_spec *spec, t_map *map);
 void			set_sound_color(t_sound *sound, t_map *map, t_colorset active);
 void			sc_default(t_map *map, t_colorset active);
 void			sc_total_vision(t_map *map, t_colorset active);
+void			sc_total_unvision(t_map *map, t_colorset active);
 
 void			set_matrices(t_env *e, t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
@@ -459,7 +462,7 @@ t_vec4			get_eye_pos(t_mat4 active);
 void			switch_colorset(t_colors *colors);
 void			switch_colors(t_colors *colors, size_t distance, size_t progress);
 void			program_disco(t_colors *colors);
-void			program_daynight(t_colors *colors);
+void			program_hyper(t_colors *colors);
 void			program_strobo(t_colors *colors);
 void			program_glowing(t_colors *colors);
 int				get_color(int min_z, int max_z, int z,

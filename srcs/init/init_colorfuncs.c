@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 15:17:50 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/05 15:19:33 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/08 16:09:45 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	set_cfuncs(t_colors *colors)
 		error_exit("");
 	(colors->cfuncs)[0] = (t_cfuncs) { switch_colorset, C_STOCK };
 	(colors->cfuncs)[1] = (t_cfuncs) { program_disco, C_DISCO };
-	(colors->cfuncs)[2] = (t_cfuncs) { program_daynight, C_DAYNIGHT };
+	(colors->cfuncs)[2] = (t_cfuncs) { program_hyper, C_HYPER };
 	(colors->cfuncs)[3] = (t_cfuncs) { program_strobo, C_STROBO };
 	(colors->cfuncs)[4] = (t_cfuncs) { program_glowing, C_GLOWING };
 	(colors->cfuncs)[5] = (t_cfuncs) { NULL, 0 };

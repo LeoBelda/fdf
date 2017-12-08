@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 15:41:27 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 01:49:07 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/08 17:03:44 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void		k_chspace(t_env *e, int flag)
 {
+	size_t	i;
+
 	if (flag == 0)
 		return ;
-	e->matrices->projs->gmode.pmode =
-		(e->matrices->projs->gmode.pmode == P_DEFAULT ? P_SPACE : P_DEFAULT);
+	i = 0;
+	if (e->matrices->projs->gmode.pmode != P_SPACE)
+		e->matrices->projs->gmode.pmode++;
+	else
+		e->matrices->projs->gmode.pmode = P_DEFAULT;
 }
 
 static void	set_to_bird(t_matrices *matrices)

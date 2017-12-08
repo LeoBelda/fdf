@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:57:20 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 01:10:26 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/08 16:22:30 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		init_colors(t_colors *colors)
 {
 	load_colorsets(colors);
 	load_program_disco(colors);
-	load_program_daynight(colors);
+	load_program_hyper(colors);
 	load_program_strobo(colors);
 	load_program_glowing(colors);
 	set_cfuncs(colors);
