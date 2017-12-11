@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 15:41:27 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/08 17:03:44 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 06:14:24 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	set_to_bird(t_matrices *matrices)
 			matrices->views->stock[i].mat = get_view_mat(matrices->eye_pos,
 				mat4xvec4(trsmat4new(0.0, -50.0, 0.0), matrices->eye_pos),
 				vec4new(0.0, 0.0, 1.0, 0.0));
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -56,7 +56,7 @@ static void	set_to_fox(t_matrices *matrices, t_vec4 mid_mod)
 
 	i = 0;
 	tmp = get_eye_pos(matrices->views->active);
-	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, 0.0, 0.0),
+	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, -20.0, 0.0),
 								vec4new(tmp.x, mid_mod.y, tmp.z, 1.0));
 	while (matrices->views->stock[i].gmode.vmode)
 	{
@@ -65,7 +65,7 @@ static void	set_to_fox(t_matrices *matrices, t_vec4 mid_mod)
 			matrices->views->stock[i].mat = get_view_mat(matrices->eye_pos,
 				mat4xvec4(trsmat4new(0.0, 0.0, 50.0), matrices->eye_pos),
 						vec4new(0.0, 1.0, 0.0, 0.0));
-			break;
+			break ;
 		}
 		i++;
 	}

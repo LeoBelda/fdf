@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 19:24:27 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 06:07:56 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ static void	init_mlx(t_env *e)
 	mlx_loop_hook(e->mlx, draw, (void*)e);
 }
 
+static void	set_state(t_env *e, t_lmodes launchmode)
+{
+	if (launchmode == L_DEFAULT)
+		set_state_default(e);
+	else if (launchmode == L_LOUD)
+		set_state_loud(e);
+	else if (launchmode == L_QUIET)
+		set_state_quiet(e);
+}
+
 static void	alloc_env(t_env *e)
 {
 	if (!(e->map = ft_memalloc(sizeof(t_map))))
@@ -49,7 +59,24 @@ static void	alloc_env(t_env *e)
 		error_exit("");
 }
 
-void		fdf(char *file, char *audio)
+static void	define_infinite(t_map *map)
+{
+	if (map->nb_vtx_glb < SIDE * SIDE)
+	{
+		free(map->vertices);
+		map->vertices = map->vertices_glb;
+		free(map->world_coords);
+		map->world_coords = map->world_coords_glb;
+		map->nb_vtx = map->nb_vtx_glb;
+		map->nb_col = map->nb_col_glb;
+		map->nb_line = map->nb_line_glb;
+		map->infmode = INF_OFF;
+	}
+	else
+		map->infmode = INF_ON;
+}
+
+void		fdf(char *file, char *audio, t_lmodes launchmode)
 {
 	t_env	*e;
 
@@ -63,7 +90,8 @@ void		fdf(char *file, char *audio)
 	init_overlay(e->overlay);
 	if (audio)
 		init_sound(e->sound, audio);
-	set_state_satin(e);
+	define_infinite(e->map);
+	set_state(e, launchmode);
 	init_mlx(e);
 	mlx_loop(e->mlx);
 }

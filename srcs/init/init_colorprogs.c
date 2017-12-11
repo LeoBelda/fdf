@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 17:14:05 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/08 16:31:15 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 07:27:53 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	load_program_disco(t_colors *colors)
 		error_exit("");
 	(colors->disco[0]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
 										C_WHI, C_GREEN_DARK };
-	(colors->disco[1]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
+	(colors->disco[1]) = (t_colorset) { C_WHI, C_PURPLE_DARK, C_BLA,
 										C_GREEN_DARK, C_RED };
 	(colors->disco[2]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
 										C_RED, C_PURPLE_DARK };

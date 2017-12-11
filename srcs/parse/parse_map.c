@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 17:06:43 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 02:49:20 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ static t_list	*line_to_vertices(char *line, size_t y_pos, size_t *count_col)
 		error_exit("");
 	while (splitted_line[++j])
 	{
-		new.x = (double)j * 10.0;
-		new.y = (double)y_pos * 10.0;
-		new.z = (double)ft_atoi(splitted_line[j]) * 1.0;
-		new.w = 1.0;
+		new = (t_vec4) { (double)j * 10.0, (double)y_pos * 10.0,
+						(double)ft_atoi(splitted_line[j]) * 1.0, 1.0 };
 		if (!(elem = ft_lstnew(&new, sizeof(t_vec4))))
 			error_exit("");
 		ft_lstradd(&vertices_line, elem);
@@ -66,23 +64,19 @@ static void		map_to_list(int fd, t_map *map)
 static void		define_attributes(t_map *map)
 {
 	size_t	i;
-	double	max;
-	double	min;
 
 	i = 0;
 	map->nb_vtx_glb = map->nb_line_glb * map->nb_col_glb;
-	min = (map->vertices_glb)[0].z;
-	max = (map->vertices_glb)[0].z;
+	map->min_z = (int)(map->vertices_glb)[0].z;
+	map->max_z = (int)(map->vertices_glb)[0].z;
 	while (i < map->nb_vtx_glb)
 	{
-		if ((map->vertices_glb)[i].z > max)
-			max = (map->vertices_glb)[i].z;
-		if ((map->vertices_glb)[i].z < min)
-			min = (map->vertices_glb)[i].z;
+		if ((int)(map->vertices_glb)[i].z > map->max_z)
+			map->max_z = (int)(map->vertices_glb)[i].z;
+		if ((int)(map->vertices_glb)[i].z < map->min_z)
+			map->min_z = (int)(map->vertices_glb)[i].z;
 		i++;
 	}
-	map->max_z = (int)lround(max);
-	map->min_z = (int)lround(min);
 	map->mid_mod = vec4new((map->vertices_glb[map->nb_vtx_glb - 1].x) / 2,
 							(map->vertices_glb[map->nb_vtx_glb - 1].y) / 2,
 						(double)(map->max_z + map->min_z) / 2.0, 1.0);
@@ -104,7 +98,8 @@ static void		alloc_map(t_map *map)
 		error_exit("");
 	if (!(map->target_vtx_z = ft_memalloc(sizeof(float) * map->nb_vtx)))
 		error_exit("");
-	if (!(map->world_coords_glb = ft_memalloc(sizeof(t_vec4) * map->nb_vtx_glb)))
+	if (!(map->world_coords_glb = ft_memalloc(sizeof(t_vec4)
+					* map->nb_vtx_glb)))
 		error_exit("");
 	if (!(map->world_coords = ft_memalloc(sizeof(t_vec4) * map->nb_vtx)))
 		error_exit("");

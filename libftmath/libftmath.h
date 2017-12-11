@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/03 19:14:04 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/10 19:35:25 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ t_vec3			mat4xvec4_tovec3(t_mat4 mat, t_vec4 vec);
 
 double			deg_rad(double deg);
 int				iabs(int val);
+int				imod(int a, int b);
 
 void			print_rgb_fd(t_rgb rgb, int fd);
 void			print_rgb(t_rgb rgb);

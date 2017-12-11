@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:29:02 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/24 15:58:42 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 02:12:16 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*ft_lst_to_array(t_list *lst)
 		return (NULL);
 	while (i < nb_elem)
 	{
-		ft_memcpy(&(array[i *size_elem]), lst->content, size_elem);
+		ft_memcpy(&(array[i * size_elem]), lst->content, size_elem);
 		lst = lst->next;
 		i++;
 	}

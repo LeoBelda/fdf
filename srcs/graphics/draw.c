@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 19:23:21 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 07:39:49 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,44 +44,20 @@ static void		set_buffer(int *addr, t_colors *colors)
 	}
 }
 
-static void		get_distances(t_vec4 eye_pos, t_map *map)
-{
-	size_t	i;
-	double	min;
-
-	i = 0;
-	map->closest_vtx_i = 0;
-	min = 6000.0;
-	while (i < map->nb_vtx)
-	{
-		map->distancesxy[i] = vec4_xy_distance(eye_pos, map->world_coords[i]);
-		if ((map->distancesxz[i] =
-				vec4_xz_distance(eye_pos, map->world_coords[i])) <= min)
-		{
-			min = map->distancesxz[i];
-			map->closest_vtx_i = i;
-		}
-		i++;
-	}
-}
-
 static void		set_vdst(t_sound *sound, t_map *map)
 {
 	size_t	i;
 
 	i = 0;
-	if (sound->smode == S_ON)
-		while (map->vdstfuncs[i].vdstmode)
+	while (map->vdstfuncs[i].vdstmode)
+	{
+		if (map->vdstmode == map->vdstfuncs[i].vdstmode)
 		{
-			if (map->vdstmode == map->vdstfuncs[i].vdstmode)
-			{
-				map->vdstfuncs[i].f(sound->data->p_spec, map);
-				break ;
-			}
-			i++;
+			map->vdstfuncs[i].f(sound, map);
+			break ;
 		}
-	else
-		vdst_default((t_spec*)sound, map);
+		i++;
+	}
 }
 
 int				draw(t_env *e)

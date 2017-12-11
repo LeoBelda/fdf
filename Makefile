@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/07 18:59:10 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/11 00:37:00 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRC=srcs/main.c \
 	srcs/init/states.c \
 	\
 	srcs/parse/parse_map.c \
-	srcs/parse/active_vtx.c \
 	\
 	srcs/sound/sound_data.c \
 	srcs/sound/sound_map.c \
@@ -41,6 +40,7 @@ SRC=srcs/main.c \
 	srcs/graphics/vdst_programs.c \
 	srcs/graphics/matrices.c \
 	srcs/graphics/vertices_pipeline.c \
+	srcs/graphics/active_vtx.c \
 	srcs/graphics/callbacks.c \
 	srcs/graphics/background.c \
 	srcs/graphics/text_overlay.c \

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 20:19:08 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 17:07:48 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 07:34:28 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static void		refresh_audio(t_sound *sound)
 	if ((err = FMOD_System_Update(sound->system)) != FMOD_OK)
 		error_exit("Failed to update FMOD System");
 	if ((err = FMOD_DSP_GetParameterData(sound->fft,
-			FMOD_DSP_FFT_SPECTRUMDATA, (void*)&sound->data->spec,
-			0, 0, 0)))
+					FMOD_DSP_FFT_SPECTRUMDATA, (void*)&sound->data->spec,
+					0, 0, 0)))
 		error_exit("");
 }
 
-static float	get_total_spec(float **oct)
+static float	get_oct_spec(float **oct, int nb_oct, int numchannels)
 {
 	int		chan;
 	int		noct;
@@ -32,10 +32,10 @@ static float	get_total_spec(float **oct)
 
 	chan = 0;
 	total = 0;
-	while (chan < 2)
+	while (chan < numchannels)
 	{
 		noct = 0;
-		while (noct < OCT_NB)
+		while (noct < nb_oct)
 		{
 			total += oct[chan][noct];
 			noct++;
@@ -66,7 +66,7 @@ static void		freq_to_oct(t_audiodata *data)
 	int	nbchan;
 
 	nbchan = 0;
-	while (nbchan < data->spec->numchannels)
+	while (nbchan < data->numchannels)
 	{
 		data->oct[nbchan][0] = get_bins(data->spec->spectrum[nbchan], 1, 2);
 		data->oct[nbchan][1] = get_bins(data->spec->spectrum[nbchan], 2, 4);
@@ -81,23 +81,19 @@ static void		freq_to_oct(t_audiodata *data)
 	}
 }
 
-static void		analyze_fft_output(t_audiodata *data)
-{
-	freq_to_oct(data);
-	data->p_spec->low_band = (data->oct[0][0]
-							+ data->oct[1][0]) / 2.0;
-	if (data->p_spec->low_band < 0.1)
-		data->p_spec->low_band = 0.0;
-	data->p_spec->total = get_total_spec(data->oct) * 10.0;
-	if (data->p_spec->total < 0.1)
-		data->p_spec->total = 0.0;
-}
-
-void		get_sound_data(t_sound *sound)
+void			get_sound_data(t_sound *sound)
 {
 	if (sound->smode == S_ON)
 	{
 		refresh_audio(sound);
-		analyze_fft_output(sound->data);
+		freq_to_oct(sound->data);
+		sound->data->p_spec->low_band = get_oct_spec(
+				sound->data->oct, 1, sound->data->numchannels);
+		if (sound->data->p_spec->low_band < 0.1)
+			sound->data->p_spec->low_band = 0.0;
+		sound->data->p_spec->total = get_oct_spec(
+				sound->data->oct, OCT_NB, sound->data->numchannels) * 10.0;
+		if (sound->data->p_spec->total < 0.1)
+			sound->data->p_spec->total = 0.0;
 	}
 }

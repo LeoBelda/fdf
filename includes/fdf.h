@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/08 16:50:27 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 07:42:58 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define X_WIN 2560.0
 # define Y_WIN 1440.0
 
-# define SIDE 150
+# define SIDE 170
 
 # define FFT_SIZE 1024
 # define OCT_NB 9
@@ -66,6 +66,20 @@ enum			e_keycodes
 	K_UP
 };
 
+typedef enum	e_lmodes
+{
+	L_DEFAULT = 1,
+	L_LOUD,
+	L_QUIET,
+	L_LAST
+}				t_lmodes;
+
+typedef enum	e_infmodes
+{
+	INF_OFF = 0,
+	INF_ON
+}				t_infmodes;
+
 typedef enum	e_modes
 {
 	M_SKY = 1,
@@ -85,6 +99,7 @@ typedef enum	e_dstmodes
 typedef enum	e_vdstmodes
 {
 	VDST_DEFAULT = 1,
+	VDST_LIGHT,
 	VDST_SOUND_TOTAL,
 	VDST_LAST
 }				t_vdstmodes;
@@ -319,6 +334,7 @@ typedef struct	s_map
 	t_dstfuncs	*dstfuncs;
 	t_vdstmodes	vdstmode;
 	t_vdstfuncs	*vdstfuncs;
+	t_infmodes	infmode;
 }				t_map;
 
 typedef struct	s_img
@@ -357,6 +373,7 @@ typedef struct	s_spec
 typedef struct	s_audiodata
 {
 	float					volume;
+	int						numchannels;
 	FMOD_DSP_PARAMETER_FFT	*spec;
 	float					**oct;
 	t_spec					*p_spec;
@@ -390,7 +407,7 @@ typedef struct	s_env
 	t_modes		mode;
 }				t_env;
 
-void			fdf(char *file, char *audio);
+void			fdf(char *file, char *audio, t_lmodes launchmode);
 
 void			parse_map(t_map *map, char *file);
 void			init_geometry(t_matrices *matrices, t_map *map);
@@ -413,9 +430,9 @@ void			set_dstfuncs(t_map *map);
 void			set_vdstfuncs(t_map *map);
 
 void			set_state_eno(t_env *e);
-void			set_state_psych(t_env *e);
-void			set_state_satin(t_env *e);
-void			set_state_test(t_env *e);
+void			set_state_loud(t_env *e);
+void			set_state_quiet(t_env *e);
+void			set_state_default(t_env *e);
 
 void			load_program_disco(t_colors *colors);
 void			load_program_hyper(t_colors *colors);
@@ -432,13 +449,15 @@ int				draw(t_env *e);
 void			get_sound_data(t_sound *sound);
 
 void			set_dst_map(t_map *map);
+void			get_distances(t_vec4 eye_pos, t_map *map);
 void			dst_default(t_map *map);
 void			dst_default_ns(t_map *map);
 void			dst_around_flat(t_map *map);
 void			dst_around_flat_ns(t_map *map);
 
-void			vdst_default(t_spec *spec, t_map *map);
-void			vdst_sound_total(t_spec *spec, t_map *map);
+void			vdst_default(t_sound *sound, t_map *map);
+void			vdst_light(t_sound *sound, t_map *map);
+void			vdst_sound_total(t_sound *sound, t_map *map);
 
 void			set_sound_map(t_sound *sound, t_map *map);
 void			sr_default(t_spec *spec, t_map *map);
@@ -453,9 +472,9 @@ void			sc_total_unvision(t_map *map, t_colorset active);
 void			set_matrices(t_env *e, t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
 
-void			plain_background(int *addr, int color);
-void			no_background(int *addr, int color);
-void			stripped_background(int *addr, int cola, int colb, size_t thick);
+void			plain_background(int *addr, int colora);
+void			no_background(int *addr, int colora);
+void			stripped_background(int *addr, int cola, int colb);
 
 t_vec4			get_eye_pos(t_mat4 active);
 

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 17:56:40 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/08 16:55:33 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 06:11:34 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	load_view_presets(t_matrices *matrices, t_map *map)
 	if (!(matrices->views->stock = ft_memalloc(sizeof(t_matstock) * 3)))
 		error_exit("");
 	matrices->eye_pos = mat4xvec4(
-			trsmat4new(0.0, 0.0, 0.0),
+			trsmat4new(0.0, -20.0, 0.0),
 			map->mid_mod);
 	(matrices->views->stock[0]) = (t_matstock)
 		{ get_view_mat(matrices->eye_pos,
@@ -27,7 +27,6 @@ void	load_view_presets(t_matrices *matrices, t_map *map)
 		{ trsmat4new(0.0, 0.0, 0.0), .gmode.vmode = V_SKY };
 	(matrices->views->stock[2]) = (t_matstock)
 		{ trsmat4new(0.0, 0.0, 0.0), .gmode.vmode = 0 };
-
 	matrices->views->active = matrices->views->stock[0].mat;
 	matrices->views->target = matrices->views->stock[0].mat;
 	matrices->views->from = matrices->views->stock[0].mat;

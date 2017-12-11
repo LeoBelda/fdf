@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap_param.c                                  :+:      :+:    :+:   */
+/*   imod.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/18 16:42:32 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 02:12:07 by lbelda           ###   ########.fr       */
+/*   Created: 2017/12/10 19:31:40 by lbelda            #+#    #+#             */
+/*   Updated: 2017/12/10 19:34:34 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftmath.h"
 
-t_list	*ft_lstmap_param(t_list *lst, void *param,
-		t_list *(*f)(t_list *elem, void *param))
+int	imod(int a, int b)
 {
-	t_list	*new;
+	int	rem;
 
-	new = NULL;
-	while (lst)
-	{
-		ft_lstradd(&new, f(lst, param));
-		lst = lst->next;
-	}
-	return (new);
+	rem = a % b;
+	return (rem < 0 ? rem + b : rem);
 }

@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/03 19:14:14 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/10 19:35:03 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC=rgbnew.c \
 	\
 	deg_rad.c \
 	iabs.c \
+	imod.c \
 	\
 	print_rgb_fd.c \
 	print_rgb.c \
