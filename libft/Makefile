@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/01 19:44:29 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/11 23:53:28 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ SRC=ft_memset.c \
 OBJ=$(SRC:%.c=%.o)
 NAME=libft.a
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-O3 -Wall -Wextra -Werror
 
 all: $(NAME)
 

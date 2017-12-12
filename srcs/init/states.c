@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 21:06:36 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 07:28:56 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 19:52:49 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,9 @@ void	set_state_default(t_env *e)
 		e->map->vdstmode = VDST_DEFAULT;
 	}
 	switch_kbmode(e, &e->controls->active, KB_GRD);
+}
+
+void	set_state_rt(t_env *e)
+{
+	switch_kbmode(e, &e->controls->active, KB_RT);
 }

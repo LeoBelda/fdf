@@ -6,64 +6,23 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/11 23:48:53 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/12 05:36:37 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC=rgbnew.c \
-	rgbcpy.c \
-	rgb_to_int.c \
+SRC=vec4cf_to_rgb.c \
+	pos_to_vec2f.c \
 	\
-	rgb_interi.c \
-	rgbi_interi.c \
-	rgbi_interi_ltd.c \
-	mat4_interi.c \
-	dbl_interr.c \
-	dbl_interr_log.c \
+	vec_length.c \
+	vec_normalize.c \
+	scal_vec.c \
+	add_vec.c \
+	sub_vec.c \
 	\
-	vec2rnewd.c \
-	vec2rnewi.c \
-	vec4new.c \
-	vec4neg.c \
-	mat4new.c \
-	idmat4new.c \
-	sclmat4new.c \
-	trsmat4new.c \
-	trsmat4vec.c \
-	rotxmat4new.c \
-	rotymat4new.c \
-	rotzmat4new.c \
-	orthomat4new.c \
-	persmat4new.c \
-	frustrumnew.c \
-	\
-	cross_product.c \
-	norm_vec4.c \
-	vec4_xy_distance.c \
-	vec4_xz_distance.c \
-	vec4xvec4.c \
-	mat4xvec4.c \
-	vec4xmat4.c \
-	mat4xmat4.c \
-	mat4xvec4_tovec3.c \
-	\
-	deg_rad.c \
-	iabs.c \
-	imod.c \
-	\
-	print_rgb_fd.c \
-	print_rgb.c \
-	print_double_fd.c \
-	print_double.c \
-	print_vec4_fd.c \
-	print_vec4.c \
-	print_vec2r_fd.c \
-	print_vec2r.c \
-	print_mat4_fd.c \
-	print_mat4.c \
+	step.c
 	
 OBJ=$(SRC:%.c=%.o)
-NAME=libftmath.a
+NAME=libshader.a
 CC=gcc
 CFLAGS=-O3 -Wall -Wextra -Werror
 
@@ -72,7 +31,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	-@ar rc $(NAME) $(OBJ)
 	-@ranlib $(NAME)
-	-@echo "Libftmath ready."
+	-@echo "Libshader ready."
 
 %.o: %.c
 	-@$(CC) $(CFLAGS) -c $^

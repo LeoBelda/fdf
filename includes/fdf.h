@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 07:42:58 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/12 06:03:48 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 # include "libft.h"
 # include "libftmath.h"
+# include "libshader.h"
 # include "fmod.h"
 # include <stdlib.h>
 # include <stdio.h>
@@ -31,7 +32,7 @@
 # define X_WIN 2560.0
 # define Y_WIN 1440.0
 
-# define SIDE 170
+# define SIDE 200
 
 # define FFT_SIZE 1024
 # define OCT_NB 9
@@ -171,6 +172,7 @@ typedef enum	e_kbmodes
 	KB_GRD = 1,
 	KB_SWI,
 	KB_SKY,
+	KB_RT,
 	KB_LAST
 }				t_kbmodes;
 
@@ -424,6 +426,11 @@ t_vec2r			get_new_middle(t_map *map);
 void			switch_kbmode(t_env *e, t_kfuncs **preset, t_kbmodes mode);
 t_kbmodes		get_mode_sync(t_kbsync *kbsync, t_modes envmode);
 
+t_kfuncs		*kfuncs_grd(void);
+t_kfuncs		*kfuncs_sky(void);
+t_kfuncs		*kfuncs_swi(void);
+t_kfuncs		*kfuncs_rt(void);
+
 void			load_view_presets(t_matrices *matrices, t_map *map);
 void			load_proj_presets(t_mat4set *projs);
 void			set_dstfuncs(t_map *map);
@@ -433,6 +440,7 @@ void			set_state_eno(t_env *e);
 void			set_state_loud(t_env *e);
 void			set_state_quiet(t_env *e);
 void			set_state_default(t_env *e);
+void			set_state_rt(t_env *e);
 
 void			load_program_disco(t_colors *colors);
 void			load_program_hyper(t_colors *colors);
@@ -445,6 +453,9 @@ void			set_sr_funcs(t_sound *sound);
 void			set_sc_funcs(t_sound *sound);
 
 int				draw(t_env *e);
+int				rtinit(t_env *e);
+
+float			sdf_sphere(t_vec3pf p);
 
 void			get_sound_data(t_sound *sound);
 

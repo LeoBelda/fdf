@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/10 19:35:25 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/11 23:31:51 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,16 @@ typedef struct	s_rgb
 	unsigned char	b;
 }				t_rgb;
 
+# ifndef T_VEC2R
+#  define T_VEC2R
+
 typedef struct	s_vec2r
 {
 	int	x;
 	int	y;
 }				t_vec2r;
+
+# endif
 
 typedef struct	s_vec3
 {
