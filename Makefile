@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/12 08:57:26 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/16 23:56:26 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC=srcs/main.c \
 	srcs/init/init_colorfuncs.c \
 	srcs/init/init_controls.c \
 	srcs/init/init_controlspresets.c \
+	srcs/init/init_starbox.c \
 	srcs/init/init_overlay.c \
 	srcs/init/init_sound.c \
 	srcs/init/init_soundprogs.c \
@@ -44,6 +45,7 @@ SRC=srcs/main.c \
 	srcs/graphics/active_vtx.c \
 	srcs/graphics/callbacks.c \
 	srcs/graphics/background.c \
+	srcs/graphics/starbox.c \
 	srcs/graphics/text_overlay.c \
 	\
 	srcs/rt/rtcore.c \

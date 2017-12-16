@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 17:56:40 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 06:11:34 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/17 00:30:39 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	load_view_presets(t_matrices *matrices, t_map *map)
 	matrices->eye_pos = mat4xvec4(
 			trsmat4new(0.0, -20.0, 0.0),
 			map->mid_mod);
+	matrices->prev_eye_pos = matrices->eye_pos;
 	(matrices->views->stock[0]) = (t_matstock)
 		{ get_view_mat(matrices->eye_pos,
 		mat4xvec4(trsmat4new(0.0, 0.0, 50.0), matrices->eye_pos),

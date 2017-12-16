@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 07:39:49 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/17 00:39:28 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int				draw(t_env *e)
 	get_sound_data(e->sound);
 	get_active_vertices(e->map);
 	get_active_world(e->map);
-	e->matrices->eye_pos = get_eye_pos(e->matrices->views->active);
+	get_eye_pos(e->matrices);
 	get_distances(e->matrices->eye_pos, e->map);
 	e->map->middle = get_new_middle(e->map);
 	set_vdst(e->sound, e->map);
@@ -74,6 +74,7 @@ int				draw(t_env *e)
 	set_sound_map(e->sound, e->map);
 	set_matrices(e, e->matrices);
 	set_color(e->colors);
+	draw_starbox(e->map, e->matrices, e->img->addr);
 	vertices_to_proj(e->map, e->matrices->f_mat);
 	proj_to_draw(e->map, e->colors->active);
 	set_sound_color(e->sound, e->map, e->colors->active);

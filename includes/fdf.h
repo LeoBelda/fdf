@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/12 06:03:48 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/17 00:33:42 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,6 +332,10 @@ typedef struct	s_map
 	double		mid_height;
 	int			min_z;
 	int			max_z;
+	size_t		starbox_size;
+	t_vec4		*starbox;
+	t_vec3		*starproj;
+	t_vec2c		*stardraw;
 	t_dstmodes	dstmode;
 	t_dstfuncs	*dstfuncs;
 	t_vdstmodes	vdstmode;
@@ -355,6 +359,8 @@ typedef struct	s_matrices
 	t_mat4set	*projs;
 	t_mat4set	*views;
 	t_vec4		eye_pos;
+	t_vec4		prev_eye_pos;
+	t_vec4		diff_eye_pos;
 	t_mat4		model_mat;
 	t_mat4		f_mat;
 }				t_matrices;
@@ -415,6 +421,7 @@ void			parse_map(t_map *map, char *file);
 void			init_geometry(t_matrices *matrices, t_map *map);
 void			init_colors(t_colors *colors);
 void			init_controls(t_env *e);
+void			init_starbox(t_map *map);
 void			init_overlay(t_overlay *overlay);
 void			init_sound(t_sound *sound, char *file);
 t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
@@ -487,7 +494,7 @@ void			plain_background(int *addr, int colora);
 void			no_background(int *addr, int colora);
 void			stripped_background(int *addr, int cola, int colb);
 
-t_vec4			get_eye_pos(t_mat4 active);
+void			get_eye_pos(t_matrices *matrices);
 
 void			switch_colorset(t_colors *colors);
 void			switch_colors(t_colors *colors, size_t distance, size_t progress);
@@ -498,6 +505,7 @@ void			program_glowing(t_colors *colors);
 int				get_color(int min_z, int max_z, int z,
 												t_colorset active);
 
+void			draw_starbox(t_map *map, t_matrices *matrices, int *addr);
 void			vertices_to_proj(t_map *map, t_mat4 f_mat);
 void			proj_to_draw(t_map *map, t_colorset active);
 void			draw_to_img(t_map *map, int *addr);

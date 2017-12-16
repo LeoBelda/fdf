@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 15:41:27 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 06:14:24 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/17 00:36:25 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void		k_chspace(t_env *e, int flag)
 
 static void	set_to_bird(t_matrices *matrices)
 {
-	t_vec4	tmp;
 	size_t	i;
 
 	i = 0;
-	tmp = get_eye_pos(matrices->views->active);
+	get_eye_pos(matrices);
 	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, 0.0, 2000.0),
-								vec4new(tmp.x, tmp.z, 0.0, 1.0));
+								vec4new(matrices->eye_pos.x,
+									matrices->eye_pos.z, 0.0, 1.0));
 	while (matrices->views->stock[i].gmode.vmode)
 	{
 		if (matrices->views->stock[i].gmode.vmode == V_SKY)
@@ -51,13 +51,13 @@ static void	set_to_bird(t_matrices *matrices)
 
 static void	set_to_fox(t_matrices *matrices, t_vec4 mid_mod)
 {
-	t_vec4	tmp;
 	size_t	i;
 
 	i = 0;
-	tmp = get_eye_pos(matrices->views->active);
+	get_eye_pos(matrices);
 	matrices->eye_pos = mat4xvec4(trsmat4new(0.0, -20.0, 0.0),
-								vec4new(tmp.x, mid_mod.y, tmp.z, 1.0));
+								vec4new(matrices->eye_pos.x, mid_mod.y,
+									matrices->eye_pos.z, 1.0));
 	while (matrices->views->stock[i].gmode.vmode)
 	{
 		if (matrices->views->stock[i].gmode.vmode == V_GRD)

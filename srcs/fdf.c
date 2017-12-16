@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/12 09:41:35 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/17 00:02:46 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void		fdf(char *file, char *audio, t_lmodes launchmode)
 	init_geometry(e->matrices, e->map);
 	init_colors(e->colors);
 	init_controls(e);
+	init_starbox(e->map);
 	init_overlay(e->overlay);
 	if (audio)
 		init_sound(e->sound, audio);
