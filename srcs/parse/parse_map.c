@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 09:18:19 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/18 10:21:42 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ static void		alloc_map(t_map *map)
 	if (!(map->world_coords_glb = ft_memalloc(sizeof(t_vec4)
 					* map->nb_vtx_glb)))
 		error_exit("");
-	if (!(map->world_coords = ft_memalloc(sizeof(t_vec4) * map->nb_vtx)))
+	if (!(map->world_vtx = ft_memalloc(sizeof(t_vec4) * map->nb_vtx)))
+		error_exit("");
+	if (!(map->m_world_vtx = ft_memalloc(sizeof(t_vec4) * map->nb_vtx)))
 		error_exit("");
 	if (!(map->distancesxy = ft_memalloc(sizeof(float) * map->nb_vtx)))
 		error_exit("");

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 19:05:16 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 03:22:20 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/18 14:41:33 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	get_distances(t_vec4 eye_pos, t_map *map)
 	min = 6000.0;
 	while (i < map->nb_vtx)
 	{
-		map->distancesxy[i] = vec4_xy_distance(eye_pos, map->world_coords[i]);
+		map->distancesxy[i] = vec4_xy_distance(eye_pos, map->world_vtx[i]);
 		if ((map->distancesxz[i] =
-				vec4_xz_distance(eye_pos, map->world_coords[i])) <= min)
+				vec4_xz_distance(eye_pos, map->world_vtx[i])) <= min)
 		{
 			min = map->distancesxz[i];
 			map->closest_vtx_i = i;

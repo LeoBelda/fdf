@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 09:08:36 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/18 20:18:46 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		*vertices_to_proj(void *dt)
 
 	d = (t_thrd*)dt;
 	i = d->i;
-	vertices = d->e->map->mod_vertices;
+	vertices = d->e->map->m_world_vtx;
 	while (i < d->e->map->nb_vtx)
 	{
 		d->e->map->proj[i] = mat4xvec4_tovec3(d->e->matrices->f_mat,
@@ -58,7 +58,7 @@ void		*proj_to_draw(void *dt)
 			{ (d->e->map->proj[i].x + 1.0) * X_WIN / 2.0,
 			(d->e->map->proj[i].y + 1.0) * Y_WIN / 2.0,
 			get_color(d->e->map->min_z, d->e->map->max_z,
-						(int)d->e->map->vertices[i].z, d->e->colors->active),
+						(int)d->e->map->world_vtx[i].y, d->e->colors->active),
 			d->e->map->distancesxz[i] };
 		i += NB_THRD;
 	}
@@ -85,16 +85,18 @@ void		*draw_to_img(void *dt)
 
 	d = (t_thrd*)dt;
 	i = d->i;
-	y = i / d->e->map->nb_col;
+	y = d->i / d->e->map->nb_col;
 	while (y < d->e->map->nb_line)
 	{
 		x = i % d->e->map->nb_col;
 		while (x < d->e->map->nb_col)
 		{
 			if (x + 1 < d->e->map->nb_col)
-				draw_line(d->e->map, d->e->img->addr, i, i + 1);
+				draw_line(d->e->map, d->e->img->addr,
+									i, i + 1);
 			if (y + 1 < d->e->map->nb_line)
-				draw_line(d->e->map, d->e->img->addr, i, i + d->e->map->nb_col);
+				draw_line(d->e->map, d->e->img->addr,
+									i, i + d->e->map->nb_col);
 			i += NB_THRD;
 			x += NB_THRD;
 		}

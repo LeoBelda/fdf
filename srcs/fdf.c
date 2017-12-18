@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 09:18:25 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/18 19:34:54 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,18 @@ static void	set_state(t_env *e, t_lmodes launchmode)
 
 static void	alloc_env(t_env *e)
 {
+	int	i;
+
+	i = -1;
 	if (!(e->map = ft_memalloc(sizeof(t_map))))
 		error_exit("");
 	if (!(e->img = ft_memalloc(sizeof(t_img))))
 		error_exit("");
+	if (!(e->img->p_addr = ft_memalloc(sizeof(int*) * NB_THRD)))
+		error_exit("");
+	while (++i < NB_THRD)
+		if (!(e->img->p_addr[i] = ft_memalloc(sizeof(int) * XWIN * YWIN)))
+			error_exit("");
 	if (!(e->matrices = ft_memalloc(sizeof(t_matrices))))
 		error_exit("");
 	if (!(e->colors = ft_memalloc(sizeof(t_colors))))
@@ -65,8 +73,8 @@ static void	define_infinite(t_map *map)
 	{
 		free(map->vertices);
 		map->vertices = map->vertices_glb;
-		free(map->world_coords);
-		map->world_coords = map->world_coords_glb;
+		free(map->world_vtx);
+		map->world_vtx = map->world_coords_glb;
 		map->nb_vtx = map->nb_vtx_glb;
 		map->nb_col = map->nb_col_glb;
 		map->nb_line = map->nb_line_glb;

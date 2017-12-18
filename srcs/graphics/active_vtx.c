@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 05:53:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 10:03:07 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/18 10:57:00 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,33 +64,36 @@ void		get_active_vertices(t_map *map)
 	}
 }
 
-void		get_active_world(t_map *map)
+void		*get_active_world(void *dt)
 {
 	int		i;
 	int		j;
 	int		hrz_f;
 	int		vrt_f;
+	t_thrdm	*d;
 
+	d = (t_thrdm*)dt;
 	i = 0;
-	if (map->infmode == INF_OFF)
-		return ;
+	if (d->map->infmode == INF_OFF)
+		return (NULL);
 	while (i < SIDE)
 	{
-		j = 0;
+		j = d->i;
 		while (j < SIDE)
 		{
-			map->world_coords[j + i * SIDE] = map->world_coords_glb
-				[imod(((map->middle.x + (j - SIDE / 2))), (int)map->nb_col_glb)
-				+ imod((map->middle.y + (i - SIDE / 2)), (int)map->nb_line_glb)
-					* (int)map->nb_col_glb];
-			hrz_f = get_trs_factor(j, map->middle.x, (int)map->nb_col_glb);
-			vrt_f = get_trs_factor(i, map->middle.y, (int)map->nb_line_glb);
-			map->world_coords[j + i * SIDE] =
-				mat4xvec4(trsmat4new((double)(hrz_f * ((int)map->nb_col_glb)
-					* 10), 0.0, (double)(vrt_f * ((int)map->nb_line_glb) * 10)),
-							map->world_coords[j + i * SIDE]);
-			j++;
+			d->map->world_vtx[j + i * SIDE] = d->map->world_coords_glb
+				[imod(((d->map->middle.x + (j - SIDE / 2))), (int)d->map->nb_col_glb)
+				+ imod((d->map->middle.y + (i - SIDE / 2)), (int)d->map->nb_line_glb)
+					* (int)d->map->nb_col_glb];
+			hrz_f = get_trs_factor(j, d->map->middle.x, (int)d->map->nb_col_glb);
+			vrt_f = get_trs_factor(i, d->map->middle.y, (int)d->map->nb_line_glb);
+			d->map->world_vtx[j + i * SIDE] =
+				mat4xvec4(trsmat4new((double)(hrz_f * ((int)d->map->nb_col_glb)
+					* 10), 0.0, (double)(vrt_f * ((int)d->map->nb_line_glb) * 10)),
+							d->map->world_vtx[j + i * SIDE]);
+			j += NB_THRD;
 		}
 		i++;
 	}
+	return (NULL);
 }

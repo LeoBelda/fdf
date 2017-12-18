@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 10:03:41 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/18 21:16:51 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <math.h>
 # include <time.h>
 
-# define NB_THRD 16
+# define NB_THRD 4
 
 # define XWIN 2560
 # define YWIN 1440
@@ -220,7 +220,7 @@ typedef struct	s_cfuncs
 
 typedef struct	s_bfuncs
 {
-	void		(*f)();
+	void		*(*f)();
 	t_bmodes	bmode;
 }				t_bfuncs;
 
@@ -339,7 +339,8 @@ typedef struct	s_map
 	int			az_targut;
 	t_vec4		*mod_vertices;
 	t_vec4		*world_coords_glb;
-	t_vec4		*world_coords;
+	t_vec4		*m_world_vtx;
+	t_vec4		*world_vtx;
 	float		*distancesxy;
 	float		*distancesxz;
 	int			viewdist_active;
@@ -376,6 +377,7 @@ typedef struct	s_img
 {
 	void	*img;
 	int		*addr;
+	int		**p_addr;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -456,6 +458,13 @@ typedef struct	s_thrdm
 	int		i;
 }				t_thrdm;
 
+typedef struct	s_thrdbuf
+{
+	int		*addr;
+	int		color;
+	int		i;
+}				t_thrdbuf;
+
 void			fdf(char *file, char *audio, t_lmodes launchmode);
 
 void			parse_map(t_map *map, char *file);
@@ -468,7 +477,7 @@ void			init_sound(t_sound *sound, char *file);
 t_mat4			get_view_mat(t_vec4 eye, t_vec4 target, t_vec4 up);
 
 void			get_active_vertices(t_map *map);
-void			get_active_world(t_map *map);
+void			*get_active_world(void *dt);
 t_vec2r			get_new_middle(t_map *map);
 
 void			switch_kbmode(t_env *e, t_kfuncs **preset, t_kbmodes mode);
@@ -501,6 +510,7 @@ void			set_sr_funcs(t_sound *sound);
 void			set_sc_funcs(t_sound *sound);
 
 int				draw(t_env *e);
+void			*pre_to_render(void* dt);
 int				rtinit(t_env *e);
 
 float			sdf_sphere(t_vec3pf p);
@@ -531,14 +541,14 @@ void			sc_total_unvision(t_map *map, t_colorset active);
 void			set_matrices(t_env *e, t_matrices *matrices);
 void			manage_text_overlay(t_env *e);
 
-void			plain_background(int *addr, int colora);
-void			no_background(int *addr, int colora);
-void			stripped_background(int *addr, int cola, int colb);
+void			*plain_background(void *dt);
+void			*no_background(void *dt);
 
 void			get_eye_pos(t_matrices *matrices);
 
 void			switch_colorset(t_colors *colors);
-void			switch_colors(t_colors *colors, size_t distance, size_t progress);
+void			switch_colors(t_colors *colors, size_t distance,
+													size_t progress);
 void			program_disco(t_colors *colors);
 void			program_hyper(t_colors *colors);
 void			program_strobo(t_colors *colors);
@@ -592,6 +602,7 @@ void			k_rotcamrz(t_env *e, int flag);
 
 void			send_threads(void *(*f)(), t_env *e);
 void			send_threads_m(void *(*f)(), t_map *map);
+void			send_threads_buf(void *(*f)(), int *addr, int color);
 
 void			usage_exit(void);
 void			error_exit(char *msg);

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/17 00:33:21 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/18 10:24:37 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,5 @@ void			set_matrices(t_env *e, t_matrices *matrices)
 	matrices->views->active = refresh_view_mat(matrices->views->active,
 									matrices->movement);
 	matrices->f_mat = mat4xmat4(matrices->projs->active,
-						mat4xmat4(matrices->views->active,
-						matrices->model_mat));
+						matrices->views->active);
 }

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 10:03:16 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/18 19:40:20 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void		set_buffer(int *addr, t_colors *colors)
 	{
 		if (colors->bmode == colors->bfuncs[i].bmode)
 		{
-			colors->bfuncs[i].f(addr, colors->active.bg1);
+			send_threads_buf(colors->bfuncs[i].f, addr, colors->active.bg1);
 			break ;
 		}
 		i++;
@@ -64,8 +64,8 @@ int				draw(t_env *e)
 {
 	set_buffer(e->img->addr, e->colors);
 	get_sound_data(e->sound);
-	get_active_vertices(e->map);
-	get_active_world(e->map);
+	//get_active_vertices(e->map);
+	send_threads_m(get_active_world, e->map);
 	get_eye_pos(e->matrices);
 	get_distances(e->matrices->eye_pos, e->map);
 	e->map->middle = get_new_middle(e->map);
