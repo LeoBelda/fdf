@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/18 00:41:55 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/18 07:39:05 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ SRC=srcs/main.c \
 	srcs/controls/kb_misc.c \
 	srcs/controls/tools.c \
 	\
-	srcs/utils/print_db.c
+	srcs/utils/print_db.c \
+	srcs/utils/threads.c
 
 OBJ=$(SRC:%.c=%.o)
 INCLUDES=includes/

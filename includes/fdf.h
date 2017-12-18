@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 04:57:50 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/18 10:03:41 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
+# include <pthread.h>
 # include <math.h>
 # include <time.h>
+
+# define NB_THRD 16
 
 # define XWIN 2560
 # define YWIN 1440
@@ -441,6 +444,18 @@ typedef struct	s_env
 	t_modes		mode;
 }				t_env;
 
+typedef struct	s_thrd
+{
+	t_env	*e;
+	int		i;
+}				t_thrd;
+
+typedef struct	s_thrdm
+{
+	t_map	*map;
+	int		i;
+}				t_thrdm;
+
 void			fdf(char *file, char *audio, t_lmodes launchmode);
 
 void			parse_map(t_map *map, char *file);
@@ -533,9 +548,9 @@ int				get_color(int min_z, int max_z, int z,
 
 void			draw_starbox(t_map *map, t_matrices *matrices,
 							t_colorset active, int *addr);
-void			vertices_to_proj(t_map *map, t_mat4 f_mat);
-void			proj_to_draw(t_map *map, t_colorset active);
-void			draw_to_img(t_map *map, int *addr);
+void			*vertices_to_proj(void *dt);
+void			*proj_to_draw(void *dt);
+void			*draw_to_img(void *dt);
 
 void			bresenham(t_vec2c a, t_vec2c b, int *addr);
 void			bresenham_clip(t_vec2c a, t_vec2c b, int *addr);
@@ -574,6 +589,9 @@ void			k_rotcamx(t_env *e, int flag);
 void			k_rotcamrx(t_env *e, int flag);
 void			k_rotcamz(t_env *e, int flag);
 void			k_rotcamrz(t_env *e, int flag);
+
+void			send_threads(void *(*f)(), t_env *e);
+void			send_threads_m(void *(*f)(), t_map *map);
 
 void			usage_exit(void);
 void			error_exit(char *msg);
