@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   libshader.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/12 05:36:26 by lbelda           ###   ########.fr       */
+/*   Created: 2017/12/14 03:48:10 by lbelda            #+#    #+#             */
+/*   Updated: 2017/12/14 17:50:58 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <math.h>
 # include <unistd.h>
+
+# define MSK(x) ((x) & 0x000000ff)
 
 # ifndef T_VEC2R
 #  define T_VEC2R
@@ -26,6 +28,20 @@ typedef struct	s_vec2r
 }				t_vec2r;
 
 # endif
+
+typedef struct	s_srgb
+{
+	unsigned char	b;
+	unsigned char	g;
+	unsigned char	r;
+	unsigned char	a;
+}				t_srgb;
+
+typedef union	s_rgb
+{
+	int		i;
+	t_srgb	c;
+}				t_rgb;
 
 typedef struct	s_vec2f
 {
@@ -78,6 +94,11 @@ typedef union	s_vec4f
 
 int			vec4cf_to_rgb(t_vec4cf color);
 t_vec2f		pos_to_vec2f(t_vec2r pos, t_vec2f res);
+int			rgbi_interi(int c1, int c2, int distance, int progress);
+int			rgbi_interi_ltd(int c1, int c2, int distance, int progress);
+t_rgb		rgb_xblend(t_rgb *colors, float ratio, int x);
+t_rgb		rgb_mix(t_rgb c1, t_rgb c2, float ratio);
+t_rgb		rgb_mix_ltd(t_rgb c1, t_rgb c2, float ratio);
 
 float		vec_length(t_vec3pf vec);
 t_vec3pf	vec_normalize(t_vec3pf vec);

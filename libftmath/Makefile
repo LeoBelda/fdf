@@ -6,18 +6,11 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/11 23:48:53 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/17 21:52:07 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC=rgbnew.c \
-	rgbcpy.c \
-	rgb_to_int.c \
-	\
-	rgb_interi.c \
-	rgbi_interi.c \
-	rgbi_interi_ltd.c \
-	mat4_interi.c \
+SRC=mat4_interi.c \
 	dbl_interr.c \
 	dbl_interr_log.c \
 	\
@@ -51,8 +44,6 @@ SRC=rgbnew.c \
 	iabs.c \
 	imod.c \
 	\
-	print_rgb_fd.c \
-	print_rgb.c \
 	print_double_fd.c \
 	print_double.c \
 	print_vec4_fd.c \

@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_to_int.c                                       :+:      :+:    :+:   */
+/*   elem.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 21:58:01 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/27 19:43:39 by lbelda           ###   ########.fr       */
+/*   Created: 2017/12/17 23:18:15 by lbelda            #+#    #+#             */
+/*   Updated: 2017/12/17 23:33:29 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftmath.h"
+#include "fdf.h"
 
-inline int	rgb_to_int(t_rgb rgb)
+void	dw_pt(t_vec2r point, t_cmix cl, int *addr)
 {
-	return ((int)(rgb.b) | (int)(rgb.g) << 8 | (int)(rgb.r) << 16);
+	if (pix_clipr(point))
+		addr[point.x + point.y * XWIN] =
+			rgb_mix((t_rgb)cl.a, (t_rgb)cl.b, cl.r).i;
 }

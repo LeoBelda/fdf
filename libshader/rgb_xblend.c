@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb_interi.c                                       :+:      :+:    :+:   */
+/*   rgbi_5blend.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 21:17:07 by lbelda            #+#    #+#             */
-/*   Updated: 2017/11/28 03:49:11 by lbelda           ###   ########.fr       */
+/*   Created: 2017/12/14 03:54:42 by lbelda            #+#    #+#             */
+/*   Updated: 2017/12/14 16:35:57 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftmath.h"
+#include "libshader.h"
 
-t_rgb	rgb_interi(t_rgb c1, t_rgb c2, int distance, int progress)
+t_rgb	rgb_xblend(t_rgb *colors, float ratio, int x)
 {
-	t_rgb	inter;
+	int		i;
 
-	if (distance == 0)
-		return (c1);
-	inter.a = 0;
-	inter.r = c1.r + (progress * (c2.r - c1.r)) / distance;
-	inter.g = c1.g + (progress * (c2.g - c1.g)) / distance;
-	inter.b = c1.b + (progress * (c2.b - c1.b)) / distance;
-	return (inter);
+	i = (ratio * (float)(x - 1));
+	ratio = fmodf(ratio, 1.0 / (float)(x - 1)) * (float)(x - 1);
+	return (rgb_mix(colors[i], colors[i + 1], ratio));
 }

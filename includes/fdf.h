@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/17 00:33:42 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/18 04:57:50 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define X_WIN 2560.0
 # define Y_WIN 1440.0
 
-# define SIDE 200
+# define SIDE 400
 
 # define FFT_SIZE 1024
 # define OCT_NB 9
@@ -45,6 +45,7 @@
 
 # define C_GOLD_PALE 0x00ffe7ba
 # define C_GREEN_DARK 0x00006400
+# define C_AQUAMARINE 0x007fffd4
 # define C_PURPLE_DARK 0x00551a8b
 # define C_ORANGE_DARK 0x008b2500
 # define C_BLUE_NAVY 0x00000080
@@ -66,6 +67,20 @@ enum			e_keycodes
 	K_DOWN,
 	K_UP
 };
+
+typedef	void (*fct_type)();
+
+typedef struct	s_starfuncs
+{
+	void		(*draw)();
+	char		type[3];
+}				t_starfuncs;
+
+typedef struct	s_star
+{
+	t_vec4		pos;
+	void		(*draw)();
+}				t_star;
 
 typedef enum	e_lmodes
 {
@@ -252,13 +267,23 @@ typedef struct	s_vec2c
 	float	dst;
 }				t_vec2c;
 
+typedef struct	s_cmix
+{
+	int		a;
+	int		b;
+	float	r;
+}				t_cmix;
+
 typedef struct	s_colorset
 {
 	int			text;
-	int			background1;
-	int			background2;
+	int			bg1;
+	int			bg2;
 	int			bottom;
 	int			top;
+	int			st1;
+	int			st2;
+	int			st3;
 }				t_colorset;
 
 typedef struct	s_colors
@@ -333,9 +358,10 @@ typedef struct	s_map
 	int			min_z;
 	int			max_z;
 	size_t		starbox_size;
-	t_vec4		*starbox;
+	t_starfuncs	*starfuncs;
+	t_star		*starbox;
 	t_vec3		*starproj;
-	t_vec2c		*stardraw;
+	t_vec2r		*stardraw;
 	t_dstmodes	dstmode;
 	t_dstfuncs	*dstfuncs;
 	t_vdstmodes	vdstmode;
@@ -505,15 +531,24 @@ void			program_glowing(t_colors *colors);
 int				get_color(int min_z, int max_z, int z,
 												t_colorset active);
 
-void			draw_starbox(t_map *map, t_matrices *matrices, int *addr);
+void			draw_starbox(t_map *map, t_matrices *matrices,
+							t_colorset active, int *addr);
 void			vertices_to_proj(t_map *map, t_mat4 f_mat);
 void			proj_to_draw(t_map *map, t_colorset active);
 void			draw_to_img(t_map *map, int *addr);
 
-
 void			bresenham(t_vec2c a, t_vec2c b, int *addr);
 void			bresenham_clip(t_vec2c a, t_vec2c b, int *addr);
 int				pix_clip(t_vec2c coord);
+int				pix_clipr(t_vec2r coord);
+
+void			dw_pt(t_vec2r point, t_cmix cl, int *addr);
+void			draw_star_10(t_vec2r point, t_colorset cl, int *addr);
+void			draw_star_11(t_vec2r point, t_colorset cl, int *addr);
+void			draw_star_p0(t_vec2r point, t_colorset cl, int *addr);
+void			draw_star_p1(t_vec2r point, t_colorset cl, int *addr);
+void			draw_star_n0(t_vec2r point, t_colorset cl, int *addr);
+void			draw_star_n1(t_vec2r point, t_colorset cl, int *addr);
 
 int				expose_hook(void *param);
 int				key_hook(int keycode, void *param);

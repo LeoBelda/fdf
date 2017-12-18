@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 23:08:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/01 19:06:57 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/17 23:34:30 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	switch_colorset(t_colors *colors)
 	handle_act = &colors->active.text;
 	handle_tar = &colors->target.text;
 	handle_from = &colors->from.text;
-	while (&(handle_tar[j]) <= &colors->target.top)
+	while (&(handle_tar[j]) <= &colors->target.st3)
 	{
 		handle_act[j] = rgbi_interi(handle_from[j], handle_tar[j],
 									100, colors->progress);
@@ -52,7 +52,7 @@ void	switch_colors(t_colors *colors, size_t distance, size_t progress)
 	if (!ft_memcmp((void*)&(colors->active),
 					(void*)&(colors->target), sizeof(t_colorset)))
 		return ;
-	while (&((&colors->target.text)[j]) <= &colors->target.top)
+	while (&((&colors->target.text)[j]) <= &colors->target.st3)
 	{
 		(&colors->active.text)[j] = rgbi_interi((&colors->from.text)[j],
 							(&colors->target.text)[j], distance, progress);

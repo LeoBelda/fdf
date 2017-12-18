@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/17 00:39:28 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/17 23:35:40 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void		set_buffer(int *addr, t_colors *colors)
 	{
 		if (colors->bmode == colors->bfuncs[i].bmode)
 		{
-			colors->bfuncs[i].f(addr, colors->active.background1);
+			colors->bfuncs[i].f(addr, colors->active.bg1);
 			break ;
 		}
 		i++;
@@ -74,7 +74,7 @@ int				draw(t_env *e)
 	set_sound_map(e->sound, e->map);
 	set_matrices(e, e->matrices);
 	set_color(e->colors);
-	draw_starbox(e->map, e->matrices, e->img->addr);
+	draw_starbox(e->map, e->matrices, e->colors->active, e->img->addr);
 	vertices_to_proj(e->map, e->matrices->f_mat);
 	proj_to_draw(e->map, e->colors->active);
 	set_sound_color(e->sound, e->map, e->colors->active);

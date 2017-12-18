@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bresenham_tools.c                                  :+:      :+:    :+:   */
+/*   rgb_mix.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/26 20:27:36 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/17 19:30:45 by lbelda           ###   ########.fr       */
+/*   Created: 2017/12/14 07:00:24 by lbelda            #+#    #+#             */
+/*   Updated: 2017/12/14 10:44:29 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libshader.h"
 
-int	pix_clip(t_vec2c coord)
+t_rgb	rgb_mix(t_rgb c1, t_rgb c2, float ratio)
 {
-	if (coord.x < 0 || coord.x >= XWIN
-	|| coord.y < 0 || coord.y >= YWIN)
-		return (0);
-	else
-		return (1);
-}
-
-int	pix_clipr(t_vec2r coord)
-{
-	if (coord.x < 0 || coord.x >= XWIN
-	|| coord.y < 0 || coord.y >= YWIN)
-		return (0);
-	else
-		return (1);
+	return ((t_rgb) { .c= (t_srgb) {
+			(int)((1.0 - ratio) * (float)c1.c.b + ratio * (float)c2.c.b),
+			(int)((1.0 - ratio) * (float)c1.c.g + ratio * (float)c2.c.g),
+			(int)((1.0 - ratio) * (float)c1.c.r + ratio * (float)c2.c.r),
+			0}});
 }

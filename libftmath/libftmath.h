@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 23:31:51 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/17 21:42:32 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@
 # include <unistd.h>
 
 # define MSK(x) ((x) & 0x000000ff)
-
-typedef struct	s_rgb
-{
-	unsigned char	a;
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}				t_rgb;
 
 # ifndef T_VEC2R
 #  define T_VEC2R
@@ -70,14 +62,6 @@ typedef struct	s_frustrum
 	double	n;
 }				t_frustrum;
 
-t_rgb			rgbnew(unsigned char a, unsigned char r,
-				unsigned char g, unsigned char b);
-void			rgbcpy(void *dst, t_rgb src);
-int				rgb_to_int(t_rgb rgb);
-
-t_rgb			rgb_interi(t_rgb c1, t_rgb c2, int distance, int progress);
-int				rgbi_interi(int c1, int c2, int distance, int progress);
-int				rgbi_interi_ltd(int c1, int c2, int distance, int progress);
 t_mat4			mat4_interi(t_mat4 mat1, t_mat4 mat2,
 								int distance, int progress);
 double			dbl_interr(double a, double b, double ratio);
@@ -113,8 +97,6 @@ double			deg_rad(double deg);
 int				iabs(int val);
 int				imod(int a, int b);
 
-void			print_rgb_fd(t_rgb rgb, int fd);
-void			print_rgb(t_rgb rgb);
 void			print_double_fd(double nb, int fd);
 void			print_double(double nb);
 void			print_vec4_fd(t_vec4 vec, int fd);

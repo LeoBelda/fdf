@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 15:55:01 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 06:43:41 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/17 23:54:40 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_sound_color(t_sound *sound, t_map *map, t_colorset active)
 		while (i < map->nb_vtx)
 		{
 			map->draw[i].color = rgbi_interi_ltd(map->draw[i].color,
-					active.background1, map->viewdist_active,
+					active.bg1, map->viewdist_active,
 					(int)lround(map->distancesxz[i]));
 			i++;
 		}
