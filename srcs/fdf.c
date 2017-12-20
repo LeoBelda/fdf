@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 19:34:54 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/20 01:43:35 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		fdf(char *file, char *audio, t_lmodes launchmode)
 {
 	t_env	*e;
 
+	SDL_Init(SDL_INIT_GAMECONTROLLER);
 	if (!(e = ft_memalloc(sizeof(t_env))))
 		error_exit("");
 	alloc_env(e);

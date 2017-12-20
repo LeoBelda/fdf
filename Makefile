@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/18 07:39:05 by lbelda           ###   ########.fr        #
+#    Updated: 2017/12/20 04:20:17 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,8 @@ SRC=srcs/main.c \
 	srcs/controls/kb_chpov.c \
 	srcs/controls/kb_chcolor.c \
 	srcs/controls/kb_misc.c \
+	srcs/controls/ps3_camrot.c \
+	srcs/controls/ps3_camtrs.c \
 	srcs/controls/tools.c \
 	\
 	srcs/utils/print_db.c \
@@ -78,27 +80,37 @@ OBJ=$(SRC:%.c=%.o)
 INCLUDES=includes/
 HEADER=fdf.h
 
-LFTDIR=libft/
+LIBPATH=libs/
+
+LFTDIR=$(LIBPATH)libft/
 LIBFT=libft.a
 FTLK=ft
 
-LFTMTDIR=libftmath/
+LFTMTDIR=$(LIBPATH)libftmath/
 LIBFTMT=libftmath.a
 FTMTLK=ftmath
 
-LSHDDIR=libshader/
+LSHDDIR=$(LIBPATH)libshader/
 LIBSHD=libshader.a
 SHDLK=shader
 
-FMODDIR=fmod/
+FMODDIR=$(LIBPATH)fmod/
 FMODLK=fmodL
 
-LMLXDIR=minilibx/
+LMLXDIR=$(LIBPATH)minilibx/
 LIBMLX=libmlx.a
 MLXLK=mlx
 FRAMEWORKS=-framework OpenGL -framework AppKit
 
+LSDLDIR=$(LIBPATH)SDL2/lib/
+LSDLINCDIR=$(LIBPATH)SDL2/include/SDL2/
+LIBSDL=libSDL2.a
+SDLLK=SDL2
+
+ALLINCS=-I$(LFTDIR) -I$(LFTMTDIR) -I$(LSHDDIR) -I$(LMLXDIR) -I$(FMODDIR) -I$(LSDLINCDIR) -I$(INCLUDES)
+
 NAME=fdf
+
 CC=gcc
 CFLAGS=-O3 -Wall -Wextra -Werror
 MAKE=make
@@ -106,13 +118,13 @@ INT=install_name_tool -change
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LSHDDIR)$(LIBSHD) $(LMLXDIR)$(LIBMLX)
-	-@$(CC) -O3 -o $(NAME) -I$(LFTDIR) -I$(LFTMTDIR) -I$(LSHDDIR) -I$(LMLXDIR) -I$(INCLUDES) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(LSHDDIR) -l$(SHDLK) -L$(FMODDIR) -l$(FMODLK) -L$(LMLXDIR) -l$(MLXLK) $(FRAMEWORKS) $(OBJ)
+$(NAME): $(OBJ) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LSHDDIR)$(LIBSHD) $(LMLXDIR)$(LIBMLX) $(LSDLDIR)$(LIBSDL)
+	-@$(CC) -O3 -o $(NAME) $(ALLINCS) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(LSHDDIR) -l$(SHDLK) -L$(FMODDIR) -l$(FMODLK) -L$(LMLXDIR) -l$(MLXLK) -L$(LSDLDIR) -l$(SDLLK) $(FRAMEWORKS) $(OBJ)
 	$(INT) @rpath/libfmodL.dylib $(FMODDIR)libfmodL.dylib $(NAME)
 	-@echo "FdF ready."
 
 %.o: %.c
-	$(CC) $(CFLAGS) -o $@ -I$(LFTDIR) -I$(LFTMTDIR) -I$(LSHDDIR) -I$(FMODDIR) -I$(LMLXDIR) -I$(INCLUDES) -c $^
+	$(CC) $(CFLAGS) -o $@ $(ALLINCS) -c $^
 
 $(LFTDIR)$(LIBFT):
 	$(MAKE) -C $(LFTDIR)
@@ -126,6 +138,9 @@ $(LSHDDIR)$(LIBSHD):
 $(LMLXDIR)$(LIBMLX):
 	$(MAKE) -C $(LMLXDIR)
 
+$(LMLXDIR)$(LIBSDL):
+	$(MAKE) -C $(LMLXDIR)
+	
 clean:
 	$(MAKE) -C $(LFTDIR) clean
 	$(MAKE) -C $(LFTMTDIR) clean

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 21:16:51 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/20 03:20:33 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "libftmath.h"
 # include "libshader.h"
 # include "fmod.h"
+# include "SDL.h"
+# include "SDL_events.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -69,6 +71,12 @@ enum			e_keycodes
 	K_RIGHT,
 	K_DOWN,
 	K_UP
+};
+
+enum			e_ps3buttons
+{
+	PS3_LEFT_SHOULDER = 10,
+	PS3_RIGHT_SHOULDER = 11
 };
 
 typedef	void (*fct_type)();
@@ -256,10 +264,11 @@ typedef struct	s_kbsync
 
 typedef struct	s_controls
 {
-	t_kfuncs	*active;
-	t_kfuncs	*target;
-	t_kbpreset	*presets;
-	t_kbsync	*kbsync;
+	t_kfuncs			*active;
+	t_kfuncs			*target;
+	t_kbpreset			*presets;
+	t_kbsync			*kbsync;
+	SDL_GameController	*ps3;
 }				t_controls;
 
 typedef struct	s_vec2c
@@ -599,6 +608,12 @@ void			k_rotcamx(t_env *e, int flag);
 void			k_rotcamrx(t_env *e, int flag);
 void			k_rotcamz(t_env *e, int flag);
 void			k_rotcamrz(t_env *e, int flag);
+
+void			ps3_camrotz(t_env *e, int value);
+void			ps3_camrotx(t_env *e, int value);
+void			ps3_camroty(t_env *e, int value);
+void			ps3_camtrsz(t_env *e, int value);
+void			ps3_reset_camrot(t_env *e);
 
 void			send_threads(void *(*f)(), t_env *e);
 void			send_threads_m(void *(*f)(), t_map *map);

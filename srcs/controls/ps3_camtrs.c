@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kb_camrotz.c                                       :+:      :+:    :+:   */
+/*   ps3_camtrs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/01 17:27:44 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/19 18:19:02 by lbelda           ###   ########.fr       */
+/*   Created: 2017/12/20 02:32:51 by lbelda            #+#    #+#             */
+/*   Updated: 2017/12/20 02:39:31 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	k_rotcamz(t_env *e, int flag)
+void	ps3_camtrsz(t_env *e, int value)
 {
-	e->matrices->movement.rz = (flag ? 1.4 : 0.0);
-}
-
-void	k_rotcamrz(t_env *e, int flag)
-{
-	e->matrices->movement.rz = (flag ? -1.4 : 0.0);
+	e->matrices->movement.tz = 12 * value / 32767;
 }

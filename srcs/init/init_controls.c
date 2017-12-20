@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:15:02 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 19:57:55 by lbelda           ###   ########.fr       */
+/*   Updated: 2017/12/20 01:50:13 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,6 @@ void			init_controls(t_env *e)
 	(e->controls->presets)[3] = (t_kbpreset) { kfuncs_rt(), KB_RT };
 	(e->controls->presets)[4] = (t_kbpreset) { NULL, 0 };
 	set_kbsync(e->controls);
+	SDL_GameControllerEventState(SDL_ENABLE);
+	e->controls->ps3 = SDL_GameControllerOpen(0);
 }
