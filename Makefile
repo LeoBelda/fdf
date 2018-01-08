@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/20 04:20:17 by lbelda           ###   ########.fr        #
+#    Updated: 2018/01/08 12:04:23 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,8 @@ MLXLK=mlx
 FRAMEWORKS=-framework OpenGL -framework AppKit
 
 LSDLDIR=$(LIBPATH)SDL2/lib/
+LSDLROOT=$(LIBPATH)SDL2/
+LSDLSRC=$(LIBPATH)SDL2/sources/
 LSDLINCDIR=$(LIBPATH)SDL2/include/SDL2/
 LIBSDL=libSDL2.a
 SDLLK=SDL2
@@ -118,13 +120,13 @@ INT=install_name_tool -change
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LSHDDIR)$(LIBSHD) $(LMLXDIR)$(LIBMLX) $(LSDLDIR)$(LIBSDL)
+$(NAME): $(OBJ) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LSHDDIR)$(LIBSHD) $(LMLXDIR)$(LIBMLX)
 	-@$(CC) -O3 -o $(NAME) $(ALLINCS) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(LSHDDIR) -l$(SHDLK) -L$(FMODDIR) -l$(FMODLK) -L$(LMLXDIR) -l$(MLXLK) -L$(LSDLDIR) -l$(SDLLK) $(FRAMEWORKS) $(OBJ)
 	$(INT) @rpath/libfmodL.dylib $(FMODDIR)libfmodL.dylib $(NAME)
 	-@echo "FdF ready."
 
-%.o: %.c
-	$(CC) $(CFLAGS) -o $@ $(ALLINCS) -c $^
+%.o: %.c $(LSDLINCDIR)
+	$(CC) $(CFLAGS) -o $@ $(ALLINCS) -c $<
 
 $(LFTDIR)$(LIBFT):
 	$(MAKE) -C $(LFTDIR)
@@ -138,12 +140,14 @@ $(LSHDDIR)$(LIBSHD):
 $(LMLXDIR)$(LIBMLX):
 	$(MAKE) -C $(LMLXDIR)
 
-$(LMLXDIR)$(LIBSDL):
-	$(MAKE) -C $(LMLXDIR)
-	
+$(LSDLINCDIR):
+	cd $(LSDLSRC) && ./configure --prefix=$$PWD/../
+	$(MAKE) -C $(LSDLSRC) install
+
 clean:
 	$(MAKE) -C $(LFTDIR) clean
 	$(MAKE) -C $(LFTMTDIR) clean
+	$(MAKE) -C $(LSDLSRC) clean
 	rm -rf $(INCLUDES)/*.h.gch
 	rm -rf $(OBJ)
 
@@ -151,6 +155,11 @@ fclean: clean
 	$(MAKE) -C $(LFTDIR) fclean
 	$(MAKE) -C $(LFTMTDIR) fclean
 	$(MAKE) -C $(LMLXDIR) clean
+	$(MAKE) -C $(LSDLSRC) uninstall
+	rm -rf $(LSDLROOT)bin
+	rm -rf $(LSDLROOT)include
+	rm -rf $(LSDLROOT)lib
+	rm -rf $(LSDLROOT)share
 	rm -rf $(NAME)
 
 re: fclean all
