@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 03:48:10 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/14 17:50:58 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 08:22:03 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_srgb
 	unsigned char	a;
 }				t_srgb;
 
-typedef union	s_rgb
+typedef union	u_rgb
 {
 	int		i;
 	t_srgb	c;
@@ -86,26 +86,26 @@ typedef union	u_vec4c
 	t_vec4r	argb;
 }				t_vec4c;
 
-typedef union	s_vec4f
+typedef union	u_vec4f
 {
 	t_vec4pf	pos;
 	t_vec4cf	col;
 }				t_vec4f;
 
-int			vec4cf_to_rgb(t_vec4cf color);
-t_vec2f		pos_to_vec2f(t_vec2r pos, t_vec2f res);
-int			rgbi_interi(int c1, int c2, int distance, int progress);
-int			rgbi_interi_ltd(int c1, int c2, int distance, int progress);
-t_rgb		rgb_xblend(t_rgb *colors, float ratio, int x);
-t_rgb		rgb_mix(t_rgb c1, t_rgb c2, float ratio);
-t_rgb		rgb_mix_ltd(t_rgb c1, t_rgb c2, float ratio);
+int				vec4cf_to_rgb(t_vec4cf color);
+t_vec2f			pos_to_vec2f(t_vec2r pos, t_vec2f res);
+int				rgbi_interi(int c1, int c2, int distance, int progress);
+int				rgbi_interi_ltd(int c1, int c2, int distance, int progress);
+t_rgb			rgb_xblend(t_rgb *colors, float ratio, int x);
+t_rgb			rgb_mix(t_rgb c1, t_rgb c2, float ratio);
+t_rgb			rgb_mix_ltd(t_rgb c1, t_rgb c2, float ratio);
 
-float		vec_length(t_vec3pf vec);
-t_vec3pf	vec_normalize(t_vec3pf vec);
-t_vec3pf	scal_vec(t_vec3pf vec, float scl);
-t_vec3pf	add_vec(t_vec3pf v1, t_vec3pf v2);
-t_vec3pf	sub_vec(t_vec3pf v1, t_vec3pf v2);
+float			vec_length(t_vec3pf vec);
+t_vec3pf		vec_normalize(t_vec3pf vec);
+t_vec3pf		scal_vec(t_vec3pf vec, float scl);
+t_vec3pf		add_vec(t_vec3pf v1, t_vec3pf v2);
+t_vec3pf		sub_vec(t_vec3pf v1, t_vec3pf v2);
 
-float		step(float edge, float x);
+float			step(float edge, float x);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 23:57:19 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 03:54:21 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 09:40:05 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		init_starfuncs(t_map *map)
+static void			init_starfuncs(t_map *map)
 {
 	if (!(map->starfuncs = ft_memalloc(sizeof(t_starfuncs) * 7)))
 		error_exit("");
@@ -25,7 +25,7 @@ static void		init_starfuncs(t_map *map)
 	map->starfuncs[6] = (t_starfuncs) {NULL, ""};
 }
 
-static fct_type	get_star_type(char *line, t_starfuncs *funcs)
+static t_fct_type	get_star_type(char *line, t_starfuncs *funcs)
 {
 	size_t	i;
 
@@ -40,7 +40,7 @@ static fct_type	get_star_type(char *line, t_starfuncs *funcs)
 	return (NULL);
 }
 
-static void		parse_stars(t_star *starbox, t_starfuncs *funcs, int fd)
+static void			parse_stars(t_star *starbox, t_starfuncs *funcs, int fd)
 {
 	int		i;
 	int		ret;
@@ -67,7 +67,7 @@ static void		parse_stars(t_star *starbox, t_starfuncs *funcs, int fd)
 	}
 }
 
-void	init_starbox(t_map *map)
+void				init_starbox(t_map *map)
 {
 	char	*header;
 	int		fd;

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 20:18:46 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 11:02:23 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ void		*proj_to_draw(void *dt)
 		d->e->map->draw[i] = (t_vec2c)
 			{ (d->e->map->proj[i].x + 1.0) * X_WIN / 2.0,
 			(d->e->map->proj[i].y + 1.0) * Y_WIN / 2.0,
-			get_color(d->e->map->min_z, d->e->map->max_z,
-						(int)d->e->map->world_vtx[i].y, d->e->colors->active),
+			get_color(d->e->map->min_y, d->e->map->max_y,
+						(int)d->e->map->world_vtx[i].y,
+						d->e->colors->active),
 			d->e->map->distancesxz[i] };
 		i += NB_THRD;
 	}

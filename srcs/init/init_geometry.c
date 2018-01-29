@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:00:31 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/07 09:22:29 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 11:36:07 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,15 @@ static void		get_world_coords(t_mat4 modelmat, t_map *map)
 	size_t	i;
 
 	i = 0;
+	map->min_y = MAX_INT;
+	map->max_y = MIN_INT;
 	while (i < map->nb_vtx_glb)
 	{
 		map->world_coords_glb[i] = mat4xvec4(modelmat, map->vertices_glb[i]);
+		if ((int)(map->world_coords_glb)[i].y > map->max_y)
+			map->max_y = (int)(map->world_coords_glb)[i].y;
+		if ((int)(map->world_coords_glb)[i].y < map->min_y)
+			map->min_y = (int)(map->world_coords_glb)[i].y;
 		i++;
 	}
 }

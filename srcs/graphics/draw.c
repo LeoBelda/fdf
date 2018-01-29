@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/20 03:19:37 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 09:42:17 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int				draw(t_env *e)
 	handle_sdl_events(e);
 	set_buffer(e->img->addr, e->colors);
 	get_sound_data(e->sound);
-	//get_active_vertices(e->map);
 	send_threads_m(get_active_world, e->map);
 	get_eye_pos(e->matrices);
 	get_distances(e->matrices->eye_pos, e->map);

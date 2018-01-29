@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/20 03:20:33 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 11:35:46 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,14 @@
 # define Y_WIN 1440.0
 
 # define SIDE 400
+# define X_SCALE 10
+# define Z_SCALE 10
 
 # define FFT_SIZE 1024
 # define OCT_NB 9
+
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
 
 # define C_BLA 0x00000000
 # define C_BLU 0x000000ff
@@ -79,7 +84,7 @@ enum			e_ps3buttons
 	PS3_RIGHT_SHOULDER = 11
 };
 
-typedef	void (*fct_type)();
+typedef	void	(*t_fct_type)();
 
 typedef struct	s_starfuncs
 {
@@ -370,6 +375,8 @@ typedef struct	s_map
 	double		mid_height;
 	int			min_z;
 	int			max_z;
+	int			min_y;
+	int			max_y;
 	size_t		starbox_size;
 	t_starfuncs	*starfuncs;
 	t_star		*starbox;
@@ -519,7 +526,7 @@ void			set_sr_funcs(t_sound *sound);
 void			set_sc_funcs(t_sound *sound);
 
 int				draw(t_env *e);
-void			*pre_to_render(void* dt);
+void			*pre_to_render(void *dt);
 int				rtinit(t_env *e);
 
 float			sdf_sphere(t_vec3pf p);

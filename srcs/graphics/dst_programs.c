@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 19:02:40 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 10:19:53 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 09:42:42 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void		dst_around_flat(t_map *map)
 	{
 		if (map->distancesxz[i] < map->viewdist_active)
 			map->target_vtx_z[i] =
-				map->world_vtx[i].z * map->distancesxz[i] / map->viewdist_active;
+				map->world_vtx[i].z * map->distancesxz[i]
+						/ map->viewdist_active;
 		else
 			map->target_vtx_z[i] = map->world_vtx[i].z;
 		map->m_world_vtx[i].y = map->world_vtx[i].y;

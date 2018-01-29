@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 01:59:23 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/12 02:00:51 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 08:20:29 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 t_vec3pf	scal_vec(t_vec3pf vec, float scl)
 {
-	return ((t_vec3pf) {vec.x * scl, vec.y *scl, vec.x *scl});
+	return ((t_vec3pf) {vec.x * scl, vec.y * scl, vec.x * scl});
 }

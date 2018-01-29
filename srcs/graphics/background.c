@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 19:16:00 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 13:00:14 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 09:41:14 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*plain_background(void *dt)
 {
-	long int	longcolor;
+	long int		longcolor;
 	t_thrdbuf		*d;
 
 	d = (t_thrdbuf*)dt;

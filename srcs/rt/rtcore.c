@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 20:03:33 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/12 09:28:34 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 09:44:20 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static float	rmloop(t_vec3pf or, t_vec3pf tr)
 	{
 		dist = sdf_sphere(ray);
 		if (dist < 0.01)
-			break;
+			break ;
 		ray = add_vec(ray, scal_vec(tr, dist));
 	}
 	return (step(10.0, vec_length(sub_vec(or, ray))));
@@ -36,7 +36,8 @@ static int	shader(t_vec2r fragcoords, t_vec2f fres)
 	t_vec2f	uv;
 
 	(void)fres;
-	uv = (t_vec2f) {((float)fragcoords.x) / 2560.0, ((float)fragcoords.y) / 1440.0};
+	uv = (t_vec2f) {((float)fragcoords.x) / 2560.0,
+						((float)fragcoords.y) / 1440.0};
 	uv.x = uv.x * 2.0 - 1.0;
 	uv.y = uv.y * 2.0 - 1.0;
 	uv.x *= (2560.0 / 1440.0);

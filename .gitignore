@@ -3,6 +3,7 @@
 *.h.ghc
 libft.a
 libftmath.a
+libshader.a
 fdf
 res/
 maps/

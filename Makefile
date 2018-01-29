@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2018/01/08 12:04:23 by lbelda           ###   ########.fr        #
+#    Updated: 2018/01/29 11:54:29 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,12 +120,12 @@ INT=install_name_tool -change
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LSHDDIR)$(LIBSHD) $(LMLXDIR)$(LIBMLX)
+$(NAME): $(LSDLDIR)$(LIBSDL) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LSHDDIR)$(LIBSHD) $(LMLXDIR)$(LIBMLX) $(OBJ) includes/fdf.h
 	-@$(CC) -O3 -o $(NAME) $(ALLINCS) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(LSHDDIR) -l$(SHDLK) -L$(FMODDIR) -l$(FMODLK) -L$(LMLXDIR) -l$(MLXLK) -L$(LSDLDIR) -l$(SDLLK) $(FRAMEWORKS) $(OBJ)
 	$(INT) @rpath/libfmodL.dylib $(FMODDIR)libfmodL.dylib $(NAME)
 	-@echo "FdF ready."
 
-%.o: %.c $(LSDLINCDIR)
+%.o: %.c includes/fdf.h
 	$(CC) $(CFLAGS) -o $@ $(ALLINCS) -c $<
 
 $(LFTDIR)$(LIBFT):
@@ -140,13 +140,14 @@ $(LSHDDIR)$(LIBSHD):
 $(LMLXDIR)$(LIBMLX):
 	$(MAKE) -C $(LMLXDIR)
 
-$(LSDLINCDIR):
+$(LSDLDIR)$(LIBSDL):
 	cd $(LSDLSRC) && ./configure --prefix=$$PWD/../
 	$(MAKE) -C $(LSDLSRC) install
 
 clean:
 	$(MAKE) -C $(LFTDIR) clean
 	$(MAKE) -C $(LFTMTDIR) clean
+	$(MAKE) -C $(LSHDDIR) clean
 	$(MAKE) -C $(LSDLSRC) clean
 	rm -rf $(INCLUDES)/*.h.gch
 	rm -rf $(OBJ)
@@ -154,6 +155,7 @@ clean:
 fclean: clean
 	$(MAKE) -C $(LFTDIR) fclean
 	$(MAKE) -C $(LFTMTDIR) fclean
+	$(MAKE) -C $(LSHDDIR) fclean
 	$(MAKE) -C $(LMLXDIR) clean
 	$(MAKE) -C $(LSDLSRC) uninstall
 	rm -rf $(LSDLROOT)bin

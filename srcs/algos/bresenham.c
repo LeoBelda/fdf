@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 10:05:48 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 20:57:30 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 08:23:13 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	bresenham1(t_vec2c a, t_vec2c b, int *addr)
 	while (a.x <= b.x)
 	{
 		if (addr[a.x + a.y * XWIN] <= a.color)
-		addr[a.x + a.y * XWIN] = rgbi_interi(a.color, b.color, dx, i);
+			addr[a.x + a.y * XWIN] = rgbi_interi(a.color, b.color, dx, i);
 		e += m;
 		if (e >= 0.0)
 		{
@@ -56,7 +56,7 @@ static void	bresenham2(t_vec2c a, t_vec2c b, int *addr)
 	while (a.x <= b.x)
 	{
 		if (addr[a.x + a.y * XWIN] <= a.color)
-		addr[a.x + a.y * XWIN] = rgbi_interi(a.color, b.color, dx, i);
+			addr[a.x + a.y * XWIN] = rgbi_interi(a.color, b.color, dx, i);
 		e += m;
 		if (e >= 0.0)
 		{
