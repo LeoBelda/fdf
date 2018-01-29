@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 21:06:36 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 19:52:49 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 13:45:31 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ void	set_state_default(t_env *e)
 	e->matrices->views->gmode.vmode = V_GRD;
 	if (e->sound->smode == S_ON)
 	{
-		e->map->dstmode = DST_DEFAULT_NS;
-		e->sound->srmode = SR_DEFAULT;
+		e->map->dstmode = DST_AROUND_FLAT;
+		e->sound->srmode = SR_TOTAL_ALTI;
 		e->sound->scmode = SC_TOTAL_VISION;
 		e->map->vdstmode = VDST_DEFAULT;
 	}
 	else
 	{
-		e->map->dstmode = DST_DEFAULT_NS;
+		e->map->dstmode = DST_AROUND_FLAT_NS;
 		e->sound->srmode = SR_DEFAULT;
 		e->sound->scmode = SC_TOTAL_VISION;
 		e->map->vdstmode = VDST_DEFAULT;

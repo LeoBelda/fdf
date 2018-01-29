@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2018/01/29 11:35:46 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 12:11:49 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,7 +349,7 @@ typedef struct	s_map
 	t_list		*vertices_list;
 	t_vec4		*vertices_glb;
 	t_vec4		*vertices;
-	float		*target_vtx_z;
+	float		*target_vtx_y;
 	int			az_targut;
 	t_vec4		*mod_vertices;
 	t_vec4		*world_coords_glb;

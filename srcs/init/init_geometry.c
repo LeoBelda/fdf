@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:00:31 by lbelda            #+#    #+#             */
-/*   Updated: 2018/01/29 11:36:07 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 12:22:06 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static t_mat4	get_model_mat(t_modmat initst, t_map *map)
 {
 	return (mat4xmat4(trsmat4new(initst.tx, initst.ty, initst.tz),
 			mat4xmat4(trsmat4new(
-						map->mid_mod.x, map->mid_mod.y, map->mid_mod.z),
+						map->mid_mod.x, 0., 0.),
 			mat4xmat4(rotymat4new(initst.ry),
 			mat4xmat4(rotxmat4new(initst.rx),
 			mat4xmat4(rotzmat4new(initst.rz),
 			mat4xmat4(trsmat4new(
-						-map->mid_mod.x, -map->mid_mod.y, -map->mid_mod.z),
+						-map->mid_mod.x, 0., 0.),
 					sclmat4new(initst.s, initst.s, initst.s))))))));
 }
 

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 17:56:40 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/17 00:30:39 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 12:29:08 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void	load_view_presets(t_matrices *matrices, t_map *map)
 {
 	if (!(matrices->views->stock = ft_memalloc(sizeof(t_matstock) * 3)))
 		error_exit("");
-	matrices->eye_pos = mat4xvec4(
-			trsmat4new(0.0, -20.0, 0.0),
-			map->mid_mod);
+	matrices->eye_pos = (t_vec4){0.0, map->min_y - map->max_y, 0.0, 1.0};
 	matrices->prev_eye_pos = matrices->eye_pos;
 	(matrices->views->stock[0]) = (t_matstock)
 		{ get_view_mat(matrices->eye_pos,

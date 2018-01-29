@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 15:40:42 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 10:22:43 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/01/29 12:15:38 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ void			sr_bass_alti(t_spec *spec, t_map *map)
 	if (!map->az_targut)
 		while (i < map->nb_vtx)
 		{
-			map->target_vtx_z[i] = map->world_vtx[i].z * spec->low_band * 2;
-			map->m_world_vtx[i].z = get_mod_z(map->m_world_vtx[i].z,
-											map->target_vtx_z[i], 5.0, 10.0);
+			map->target_vtx_y[i] = map->world_vtx[i].y * spec->low_band * 2;
+			map->m_world_vtx[i].y = get_mod_z(map->m_world_vtx[i].y,
+											map->target_vtx_y[i], 5.0, 10.0);
 			i++;
 		}
 	else
 		while (i < map->nb_vtx)
 		{
-			map->target_vtx_z[i] = map->target_vtx_z[i] * spec->low_band * 2;
-			map->m_world_vtx[i].z = get_mod_z(map->world_vtx[i].z,
-											map->target_vtx_z[i], 5.0, 10.0);
+			map->target_vtx_y[i] = map->target_vtx_y[i] * spec->low_band * 2;
+			map->m_world_vtx[i].y = get_mod_z(map->world_vtx[i].y,
+											map->target_vtx_y[i], 5.0, 10.0);
 			i++;
 		}
 }
@@ -61,17 +61,17 @@ void			sr_total_alti(t_spec *spec, t_map *map)
 	if (!map->az_targut)
 		while (i < map->nb_vtx)
 		{
-			map->target_vtx_z[i] = map->world_vtx[i].z * spec->total * 4;
-			map->m_world_vtx[i].z = get_mod_z(map->m_world_vtx[i].z,
-										map->target_vtx_z[i], 100.0, 120.0);
+			map->target_vtx_y[i] = map->world_vtx[i].y * spec->total * 4;
+			map->m_world_vtx[i].y = get_mod_z(map->m_world_vtx[i].y,
+										map->target_vtx_y[i], 100.0, 120.0);
 			i++;
 		}
 	else
 		while (i < map->nb_vtx)
 		{
-			map->target_vtx_z[i] = map->target_vtx_z[i] * spec->total * 4;
-			map->m_world_vtx[i].z = get_mod_z(map->m_world_vtx[i].z,
-										map->target_vtx_z[i], 100.0, 120.0);
+			map->target_vtx_y[i] = map->target_vtx_y[i] * spec->total * 4;
+			map->m_world_vtx[i].y = get_mod_z(map->m_world_vtx[i].y,
+										map->target_vtx_y[i], 100.0, 120.0);
 			i++;
 		}
 }
