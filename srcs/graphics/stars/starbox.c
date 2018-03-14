@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 22:04:27 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 06:24:00 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/14 11:24:07 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ void		draw_starbox(t_map *map, t_matrices *matrices,
 	t_mat4	starmat;
 
 	i = 0;
-	starmat = mat4xmat4(rotxmat4new(0.006), mat4xmat4(rotymat4new(0.005),
-				mat4xmat4(rotzmat4new(0.002),
+	starmat = mat4xmat4(rotzmat4new(0.006), mat4xmat4(rotymat4new(0.005),
+				mat4xmat4(rotxmat4new(0.002),
 			trsmat4vec((t_vec4) {matrices->diff_eye_pos.x, 
-									matrices->diff_eye_pos.z, 0.0, 0.0}))));
+									matrices->diff_eye_pos.y,
+									matrices->diff_eye_pos.z, 0.0}))));
 	while (i < map->starbox_size)
 	{
 		map->starbox[i].pos = mat4xvec4(starmat, map->starbox[i].pos);

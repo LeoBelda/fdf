@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/17 21:52:07 by lbelda           ###   ########.fr        #
+#    Updated: 2018/03/14 09:55:54 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,13 +60,13 @@ CFLAGS=-O3 -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) libftmath.h
 	-@ar rc $(NAME) $(OBJ)
 	-@ranlib $(NAME)
 	-@echo "Libftmath ready."
 
-%.o: %.c
-	-@$(CC) $(CFLAGS) -c $^
+%.o: %.c libftmath.h
+	-@$(CC) $(CFLAGS) -c $<
 
 clean:
 	rm -rf *.o

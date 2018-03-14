@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/14 17:51:09 by lbelda           ###   ########.fr        #
+#    Updated: 2018/03/14 09:59:06 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,13 @@ CFLAGS=-Ofast -flto -march=native -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) libshader.h
 	-@ar rc $(NAME) $(OBJ)
 	-@ranlib $(NAME)
 	-@echo "Libshader ready."
 
-%.o: %.c
-	-@$(CC) $(CFLAGS) -c $^
+%.o: %.c libshader.h
+	-@$(CC) $(CFLAGS) -c $<
 
 clean:
 	rm -rf *.o

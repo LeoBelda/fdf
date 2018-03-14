@@ -42,7 +42,7 @@ while test $# -gt 0; do
       echo 2.0.7
       ;;
     --cflags)
-      echo -I${prefix}/include/SDL2  -D_THREAD_SAFE
+      echo -I${prefix}/include/SDL2   -I/usr/X11R6/include -D_THREAD_SAFE
       ;;
     --libs)
       echo -L${exec_prefix}/lib  -lSDL2 

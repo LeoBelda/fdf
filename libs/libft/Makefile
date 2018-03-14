@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2017/12/11 23:53:28 by lbelda           ###   ########.fr        #
+#    Updated: 2018/03/14 10:04:42 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,13 +103,13 @@ CFLAGS=-O3 -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) libft.h
 	-@ar rc $(NAME) $(OBJ)
 	-@ranlib $(NAME)
 	-@echo "Libft ready."
 
-%.o: %.c
-	-@$(CC) $(CFLAGS) -c $^
+%.o: %.c libft.h
+	-@$(CC) $(CFLAGS) -c $<
 
 clean:
 	rm -rf *.o

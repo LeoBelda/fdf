@@ -12,4 +12,4 @@ Requires:
 Conflicts:
 Libs: -L${libdir}  -lSDL2 
 Libs.private: -lSDL2   -lm -liconv  -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit
-Cflags: -I${includedir}/SDL2  -D_THREAD_SAFE
+Cflags: -I${includedir}/SDL2   -I/usr/X11R6/include -D_THREAD_SAFE

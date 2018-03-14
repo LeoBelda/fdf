@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2018/01/29 11:54:29 by lbelda           ###   ########.fr        #
+#    Updated: 2018/03/14 10:27:07 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,27 +77,33 @@ SRC=srcs/main.c \
 	srcs/utils/threads.c
 
 OBJ=$(SRC:%.c=%.o)
-INCLUDES=includes/
-HEADER=fdf.h
+INCDIR=includes/
+INCFILES=fdf.h
+INC=$(addprefix $(INCDIR), $(INCFILES))
 
 LIBPATH=libs/
 
-LFTDIR=$(LIBPATH)libft/
+LFTDIR=libft/
+LFTPATH=$(addprefix $(LIBPATH), $(LFTDIR))
 LIBFT=libft.a
 FTLK=ft
 
-LFTMTDIR=$(LIBPATH)libftmath/
+LFTMTDIR=libftmath/
+LFTMTPATH=$(addprefix $(LIBPATH), $(LFTMTDIR))
 LIBFTMT=libftmath.a
 FTMTLK=ftmath
 
-LSHDDIR=$(LIBPATH)libshader/
+LSHDDIR=libshader/
+LSHDPATH=$(addprefix $(LIBPATH), $(LSHDDIR))
 LIBSHD=libshader.a
 SHDLK=shader
 
-FMODDIR=$(LIBPATH)fmod/
+FMODDIR=fmod/
+FMODPATH=$(addprefix $(LIBPATH), $(FMODDIR))
 FMODLK=fmodL
 
-LMLXDIR=$(LIBPATH)minilibx/
+LMLXDIR=minilibx/
+LMLXPATH=$(addprefix $(LIBPATH), $(LMLXDIR))
 LIBMLX=libmlx.a
 MLXLK=mlx
 FRAMEWORKS=-framework OpenGL -framework AppKit
@@ -109,7 +115,7 @@ LSDLINCDIR=$(LIBPATH)SDL2/include/SDL2/
 LIBSDL=libSDL2.a
 SDLLK=SDL2
 
-ALLINCS=-I$(LFTDIR) -I$(LFTMTDIR) -I$(LSHDDIR) -I$(LMLXDIR) -I$(FMODDIR) -I$(LSDLINCDIR) -I$(INCLUDES)
+ALLINCS=-I$(LFTPATH) -I$(LFTMTPATH) -I$(LSHDPATH) -I$(LMLXPATH) -I$(FMODPATH) -I$(LSDLINCDIR) -I$(INCDIR)
 
 NAME=fdf
 
@@ -120,43 +126,43 @@ INT=install_name_tool -change
 
 all: $(NAME)
 
-$(NAME): $(LSDLDIR)$(LIBSDL) $(LFTDIR)$(LIBFT) $(LFTMTDIR)$(LIBFTMT) $(LSHDDIR)$(LIBSHD) $(LMLXDIR)$(LIBMLX) $(OBJ) includes/fdf.h
-	-@$(CC) -O3 -o $(NAME) $(ALLINCS) -L$(LFTDIR) -l$(FTLK) -L$(LFTMTDIR) -l$(FTMTLK) -L$(LSHDDIR) -l$(SHDLK) -L$(FMODDIR) -l$(FMODLK) -L$(LMLXDIR) -l$(MLXLK) -L$(LSDLDIR) -l$(SDLLK) $(FRAMEWORKS) $(OBJ)
-	$(INT) @rpath/libfmodL.dylib $(FMODDIR)libfmodL.dylib $(NAME)
+$(NAME): $(LSDLDIR)$(LIBSDL) $(LFTPATH)$(LIBFT) $(LFTMTPATH)$(LIBFTMT) $(LSHDPATH)$(LIBSHD) $(LMLXPATH)$(LIBMLX) $(OBJ) $(INC)
+	$(CC) -O3 -o $(NAME) $(ALLINCS) -L$(LFTPATH) -l$(FTLK) -L$(LFTMTPATH) -l$(FTMTLK) -L$(LSHDPATH) -l$(SHDLK) -L$(FMODPATH) -l$(FMODLK) -L$(LMLXPATH) -l$(MLXLK) -L$(LSDLDIR) -l$(SDLLK) $(FRAMEWORKS) $(OBJ)
+	$(INT) @rpath/libfmodL.dylib $(FMODPATH)libfmodL.dylib $(NAME)
 	-@echo "FdF ready."
 
-%.o: %.c includes/fdf.h
+%.o: %.c $(INC)
 	$(CC) $(CFLAGS) -o $@ $(ALLINCS) -c $<
 
-$(LFTDIR)$(LIBFT):
-	$(MAKE) -C $(LFTDIR)
+$(LFTPATH)$(LIBFT):
+	$(MAKE) -C $(LFTPATH)
 
-$(LFTMTDIR)$(LIBFTMT):
-	$(MAKE) -C $(LFTMTDIR)
+$(LFTMTPATH)$(LIBFTMT):
+	$(MAKE) -C $(LFTMTPATH)
 
-$(LSHDDIR)$(LIBSHD):
-	$(MAKE) -C $(LSHDDIR)
+$(LSHDPATH)$(LIBSHD):
+	$(MAKE) -C $(LSHDPATH)
 
-$(LMLXDIR)$(LIBMLX):
-	$(MAKE) -C $(LMLXDIR)
+$(LMLXPATH)$(LIBMLX):
+	$(MAKE) -C $(LMLXPATH)
 
 $(LSDLDIR)$(LIBSDL):
 	cd $(LSDLSRC) && ./configure --prefix=$$PWD/../
 	$(MAKE) -C $(LSDLSRC) install
 
 clean:
-	$(MAKE) -C $(LFTDIR) clean
-	$(MAKE) -C $(LFTMTDIR) clean
-	$(MAKE) -C $(LSHDDIR) clean
+	$(MAKE) -C $(LFTPATH) clean
+	$(MAKE) -C $(LFTMTPATH) clean
+	$(MAKE) -C $(LSHDPATH) clean
 	$(MAKE) -C $(LSDLSRC) clean
-	rm -rf $(INCLUDES)/*.h.gch
+	rm -rf $(INCDIR)/*.h.gch
 	rm -rf $(OBJ)
 
 fclean: clean
-	$(MAKE) -C $(LFTDIR) fclean
-	$(MAKE) -C $(LFTMTDIR) fclean
-	$(MAKE) -C $(LSHDDIR) fclean
-	$(MAKE) -C $(LMLXDIR) clean
+	$(MAKE) -C $(LFTPATH) fclean
+	$(MAKE) -C $(LFTMTPATH) fclean
+	$(MAKE) -C $(LSHDPATH) fclean
+	$(MAKE) -C $(LMLXPATH) clean
 	$(MAKE) -C $(LSDLSRC) uninstall
 	rm -rf $(LSDLROOT)bin
 	rm -rf $(LSDLROOT)include
