@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 23:57:19 by lbelda            #+#    #+#             */
-/*   Updated: 2018/01/29 09:40:05 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/14 14:26:52 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void			init_starfuncs(t_map *map)
 {
-	if (!(map->starfuncs = ft_memalloc(sizeof(t_starfuncs) * 7)))
+	if (!(map->starfuncs = ft_memalloc(sizeof(t_starfuncs) * 9)))
 		error_exit("");
 	map->starfuncs[0] = (t_starfuncs) {draw_star_10, "10"};
 	map->starfuncs[1] = (t_starfuncs) {draw_star_11, "11"};
@@ -22,7 +22,9 @@ static void			init_starfuncs(t_map *map)
 	map->starfuncs[3] = (t_starfuncs) {draw_star_p1, "P1"};
 	map->starfuncs[4] = (t_starfuncs) {draw_star_n0, "N0"};
 	map->starfuncs[5] = (t_starfuncs) {draw_star_n1, "N1"};
-	map->starfuncs[6] = (t_starfuncs) {NULL, ""};
+	map->starfuncs[6] = (t_starfuncs) {draw_star_n2, "N2"};
+	map->starfuncs[7] = (t_starfuncs) {draw_star_n3, "N3"};
+	map->starfuncs[8] = (t_starfuncs) {NULL, ""};
 }
 
 static t_fct_type	get_star_type(char *line, t_starfuncs *funcs)

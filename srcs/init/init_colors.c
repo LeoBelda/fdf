@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:57:20 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 00:40:22 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/14 14:27:34 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	load_colorsets(t_colors *colors)
 		error_exit("");
 	(colors->stock[0]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
 										C_GOLD_PALE, C_BLU,
-										C_WHI, C_AQUAMARINE, C_GOLD_PALE};
+										C_WHI, C_AQUAMARINE, C_LIGHT_RED};
 	(colors->stock[1]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
 										C_WHI, C_WHI,
-										C_WHI, C_AQUAMARINE, C_GOLD_PALE};
+										C_WHI, C_AQUAMARINE, C_LIGHT_RED};
 	(colors->stock[2]) = (t_colorset) { C_BLA, C_WHI, C_WHI,
 										C_BLA, C_BLA,
 										C_BLA, C_RED, C_RED};

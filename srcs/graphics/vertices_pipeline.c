@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2018/01/29 11:02:23 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/14 15:48:53 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,15 @@ void		*proj_to_draw(void *dt)
 	return (NULL);
 }
 
-void		draw_line(t_map *map, int *addr, size_t i, size_t j)
+static void	draw_line(t_env *e, size_t i, size_t j)
 {
-	if ((!map->clip[i] || !map->clip[j]))
+	if ((!e->map->clip[i] || !e->map->clip[j]))
 	{
-		if (!map->clip[i] && !map->clip[j])
-			bresenham(map->draw[i], map->draw[j], addr);
-		else if (map->clip[i] != 2 && map->clip[j] != 2)
-			bresenham_clip(map->draw[i], map->draw[j], addr);
+		if (!e->map->clip[i] && !e->map->clip[j])
+			bresenham(e->map->draw[i], e->map->draw[j],
+					e->img->addr, e->colors->active.bg1);
+		else if (e->map->clip[i] != 2 && e->map->clip[j] != 2)
+			bresenham_clip(e->map->draw[i], e->map->draw[j], e->img->addr);
 	}
 }
 
@@ -93,11 +94,9 @@ void		*draw_to_img(void *dt)
 		while (x < d->e->map->nb_col)
 		{
 			if (x + 1 < d->e->map->nb_col)
-				draw_line(d->e->map, d->e->img->addr,
-									i, i + 1);
+				draw_line(d->e, i, i + 1);
 			if (y + 1 < d->e->map->nb_line)
-				draw_line(d->e->map, d->e->img->addr,
-									i, i + d->e->map->nb_col);
+				draw_line(d->e, i, i + d->e->map->nb_col);
 			i += NB_THRD;
 			x += NB_THRD;
 		}

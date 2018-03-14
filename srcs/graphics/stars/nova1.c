@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 23:07:53 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 03:41:45 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/14 15:07:58 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	draw_leftright(t_vec2r pt, t_colorset cl, int *ad)
 	dw_pt((t_vec2r){pt.x + 2, pt.y + 2}, (t_cmix){cl.st2, cl.bg1, .5}, ad);
 }
 
-void	draw_star_n0(t_vec2r point, t_colorset cl, int *addr)
+void		draw_star_n0(t_vec2r point, t_colorset cl, int *addr)
 {
 	draw_mid(point, cl, addr);
 	draw_topbot(point, cl, addr);

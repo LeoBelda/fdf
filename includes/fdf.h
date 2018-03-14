@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2018/01/29 12:11:49 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/14 15:46:49 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 # define C_PURPLE_DARK 0x00551a8b
 # define C_ORANGE_DARK 0x008b2500
 # define C_BLUE_NAVY 0x00000080
+# define C_LIGHT_RED 0x00ff4444
 
 enum			e_keycodes
 {
@@ -527,9 +528,6 @@ void			set_sc_funcs(t_sound *sound);
 
 int				draw(t_env *e);
 void			*pre_to_render(void *dt);
-int				rtinit(t_env *e);
-
-float			sdf_sphere(t_vec3pf p);
 
 void			get_sound_data(t_sound *sound);
 
@@ -578,7 +576,7 @@ void			*vertices_to_proj(void *dt);
 void			*proj_to_draw(void *dt);
 void			*draw_to_img(void *dt);
 
-void			bresenham(t_vec2c a, t_vec2c b, int *addr);
+void			bresenham(t_vec2c a, t_vec2c b, int *addr, int bg);
 void			bresenham_clip(t_vec2c a, t_vec2c b, int *addr);
 int				pix_clip(t_vec2c coord);
 int				pix_clipr(t_vec2r coord);
@@ -590,6 +588,8 @@ void			draw_star_p0(t_vec2r point, t_colorset cl, int *addr);
 void			draw_star_p1(t_vec2r point, t_colorset cl, int *addr);
 void			draw_star_n0(t_vec2r point, t_colorset cl, int *addr);
 void			draw_star_n1(t_vec2r point, t_colorset cl, int *addr);
+void			draw_star_n2(t_vec2r point, t_colorset cl, int *addr);
+void			draw_star_n3(t_vec2r point, t_colorset cl, int *addr);
 
 int				expose_hook(void *param);
 int				key_hook(int keycode, void *param);

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 20:06:27 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 03:41:58 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/14 15:07:41 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	draw_star_p0(t_vec2r point, t_colorset cl, int *addr)
 	int		j;
 
 	i = -3;
-	while(i < 4)
+	while (i < 4)
 	{
 		j = -3;
 		while (j < 4)
 		{
 			if (pix_clipr((t_vec2r){point.x + j, point.y + i}))
 				addr[point.x + j + (point.y + i) * XWIN] =
-					rgb_mix((t_rgb)cl.st1, (t_rgb)cl.bg1, 
+					rgb_mix((t_rgb)cl.st1, (t_rgb)cl.bg1,
 							(iabs(j) + iabs(i)) / 6.0).i;
 			j++;
 		}
@@ -52,14 +52,14 @@ void	draw_star_p1(t_vec2r point, t_colorset cl, int *addr)
 	int		j;
 
 	i = -1;
-	while(i < 2)
+	while (i < 2)
 	{
 		j = -1;
 		while (j < 2)
 		{
 			if (pix_clipr((t_vec2r){point.x + j, point.y + i}))
 				addr[point.x + j + (point.y + i) * XWIN] =
-					rgb_mix((t_rgb)cl.st1, (t_rgb)cl.bg1, 
+					rgb_mix((t_rgb)cl.st1, (t_rgb)cl.bg1,
 							(iabs(j) + iabs(i)) / 2.0).i;
 			j++;
 		}

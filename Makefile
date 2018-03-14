@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2018/03/14 10:27:07 by lbelda           ###   ########.fr        #
+#    Updated: 2018/03/14 14:39:58 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,10 +50,9 @@ SRC=srcs/main.c \
 	srcs/graphics/stars/basics1.c \
 	srcs/graphics/stars/nova1.c \
 	srcs/graphics/stars/nova2.c \
+	srcs/graphics/stars/nova3.c \
+	srcs/graphics/stars/nova4.c \
 	srcs/graphics/stars/pt.c \
-	\
-	srcs/rt/rtcore.c \
-	srcs/rt/sdfs.c \
 	\
 	srcs/algos/bresenham.c \
 	srcs/algos/bresenham_clip.c \
