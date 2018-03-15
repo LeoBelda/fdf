@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 02:32:51 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/20 02:39:31 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 17:45:39 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ps3_camtrsz(t_env *e, int value)
 {
-	e->matrices->movement.tz = 12 * value / 32767;
+	e->matrices->movement.tz = 12. * (double)value / 32767.;
 }

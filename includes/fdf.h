@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/15 16:25:17 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 17:19:22 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -617,6 +617,7 @@ void			k_rotcamrx(t_env *e, int flag);
 void			k_rotcamz(t_env *e, int flag);
 void			k_rotcamrz(t_env *e, int flag);
 
+void			handle_sdl_events(t_env *e);
 void			ps3_camrotz(t_env *e, int value);
 void			ps3_camrotx(t_env *e, int value);
 void			ps3_camroty(t_env *e, int value);

@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2018/03/15 13:21:25 by lbelda           ###   ########.fr        #
+#    Updated: 2018/03/15 17:24:27 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRC=srcs/main.c \
 	srcs/controls/kb_chpov.c \
 	srcs/controls/kb_chcolor.c \
 	srcs/controls/kb_misc.c \
+	srcs/controls/sdl_events.c \
 	srcs/controls/ps3_camrot.c \
 	srcs/controls/ps3_camtrs.c \
 	srcs/controls/tools.c \

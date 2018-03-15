@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/15 15:26:49 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 17:24:10 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,6 @@ static void		set_vdst(t_sound *sound, t_map *map)
 			break ;
 		}
 		i++;
-	}
-}
-
-static void		handle_sdl_events(t_env *e)
-{
-	SDL_Event	event;
-
-	(void)e;
-	while (SDL_PollEvent(&event))
-	{
-		if (iabs(event.caxis.value) <= 5500)
-			event.caxis.value = 0;
-		if (event.caxis.axis == SDL_CONTROLLER_AXIS_LEFTX)
-			ps3_camroty(e, event.caxis.value);
-		else if (event.caxis.axis == SDL_CONTROLLER_AXIS_LEFTY)
-			ps3_camrotx(e, event.caxis.value);
-		else if (event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT)
-			ps3_camtrsz(e, event.caxis.value);
-		else if (event.cbutton.button == PS3_LEFT_SHOULDER)
-			ps3_camrotz(e, (event.cbutton.state ? 1 : 0));
-		else if (event.cbutton.button == PS3_RIGHT_SHOULDER)
-			ps3_camrotz(e, (event.cbutton.state ? -1 : 0));
 	}
 }
 
