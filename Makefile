@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2018/03/14 14:39:58 by lbelda           ###   ########.fr        #
+#    Updated: 2018/03/15 13:21:25 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,8 @@ SRC=srcs/main.c \
 	srcs/controls/ps3_camtrs.c \
 	srcs/controls/tools.c \
 	\
+	srcs/utils/clean.c \
+	srcs/utils/clean_lst.c \
 	srcs/utils/print_db.c \
 	srcs/utils/threads.c
 

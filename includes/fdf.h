@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/14 15:46:49 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 13:18:38 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@
 # include <math.h>
 # include <time.h>
 
-# define NB_THRD 4
+# define NB_THRD 8
 
-# define XWIN 2560
-# define YWIN 1440
-# define X_WIN 2560.0
-# define Y_WIN 1440.0
+# define XWIN 3200
+# define YWIN 1800
+# define X_WIN 3200.0
+# define Y_WIN 1800.0
 
 # define SIDE 400
 # define X_SCALE 10
@@ -625,6 +625,9 @@ void			ps3_reset_camrot(t_env *e);
 void			send_threads(void *(*f)(), t_env *e);
 void			send_threads_m(void *(*f)(), t_map *map);
 void			send_threads_buf(void *(*f)(), int *addr, int color);
+
+void			clean_lst(void *elem, size_t size);
+void			free_all_the_stuff(t_env *e);
 
 void			usage_exit(void);
 void			error_exit(char *msg);

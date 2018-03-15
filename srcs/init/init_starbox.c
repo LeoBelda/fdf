@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/16 23:57:19 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/14 14:26:52 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 13:05:52 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void			parse_stars(t_star *starbox, t_starfuncs *funcs, int fd)
 			ft_tabdel(&tab);
 			i++;
 		}
+		free(line);
 	}
 }
 
@@ -80,6 +81,7 @@ void				init_starbox(t_map *map)
 	if (get_next_line(fd, &header) == -1)
 		error_exit("Failed to parse starmap");
 	map->starbox_size = ft_atoi(header);
+	free(header);
 	if (!(map->starbox = ft_memalloc(sizeof(t_star) * map->starbox_size)))
 		error_exit("");
 	if (!(map->starproj = ft_memalloc(sizeof(t_vec3) * map->starbox_size)))

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 15:30:26 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/11 02:36:32 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 12:50:15 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,10 @@ void		init_sound(t_sound *sound, char *file)
 		dsp_init(sound);
 	}
 	else
+	{
 		sound->smode = S_OFF;
+		FMOD_System_Release(sound->system);
+		free(sound->data->p_spec);
+		free(sound->data);
+	}
 }

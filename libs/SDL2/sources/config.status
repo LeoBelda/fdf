@@ -598,7 +598,7 @@ old_postuninstall_cmds=''
 old_archive_cmds='$AR $AR_FLAGS $oldlib$oldobjs~$RANLIB $tool_oldlib'
 lock_old_archive_extraction='yes'
 CC='gcc'
-CFLAGS='-g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -I/usr/X11R6/include'
+CFLAGS='-g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos '
 compiler='g++'
 GCC='yes'
 lt_cv_sys_global_symbol_pipe='sed -n -e '\''s/^.*[	 ]\([BCDEGRST][BCDEGRST]*\)[	 ][	 ]*_\([_A-Za-z][_A-Za-z0-9]*\)$/\1 _\2 \2/p'\'' | sed '\''/ __gnu_lto/d'\'''
@@ -790,7 +790,7 @@ fi
 
 
 
-SUMMARY="SDL2 Configure Summary:\nBuilding Shared Libraries\nBuilding Static Libraries\nEnabled modules : atomic audio video render events joystick haptic power filesystem threads timers file loadso cpuinfo assembly\nAssembly Math   : mmx 3dnow sse sse2 sse3\nAudio drivers   : disk dummy coreaudio\nVideo drivers   : dummy cocoa x11(dynamic) opengl opengl vulkan\nX11 libraries   : xcursor xdbe xinerama xinput2 xinput2_multitouch xrandr xscrnsaver xshape xvidmode\nInput drivers   :\nUsing libsamplerate : NO\nUsing libudev       : NO\nUsing dbus          : NO\nUsing ime           : NO\nUsing ibus          : NO\nUsing fcitx         : NO\n"
+SUMMARY="SDL2 Configure Summary:\nBuilding Shared Libraries\nBuilding Static Libraries\nEnabled modules : atomic audio video render events joystick haptic power filesystem threads timers file loadso cpuinfo assembly\nAssembly Math   : mmx 3dnow sse sse2 sse3\nAudio drivers   : disk dummy coreaudio\nVideo drivers   : dummy cocoa opengl vulkan\nInput drivers   :\nUsing libsamplerate : NO\nUsing libudev       : NO\nUsing dbus          : NO\nUsing ime           : NO\nUsing ibus          : NO\nUsing fcitx         : NO\n"
 
 
 # Handling of arguments.
@@ -878,7 +878,7 @@ S["EXTRA_LDFLAGS"]=" -lm -liconv  -Wl,-framework,CoreAudio -Wl,-framework,AudioT
 S["BUILD_LDFLAGS"]=""
 S["EXTRA_CFLAGS"]="-Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/vid"\
 "eo/khronos  -mmmx -m3dnow -msse -msse2 -msse3 -Wall -DTARGET_API_MAC_CARBON -DTARGET_API_MAC_OSX -fvisibility=hidden -Wdeclaration-after-statement -"\
-"Werror=declaration-after-statement  -I/usr/X11R6/include -D_THREAD_SAFE"
+"Werror=declaration-after-statement -D_THREAD_SAFE"
 S["BUILD_CFLAGS"]="-g -O3 -DUSING_GENERATED_CONFIG_H"
 S["SDLTEST_OBJECTS"]="$(objects)/SDL_test_assert.lo $(objects)/SDL_test_common.lo $(objects)/SDL_test_compare.lo $(objects)/SDL_test_crc32.lo $(objects)/SDL_test_font.lo "\
 "$(objects)/SDL_test_fuzzer.lo $(objects)/SDL_test_harness.lo $(objects)/SDL_test_imageBlit.lo $(objects)/SDL_test_imageBlitBlend.lo $(objects)/SDL_t"\
@@ -908,12 +908,9 @@ S["OBJECTS"]="$(objects)/SDL.lo $(objects)/SDL_assert.lo $(objects)/SDL_dataqueu
 ")/SDL_dummyaudio.lo $(objects)/SDL_sysloadso.lo $(objects)/SDL_cocoaclipboard.lo $(objects)/SDL_cocoaevents.lo $(objects)/SDL_cocoakeyboard.lo $(obj"\
 "ects)/SDL_cocoamessagebox.lo $(objects)/SDL_cocoametalview.lo $(objects)/SDL_cocoamodes.lo $(objects)/SDL_cocoamouse.lo $(objects)/SDL_cocoamousetap"\
 ".lo $(objects)/SDL_cocoaopengl.lo $(objects)/SDL_cocoashape.lo $(objects)/SDL_cocoavideo.lo $(objects)/SDL_cocoavulkan.lo $(objects)/SDL_cocoawindow"\
-".lo $(objects)/SDL_x11clipboard.lo $(objects)/SDL_x11dyn.lo $(objects)/SDL_x11events.lo $(objects)/SDL_x11framebuffer.lo $(objects)/SDL_x11keyboard."\
-"lo $(objects)/SDL_x11messagebox.lo $(objects)/SDL_x11modes.lo $(objects)/SDL_x11mouse.lo $(objects)/SDL_x11opengl.lo $(objects)/SDL_x11opengles.lo $"\
-"(objects)/SDL_x11shape.lo $(objects)/SDL_x11touch.lo $(objects)/SDL_x11video.lo $(objects)/SDL_x11vulkan.lo $(objects)/SDL_x11window.lo $(objects)/S"\
-"DL_x11xinput2.lo $(objects)/edid-parse.lo $(objects)/imKStoUCS.lo $(objects)/SDL_systhread.lo $(objects)/SDL_syssem.lo $(objects)/SDL_sysmutex.lo $("\
-"objects)/SDL_syscond.lo $(objects)/SDL_systls.lo $(objects)/SDL_coreaudio.lo $(objects)/SDL_sysjoystick.lo $(objects)/SDL_syshaptic.lo $(objects)/SD"\
-"L_syspower.lo $(objects)/SDL_sysfilesystem.lo $(objects)/SDL_systimer.lo $(objects)/SDL_rwopsbundlesupport.lo $(objects)/SDL_poll.lo"
+".lo $(objects)/SDL_systhread.lo $(objects)/SDL_syssem.lo $(objects)/SDL_sysmutex.lo $(objects)/SDL_syscond.lo $(objects)/SDL_systls.lo $(objects)/SD"\
+"L_coreaudio.lo $(objects)/SDL_sysjoystick.lo $(objects)/SDL_syshaptic.lo $(objects)/SDL_syspower.lo $(objects)/SDL_sysfilesystem.lo $(objects)/SDL_s"\
+"ystimer.lo $(objects)/SDL_rwopsbundlesupport.lo $(objects)/SDL_poll.lo"
 S["INCLUDE"]="-Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/vid"\
 "eo/khronos"
 S["ac_aux_dir"]="build-scripts"
@@ -925,12 +922,12 @@ S["SDL_RLD_FLAGS"]=""
 S["SDL_STATIC_LIBS"]="-lSDL2   -lm -liconv  -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,CoreVideo -Wl,-framewo"\
 "rk,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit"
 S["SDL_LIBS"]="-lSDL2 "
-S["SDL_CFLAGS"]="  -I/usr/X11R6/include -D_THREAD_SAFE"
+S["SDL_CFLAGS"]=" -D_THREAD_SAFE"
 S["DIRECTFBCONFIG"]=""
 S["X_EXTRA_LIBS"]=""
-S["X_LIBS"]=" -L/usr/X11R6/lib"
-S["X_PRE_LIBS"]=" -lSM -lICE"
-S["X_CFLAGS"]=" -I/usr/X11R6/include"
+S["X_LIBS"]=""
+S["X_PRE_LIBS"]=""
+S["X_CFLAGS"]=""
 S["XMKMF"]=""
 S["ARTSCONFIG"]=""
 S["ESD_LIBS"]=""
@@ -981,9 +978,9 @@ S["EXEEXT"]=""
 S["ac_ct_CC"]="gcc"
 S["CPPFLAGS"]=" -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/vi"\
 "deo/khronos "
-S["LDFLAGS"]="   -L/usr/X11R6/lib"
+S["LDFLAGS"]=" "
 S["CFLAGS"]="-g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/"\
-"src/video/khronos   -I/usr/X11R6/include"
+"src/video/khronos "
 S["CC"]="gcc"
 S["host_os"]="darwin16.7.0"
 S["host_vendor"]="apple"
@@ -1195,32 +1192,9 @@ D["SDL_AUDIO_DRIVER_DISK"]=" 1"
 D["SDL_AUDIO_DRIVER_DUMMY"]=" 1"
 D["SDL_LOADSO_DLOPEN"]=" 1"
 D["SDL_VIDEO_DRIVER_COCOA"]=" 1"
-D["SDL_VIDEO_DRIVER_X11"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_DYNAMIC"]=" \"/usr/X11R6/lib/libX11.6.dylib\""
-D["SDL_VIDEO_DRIVER_X11_DYNAMIC_XEXT"]=" \"/usr/X11R6/lib/libXext.6.dylib\""
-D["SDL_VIDEO_DRIVER_X11_CONST_PARAM_XEXTADDDISPLAY"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_SUPPORTS_GENERIC_EVENTS"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_HAS_XKBKEYCODETOKEYSYM"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_DYNAMIC_XCURSOR"]=" \"/usr/X11R6/lib/libXcursor.1.dylib\""
-D["SDL_VIDEO_DRIVER_X11_XCURSOR"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_XDBE"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_DYNAMIC_XINERAMA"]=" \"/usr/X11R6/lib/libXinerama.1.dylib\""
-D["SDL_VIDEO_DRIVER_X11_XINERAMA"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_DYNAMIC_XINPUT2"]=" \"/usr/X11R6/lib/libXi.6.dylib\""
-D["SDL_VIDEO_DRIVER_X11_XINPUT2"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_XINPUT2_SUPPORTS_MULTITOUCH"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_DYNAMIC_XRANDR"]=" \"/usr/X11R6/lib/libXrandr.2.dylib\""
-D["SDL_VIDEO_DRIVER_X11_XRANDR"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_DYNAMIC_XSS"]=" \"/usr/X11R6/lib/libXss.1.dylib\""
-D["SDL_VIDEO_DRIVER_X11_XSCRNSAVER"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_XSHAPE"]=" 1"
-D["SDL_VIDEO_DRIVER_X11_DYNAMIC_XVIDMODE"]=" \"/usr/X11R6/lib/libXxf86vm.1.dylib\""
-D["SDL_VIDEO_DRIVER_X11_XVIDMODE"]=" 1"
+D["X_DISPLAY_MISSING"]=" 1"
 D["SDL_VIDEO_OPENGL"]=" 1"
 D["SDL_VIDEO_OPENGL_CGL"]=" 1"
-D["SDL_VIDEO_RENDER_OGL"]=" 1"
-D["SDL_VIDEO_OPENGL"]=" 1"
-D["SDL_VIDEO_OPENGL_GLX"]=" 1"
 D["SDL_VIDEO_RENDER_OGL"]=" 1"
 D["SDL_VIDEO_VULKAN"]=" 1"
 D["SDL_THREAD_PTHREAD"]=" 1"

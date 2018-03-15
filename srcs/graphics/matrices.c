@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 18:44:28 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/18 10:24:37 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 12:00:28 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ static void		switch_mat4(t_env *e, t_mat4set *set)
 		set->progress = 0;
 		set->switching = 0;
 		if (e)
+		{
 			e->controls->active = e->controls->target;
+			e->controls->target = NULL;
+		}
 		return ;
 	}
 	set->active = mat4_interi(set->from, set->target, 100, set->progress);

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 21:56:48 by lbelda            #+#    #+#             */
-/*   Updated: 2018/01/29 12:15:19 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 13:22:35 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,8 @@ void			parse_map(t_map *map, char *file)
 	if ((fd = open(file, O_RDONLY)) == -1)
 		error_exit("");
 	map_to_list(fd, map);
-	ft_putendl("map is in da list");
 	map->vertices_glb = ft_lst_to_array(map->vertices_list);
-	ft_putendl("map is in da array");
+	ft_lstdel(&map->vertices_list, &clean_lst);
 	define_attributes(map);
 	alloc_map(map);
 	if (close(fd) == -1)

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 21:06:36 by lbelda            #+#    #+#             */
-/*   Updated: 2018/01/29 13:45:31 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 11:51:12 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	set_state_eno(t_env *e)
 		e->map->vdstmode = VDST_DEFAULT;
 	}
 	switch_kbmode(e, &e->controls->active, KB_GRD);
+	e->controls->target = NULL;
 }
 
 void	set_state_quiet(t_env *e)
@@ -58,6 +59,7 @@ void	set_state_quiet(t_env *e)
 		e->map->vdstmode = VDST_DEFAULT;
 	}
 	switch_kbmode(e, &e->controls->active, KB_GRD);
+	e->controls->target = NULL;
 }
 
 void	set_state_loud(t_env *e)
@@ -82,6 +84,7 @@ void	set_state_loud(t_env *e)
 		e->map->vdstmode = VDST_DEFAULT;
 	}
 	switch_kbmode(e, &e->controls->active, KB_GRD);
+	e->controls->target = NULL;
 }
 
 void	set_state_default(t_env *e)
@@ -100,15 +103,17 @@ void	set_state_default(t_env *e)
 	}
 	else
 	{
-		e->map->dstmode = DST_AROUND_FLAT_NS;
+		e->map->dstmode = DST_DEFAULT_NS;
 		e->sound->srmode = SR_DEFAULT;
 		e->sound->scmode = SC_TOTAL_VISION;
 		e->map->vdstmode = VDST_DEFAULT;
 	}
 	switch_kbmode(e, &e->controls->active, KB_GRD);
+	e->controls->target = NULL;
 }
 
 void	set_state_rt(t_env *e)
 {
 	switch_kbmode(e, &e->controls->active, KB_RT);
+	e->controls->target = NULL;
 }
