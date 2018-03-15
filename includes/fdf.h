@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/15 13:18:38 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 16:25:17 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <math.h>
 # include <time.h>
 
-# define NB_THRD 8
+# define NB_THRD 4
 
 # define XWIN 3200
 # define YWIN 1800
@@ -592,6 +592,7 @@ void			draw_star_n2(t_vec2r point, t_colorset cl, int *addr);
 void			draw_star_n3(t_vec2r point, t_colorset cl, int *addr);
 
 int				expose_hook(void *param);
+int				quit_hook(t_env *e);
 int				key_hook(int keycode, void *param);
 int				mouse_hook(int button, int x, int y, void *param);
 int				key_press_hook(int keycode, t_env *e);

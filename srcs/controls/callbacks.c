@@ -6,11 +6,20 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 18:36:46 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/06 19:29:08 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 16:27:30 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int		quit_hook(t_env *e)
+{
+	if (mlx_destroy_image(e->mlx, e->img->img) == -1)
+		error_exit("Failed to destroy image");
+	free_all_the_stuff(e);
+	getchar();
+	exit(0);
+}
 
 int		key_hook(int keycode, void *param)
 {

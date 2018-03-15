@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:54:30 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/15 15:40:24 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 16:03:38 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,6 @@ void		free_all_the_stuff(t_env *e)
 	free_img_mat_col(e->img, e->matrices, e->colors);
 	free_controls_overlay(e->controls, e->overlay);
 	free_sound(e->sound);
+	SDL_Quit();
 	free(e);
-	getchar();
 }

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 17:30:46 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/14 11:41:19 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/15 16:24:42 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	init_mlx(t_env *e)
 	mlx_mouse_hook(e->win, mouse_hook, (void*)e);
 	mlx_hook(e->win, 2, 0, key_press_hook, (void*)e);
 	mlx_hook(e->win, 3, 0, key_release_hook, (void*)e);
+	mlx_hook(e->win, 17, 0, quit_hook, (void*)e);
 	mlx_expose_hook(e->win, expose_hook, (void*)e);
 	mlx_loop_hook(e->mlx, draw, (void*)e);
 }
