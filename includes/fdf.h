@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/15 18:30:15 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 11:35:18 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define SIDE 400
 # define X_SCALE 10
 # define Z_SCALE 10
+# define Y_SCALE 1
 
 # define FFT_SIZE 1024
 # define OCT_NB 9

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/14 15:48:53 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 11:13:19 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void		*draw_to_img(void *dt)
 				draw_line(d->e, i, i + 1);
 			if (y + 1 < d->e->map->nb_line)
 				draw_line(d->e, i, i + d->e->map->nb_col);
-			i += NB_THRD;
-			x += NB_THRD;
+			i += (NB_THRD >= d->e->map->nb_col ? d->e->map->nb_col : NB_THRD);
+			x += (NB_THRD >= d->e->map->nb_col ? d->e->map->nb_col : NB_THRD);
 		}
 		y++;
 	}
