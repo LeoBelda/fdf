@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 17:14:05 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/17 19:41:15 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 14:44:28 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@ void	load_program_disco(t_colors *colors)
 {
 	if (!(colors->disco = ft_memalloc(sizeof(t_colorset) * 8)))
 		error_exit("");
-	(colors->disco[0]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
+	(colors->disco[0]) = (t_colorset) { C_WHI, C_GOLD_PALE, C_BLA,
 										C_WHI, C_GREEN_DARK,
 										C_WHI, C_BLU, C_GOLD_PALE};
-	(colors->disco[1]) = (t_colorset) { C_WHI, C_PURPLE_DARK, C_BLA,
-										C_GREEN_DARK, C_RED,
-										C_WHI, C_BLU, C_GOLD_PALE};
-	(colors->disco[2]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
-										C_RED, C_PURPLE_DARK,
-										C_WHI, C_BLU, C_GOLD_PALE};
-	(colors->disco[3]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
+	(colors->disco[1]) = (t_colorset) { C_WHI, C_AQUAMARINE, C_BLA,
+										C_BLU, C_RED,
+										C_GREEN_DARK, C_BLU, C_GOLD_PALE};
+	(colors->disco[2]) = (t_colorset) { C_WHI, C_BLUE_NAVY, C_BLA,
+										C_RED, C_RED,
+										C_GRE, C_BLU, C_GOLD_PALE};
+	(colors->disco[3]) = (t_colorset) { C_WHI, C_PURPLE_DARK, C_BLA,
 										C_PURPLE_DARK, C_BLU,
-										C_WHI, C_BLU, C_GOLD_PALE};
-	(colors->disco[4]) = (t_colorset) { C_WHI, C_PURPLE_DARK, C_PURPLE_DARK,
-										C_GOLD_PALE, C_GRE,
-										C_WHI, C_BLU, C_GOLD_PALE};
-	(colors->disco[5]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
+										C_RED, C_BLU, C_GOLD_PALE};
+	(colors->disco[4]) = (t_colorset) { C_WHI, C_GOLD_PALE, C_BLA,
+										C_GRE, C_GRE,
+										C_BLU, C_BLU, C_GOLD_PALE};
+	(colors->disco[5]) = (t_colorset) { C_WHI, C_LIGHT_RED, C_BLA,
 										C_GRE, C_BLU,
-										C_WHI, C_BLU, C_GOLD_PALE};
-	(colors->disco[6]) = (t_colorset) { C_WHI, C_BLUE_NAVY, C_BLA,
+										C_GRE, C_BLU, C_GOLD_PALE};
+	(colors->disco[6]) = (t_colorset) { C_WHI, C_WHI, C_BLA,
 										C_GOLD_PALE, C_WHI,
-										C_WHI, C_BLU, C_GOLD_PALE};
+										C_RED, C_BLU, C_GOLD_PALE};
 	(colors->disco[7]) = (t_colorset) { 0, 0, 0, 0, 0, 0, 0, 0 };
 }
 

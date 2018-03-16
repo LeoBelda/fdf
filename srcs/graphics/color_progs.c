@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 19:04:22 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/08 16:21:51 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 14:42:48 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	program_disco(t_colors *colors)
 
 	if (!handle)
 		handle = colors->disco;
-	if (i == 20)
+	if (i == 300)
 	{
 		handle++;
 		if (ft_ismemzero((void*)handle, sizeof(t_colorset)))
@@ -28,7 +28,7 @@ void	program_disco(t_colors *colors)
 		colors->target = *handle;
 		i = 0;
 	}
-	switch_colors(colors, 20, i);
+	switch_colors(colors, 300, i);
 	i++;
 }
 

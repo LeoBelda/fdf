@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 15:40:42 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/16 13:34:52 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 14:47:31 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			sr_bass_alti(t_spec *spec, t_map *map)
 	if (!map->az_targut)
 		while (i < map->nb_vtx)
 		{
-			map->target_vtx_y[i] = map->world_vtx[i].y * spec->low_band * 4;
+			map->target_vtx_y[i] = map->world_vtx[i].y * spec->low_band * 5;
 			map->m_world_vtx[i].y = get_mod_z(map->m_world_vtx[i].y,
 											map->target_vtx_y[i], 5.0, 10.0);
 			i++;
@@ -46,7 +46,7 @@ void			sr_bass_alti(t_spec *spec, t_map *map)
 	else
 		while (i < map->nb_vtx)
 		{
-			map->target_vtx_y[i] = map->target_vtx_y[i] * spec->low_band * 4;
+			map->target_vtx_y[i] = map->target_vtx_y[i] * spec->low_band * 5;
 			map->m_world_vtx[i].y = get_mod_z(map->m_world_vtx[i].y,
 											map->target_vtx_y[i], 5.0, 10.0);
 			i++;
