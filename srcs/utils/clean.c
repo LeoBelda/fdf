@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:54:30 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/16 13:26:18 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 19:01:31 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,17 @@ void		free_all_the_stuff(t_env *e)
 {
 	free_map(e->map);
 	free_img_mat_col(e->img, e->matrices, e->colors);
+	SDL_PumpEvents();
+	SDL_FlushEvents(0, SDL_LASTEVENT);
+	while (SDL_PollEvent(NULL))
+	{
+	}
 	free_controls_overlay(e->controls, e->overlay);
 	free_sound(e->sound);
+	getchar();
 	SDL_Quit();
+	getchar();
+	mlx_clear_window(e->mlx, e->win);
+	mlx_destroy_window(e->mlx, e->win);
 	free(e);
 }

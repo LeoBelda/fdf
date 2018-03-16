@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 19:02:53 by lbelda            #+#    #+#              #
-#    Updated: 2018/03/16 13:01:51 by lbelda           ###   ########.fr        #
+#    Updated: 2018/03/16 18:28:34 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,7 @@ ALLINCS=-I$(LFTPATH) -I$(LFTMTPATH) -I$(LSHDPATH) -I$(LMLXPATH) -I$(FMODPATH) -I
 NAME=fdf
 
 CC=gcc
-CFLAGS=-O3 -Wall -Wextra -Werror
+CFLAGS=-O3 -Wall -Wextra -Werror -g
 MAKE=make
 INT=install_name_tool -change
 

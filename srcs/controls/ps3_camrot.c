@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 02:11:39 by lbelda            #+#    #+#             */
-/*   Updated: 2017/12/20 03:04:22 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 18:01:40 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ps3_camrotx(t_env *e, int value)
 
 void	ps3_camroty(t_env *e, int value)
 {
-	e->matrices->movement.ry = 0.7 * value / 32767;
+	e->matrices->movement.ry = 1.1 * value / 32767;
 }
 
 void	ps3_reset_camrot(t_env *e)

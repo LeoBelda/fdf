@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 21:06:36 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/16 13:16:58 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 18:10:00 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	set_state_loud(t_env *e)
 	}
 	else
 	{
-		e->map->dstmode = DST_DEFAULT_NS;
+		e->map->dstmode = DST_AROUND_FLAT_NS;
 		e->sound->srmode = SR_DEFAULT;
 		e->sound->scmode = SC_DEFAULT;
 		e->map->vdstmode = VDST_DEFAULT;

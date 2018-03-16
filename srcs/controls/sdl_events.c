@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:18:33 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/15 18:13:43 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 18:12:30 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	handle_button(t_env *e, SDL_GameControllerButton button, int flag)
 	else if (button == SDL_CONTROLLER_BUTTON_B)
 		k_chspace(e, flag);
 	else if (button == SDL_CONTROLLER_BUTTON_Y)
-		k_chbuff_mode(e, flag);
+		k_chcolor_program(e, flag);
 }
 
 static void	handle_axis(t_env *e, SDL_ControllerAxisEvent caxis)
