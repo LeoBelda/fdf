@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 10:05:48 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/14 16:56:37 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 13:30:57 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	bresenham1(t_vec2c a, t_vec2c b, int *addr, int bg)
 	while (a.x <= b.x)
 	{
 		tmp = rgbi_interi(a.color, b.color, d.x, i);
-		if (tmp > bg ? addr[a.x + a.y * XWIN] <= tmp
-									: addr[a.x + a.y * XWIN] > tmp)
+		if ((tmp > bg ? addr[a.x + a.y * XWIN] < tmp
+							: addr[a.x + a.y * XWIN] > tmp) && tmp != bg)
 			addr[a.x + a.y * XWIN] = tmp;
 		e += m;
 		if (e >= 0.0)
@@ -56,8 +56,8 @@ static void	bresenham2(t_vec2c a, t_vec2c b, int *addr, int bg)
 	while (a.x <= b.x)
 	{
 		tmp = rgbi_interi(a.color, b.color, d.x, i);
-		if (tmp > bg ? addr[a.x + a.y * XWIN] <= tmp
-									: addr[a.x + a.y * XWIN] > tmp)
+		if ((tmp > bg ? addr[a.x + a.y * XWIN] < tmp
+							: addr[a.x + a.y * XWIN] > tmp) && tmp != bg)
 			addr[a.x + a.y * XWIN] = tmp;
 		e += m;
 		if (e >= 0.0)
@@ -85,8 +85,8 @@ static void	bresenham3(t_vec2c a, t_vec2c b, int *addr, int bg)
 	while (a.y <= b.y)
 	{
 		tmp = rgbi_interi(a.color, b.color, d.y, i);
-		if (tmp > bg ? addr[a.x + a.y * XWIN] <= tmp
-									: addr[a.x + a.y * XWIN] > tmp)
+		if ((tmp >= bg ? addr[a.x + a.y * XWIN] < tmp
+							: addr[a.x + a.y * XWIN] > tmp) && tmp != bg)
 			addr[a.x + a.y * XWIN] = tmp;
 		e += m;
 		if (e >= 0.0)
@@ -114,8 +114,8 @@ static void	bresenham4(t_vec2c a, t_vec2c b, int *addr, int bg)
 	while (a.y >= b.y)
 	{
 		tmp = rgbi_interi(a.color, b.color, -d.y, i);
-		if (tmp > bg ? addr[a.x + a.y * XWIN] <= tmp
-									: addr[a.x + a.y * XWIN] > tmp)
+		if ((tmp >= bg ? addr[a.x + a.y * XWIN] < tmp
+							: addr[a.x + a.y * XWIN] > tmp) && tmp != bg)
 			addr[a.x + a.y * XWIN] = tmp;
 		e += m;
 		if (e >= 0.0)

@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 15:22:30 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/15 17:24:10 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 12:59:23 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ int				draw(t_env *e)
 	set_matrices(e, e->matrices);
 	set_color(e->colors);
 	draw_starbox(e->map, e->matrices, e->colors->active, e->img->addr);
-	send_threads(vertices_to_proj, e);
-	send_threads(proj_to_draw, e);
+	send_threads(vertices_to_proj_to_draw, e);
 	set_sound_color(e->sound, e->map, e->colors->active);
 	send_threads(draw_to_img, e);
 	if (mlx_put_image_to_window(e->mlx, e->win, e->img->img, 0, 0) == -1)

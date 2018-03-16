@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 16:00:53 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/16 11:35:18 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 12:59:36 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@
 # define C_AQUAMARINE 0x007fffd4
 # define C_PURPLE_DARK 0x00551a8b
 # define C_ORANGE_DARK 0x008b2500
+# define C_BROWNIE 0x0054291a
 # define C_BLUE_NAVY 0x00000080
+# define C_BLUE_DARK 0x00000020
 # define C_LIGHT_RED 0x00ff4444
 
 enum			e_keycodes
@@ -575,6 +577,7 @@ void			draw_starbox(t_map *map, t_matrices *matrices,
 							t_colorset active, int *addr);
 void			*vertices_to_proj(void *dt);
 void			*proj_to_draw(void *dt);
+void			*vertices_to_proj_to_draw(void *dt);
 void			*draw_to_img(void *dt);
 
 void			bresenham(t_vec2c a, t_vec2c b, int *addr, int bg);

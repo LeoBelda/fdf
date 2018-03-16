@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 12:44:59 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/16 11:13:19 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 13:01:23 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	in_clip(t_vec3 elem)
 	return (0);
 }
 
-void		*vertices_to_proj(void *dt)
+void		*vertices_to_proj_to_draw(void *dt)
 {
 	size_t	i;
 	t_vec4	*vertices;
@@ -40,20 +40,6 @@ void		*vertices_to_proj(void *dt)
 		d->e->map->proj[i] = mat4xvec4_tovec3(d->e->matrices->f_mat,
 											vertices[i]);
 		d->e->map->clip[i] = in_clip(d->e->map->proj[i]);
-		i += NB_THRD;
-	}
-	return (NULL);
-}
-
-void		*proj_to_draw(void *dt)
-{
-	size_t	i;
-	t_thrd	*d;
-
-	d = (t_thrd*)dt;
-	i = d->i;
-	while (i < d->e->map->nb_vtx)
-	{
 		d->e->map->draw[i] = (t_vec2c)
 			{ (d->e->map->proj[i].x + 1.0) * X_WIN / 2.0,
 			(d->e->map->proj[i].y + 1.0) * Y_WIN / 2.0,
