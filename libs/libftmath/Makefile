@@ -6,7 +6,7 @@
 #    By: lbelda <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 09:59:44 by lbelda            #+#    #+#              #
-#    Updated: 2018/03/14 09:55:54 by lbelda           ###   ########.fr        #
+#    Updated: 2018/03/16 12:19:27 by lbelda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC=mat4_interi.c \
 	deg_rad.c \
 	iabs.c \
 	imod.c \
+	clamp.c \
 	\
 	print_double_fd.c \
 	print_double.c \

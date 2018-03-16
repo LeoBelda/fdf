@@ -30,8 +30,8 @@ Kernel configured for up to 4 processors.
 Processor type: x86_64h (Intel x86-64h Haswell)
 Processors active: 0 1 2 3
 Primary memory available: 8.00 gigabytes
-Default processor set: 300 tasks, 1246 threads, 4 processors
-Load average: 4.94, Mach factor: 0.87
+Default processor set: 317 tasks, 1277 threads, 4 processors
+Load average: 3.99, Mach factor: 1.06
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -1055,7 +1055,7 @@ configure:16641: checking for _strrev
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__strrev", referenced from:
-      _main in conftest-2626d9.o
+      _main in conftest-018a0e.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -1167,7 +1167,7 @@ configure:16641: checking for _strupr
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__strupr", referenced from:
-      _main in conftest-8d5e0d.o
+      _main in conftest-55517b.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -1279,7 +1279,7 @@ configure:16641: checking for _strlwr
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__strlwr", referenced from:
-      _main in conftest-d30f56.o
+      _main in conftest-f99c47.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -1418,7 +1418,7 @@ configure:16641: checking for itoa
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_itoa", referenced from:
-      _main in conftest-5a7006.o
+      _main in conftest-397ec8.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -1533,7 +1533,7 @@ configure:16641: checking for _ltoa
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__ltoa", referenced from:
-      _main in conftest-8bc4ec.o
+      _main in conftest-da17c2.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -1648,7 +1648,7 @@ configure:16641: checking for _uitoa
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__uitoa", referenced from:
-      _main in conftest-012b62.o
+      _main in conftest-0cedb4.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -1763,7 +1763,7 @@ configure:16641: checking for _ultoa
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__ultoa", referenced from:
-      _main in conftest-dc3369.o
+      _main in conftest-3202ee.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -1886,7 +1886,7 @@ configure:16641: checking for _i64toa
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__i64toa", referenced from:
-      _main in conftest-231920.o
+      _main in conftest-b1d6d9.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -2003,7 +2003,7 @@ configure:16641: checking for _ui64toa
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__ui64toa", referenced from:
-      _main in conftest-fd8cc9.o
+      _main in conftest-54f107.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -2154,7 +2154,7 @@ configure:16641: checking for _stricmp
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__stricmp", referenced from:
-      _main in conftest-27a875.o
+      _main in conftest-65791e.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -2286,7 +2286,7 @@ configure:16641: checking for _strnicmp
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__strnicmp", referenced from:
-      _main in conftest-4e30fe.o
+      _main in conftest-1e9931.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -2437,7 +2437,7 @@ configure:16641: checking for fopen64
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_fopen64", referenced from:
-      _main in conftest-eb2546.o
+      _main in conftest-8fb886.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -2568,7 +2568,7 @@ configure:16641: checking for fseeko64
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_fseeko64", referenced from:
-      _main in conftest-639ddc.o
+      _main in conftest-967411.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -2720,7 +2720,7 @@ configure:16641: checking for getauxval
 configure:16641: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos   -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_getauxval", referenced from:
-      _main in conftest-815150.o
+      _main in conftest-aa5bf9.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16641: $? = 1
@@ -4040,7 +4040,7 @@ conftest.c:131:19: warning: implicit declaration of function 'sem_timedwait' is 
 1 warning generated.
 Undefined symbols for architecture x86_64:
   "_sem_timedwait", referenced from:
-      _main in conftest-8918c7.o
+      _main in conftest-de44de.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:22752: $? = 1
@@ -4323,7 +4323,7 @@ configure:22819: checking for pthread_set_name_np
 configure:22839: gcc -o conftest -g -O2 -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos  -D_THREAD_SAFE  -Iinclude -I/Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/include -idirafter /Users/lbelda/workspace/projects/fdf/libs/SDL2/sources/src/video/khronos    conftest.c  -lm -liconv  >&5
 Undefined symbols for architecture x86_64:
   "_pthread_set_name_np", referenced from:
-      _main in conftest-9271c2.o
+      _main in conftest-164d1f.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:22839: $? = 1

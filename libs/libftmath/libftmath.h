@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:18:55 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/14 09:56:23 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/16 12:18:55 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ t_vec3			mat4xvec4_tovec3(t_mat4 mat, t_vec4 vec);
 double			deg_rad(double deg);
 int				iabs(int val);
 int				imod(int a, int b);
+double			clamp(double val, double min, double max);
 
 void			print_double_fd(double nb, int fd);
 void			print_double(double nb);
