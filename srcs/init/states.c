@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 21:06:36 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/16 18:10:00 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/17 14:34:40 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	set_state_quiet(t_env *e)
 {
 	e->mode = M_GRD;
 	e->colors->cmode = C_HYPER;
-	e->colors->bmode = B_TRIPPY;
+	e->colors->bmode = B_DEFAULT;
 	e->matrices->projs->gmode.pmode = P_SPACE;
 	e->matrices->views->gmode.vmode = V_GRD;
 	if (e->sound->smode == S_ON)

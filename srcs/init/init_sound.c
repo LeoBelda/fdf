@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 15:30:26 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/15 12:50:15 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/17 15:29:19 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	channel_init(t_sound *sound, char *file)
 
 	i = 0;
 	if ((err = FMOD_System_CreateStream(sound->system, file,
-					FMOD_DEFAULT, 0, &(sound->song))) != FMOD_OK)
+			FMOD_DEFAULT | FMOD_LOOP_NORMAL, 0, &(sound->song))) != FMOD_OK)
 		return (0);
 	if ((err = FMOD_System_PlaySound(sound->system, sound->song,
 					0, 0, &(sound->channel))) != FMOD_OK)

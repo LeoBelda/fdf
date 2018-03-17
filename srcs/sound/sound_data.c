@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/02 20:19:08 by lbelda            #+#    #+#             */
-/*   Updated: 2018/01/29 13:48:18 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/17 13:11:39 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void			get_sound_data(t_sound *sound)
 		refresh_audio(sound);
 		freq_to_oct(sound->data);
 		sound->data->p_spec->low_band = get_oct_spec(
-				sound->data->oct, 1, sound->data->numchannels);
+				sound->data->oct, 1, sound->data->numchannels)
+			+ get_oct_spec(sound->data->oct, 2, sound->data->numchannels);
 		if (sound->data->p_spec->low_band < 0.1)
 			sound->data->p_spec->low_band = 0.0;
 		sound->data->p_spec->total = get_oct_spec(

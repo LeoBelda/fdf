@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 18:36:46 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/15 16:27:30 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/17 13:29:45 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int		quit_hook(t_env *e)
 	if (mlx_destroy_image(e->mlx, e->img->img) == -1)
 		error_exit("Failed to destroy image");
 	free_all_the_stuff(e);
-	getchar();
 	exit(0);
 }
 

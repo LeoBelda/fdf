@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 10:54:30 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/16 19:01:31 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/17 13:40:04 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,8 @@ void		free_all_the_stuff(t_env *e)
 	}
 	free_controls_overlay(e->controls, e->overlay);
 	free_sound(e->sound);
-	getchar();
-	SDL_Quit();
-	getchar();
 	mlx_clear_window(e->mlx, e->win);
 	mlx_destroy_window(e->mlx, e->win);
 	free(e);
+	SDL_Quit();
 }

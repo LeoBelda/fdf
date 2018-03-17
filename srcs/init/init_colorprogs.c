@@ -6,7 +6,7 @@
 /*   By: lbelda <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 17:14:05 by lbelda            #+#    #+#             */
-/*   Updated: 2018/03/16 14:44:28 by lbelda           ###   ########.fr       */
+/*   Updated: 2018/03/17 14:44:39 by lbelda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ void	load_program_hyper(t_colors *colors)
 	(colors->hyper[0]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
 										C_WHI, C_GREEN_DARK,
 										C_WHI, C_BLU, C_GOLD_PALE};
-	(colors->hyper[1]) = (t_colorset) { C_WHI, C_BLUE_NAVY, C_BLA,
+	(colors->hyper[1]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
 										C_GREEN_DARK, C_GREEN_DARK,
-										C_WHI, C_BLU, C_GOLD_PALE};
+										C_GOLD_PALE, C_RED, C_GRE};
 	(colors->hyper[2]) = (t_colorset) { C_WHI, C_BLA, C_BLA,
 										C_RED, C_PURPLE_DARK,
-										C_WHI, C_BLU, C_GOLD_PALE};
-	(colors->hyper[3]) = (t_colorset) { C_BLA, C_GREEN_DARK, C_WHI,
-										C_WHI, C_BLA,
-										C_WHI, C_BLU, C_GOLD_PALE};
-	(colors->hyper[4]) = (t_colorset) { C_BLA, C_WHI, C_WHI,
+										C_WHI, C_PURPLE_DARK, C_RED};
+	(colors->hyper[3]) = (t_colorset) { C_BLA, C_BLA, C_WHI,
+										C_WHI, C_RED,
+										C_GOLD_PALE, C_GRE, C_GOLD_PALE};
+	(colors->hyper[4]) = (t_colorset) { C_BLA, C_BLA, C_WHI,
 										C_GOLD_PALE, C_ORANGE_DARK,
 										C_WHI, C_BLU, C_GOLD_PALE};
-	(colors->hyper[5]) = (t_colorset) { C_WHI, C_BLUE_NAVY, C_ORANGE_DARK,
+	(colors->hyper[5]) = (t_colorset) { C_WHI, C_BLA, C_ORANGE_DARK,
 										C_WHI, C_WHI,
-										C_WHI, C_BLU, C_GOLD_PALE};
+										C_GOLD_PALE, C_BROWNIE, C_GOLD_PALE};
 	(colors->hyper[6]) = (t_colorset) { 0, 0, 0, 0, 0, 0, 0, 0 };
 }
 
